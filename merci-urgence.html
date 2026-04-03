@@ -8,6 +8,7 @@
     name="description"
     content="Paiement validé. Accédez immédiatement à WhatsApp et envoyez votre urgence plomberie."
   />
+  <meta name="robots" content="noindex, nofollow" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -22,7 +23,7 @@
       --green-soft:#ecfff3;
       --blue:#0d6efd;
       --blue-dark:#084298;
-      --red:#ff4d4f;
+      --blue-soft:#eef5ff;
       --dark:#0f172a;
       --text:#243041;
       --muted:#667085;
@@ -31,6 +32,10 @@
       --border:#dbe4f0;
       --shadow:0 12px 40px rgba(15, 23, 42, 0.08);
       --radius:22px;
+      --orange-soft:#fff7ed;
+      --orange-border:#fed7aa;
+      --orange-text:#9a3412;
+      --yellow:#fff8db;
     }
 
     *{box-sizing:border-box}
@@ -44,8 +49,13 @@
       padding:24px 16px 40px;
     }
 
+    a{
+      color:inherit;
+      text-decoration:none;
+    }
+
     .container{
-      max-width:1020px;
+      max-width:1060px;
       margin:0 auto;
     }
 
@@ -69,6 +79,13 @@
       margin:0;
       font-size:16px;
       color:rgba(255,255,255,0.96);
+    }
+
+    .top-card .subline{
+      margin-top:10px;
+      font-size:14px;
+      font-weight:700;
+      color:#f0fff4;
     }
 
     .layout{
@@ -122,7 +139,6 @@
       color:#fff;
       padding:17px 18px;
       border-radius:18px;
-      text-decoration:none;
       font-size:17px;
       font-weight:800;
       box-shadow:0 16px 30px rgba(37,211,102,0.20);
@@ -136,12 +152,23 @@
     }
 
     .info-strip{
-      background:#eef5ff;
+      background:var(--blue-soft);
       border-left:5px solid var(--blue);
       border-radius:14px;
       padding:14px 16px;
       margin:18px 0 22px;
       color:var(--blue-dark);
+      font-weight:600;
+      font-size:14px;
+    }
+
+    .warning-strip{
+      background:var(--yellow);
+      border-left:5px solid #f4b400;
+      border-radius:14px;
+      padding:14px 16px;
+      margin:0 0 20px;
+      color:#755b00;
       font-weight:600;
       font-size:14px;
     }
@@ -196,8 +223,7 @@
     }
 
     input,
-    textarea,
-    select{
+    textarea{
       width:100%;
       padding:14px 16px;
       border:1px solid var(--border);
@@ -211,14 +237,13 @@
     }
 
     input:focus,
-    textarea:focus,
-    select:focus{
+    textarea:focus{
       border-color:var(--blue);
       box-shadow:0 0 0 4px rgba(13,110,253,0.10);
     }
 
     textarea{
-      min-height:170px;
+      min-height:180px;
       resize:vertical;
     }
 
@@ -259,11 +284,11 @@
 
     .urgency-note{
       margin-top:18px;
-      background:#fff7ed;
-      border:1px solid #fed7aa;
+      background:var(--orange-soft);
+      border:1px solid var(--orange-border);
       border-radius:16px;
       padding:16px;
-      color:#9a3412;
+      color:var(--orange-text);
       font-size:14px;
       font-weight:600;
     }
@@ -296,6 +321,18 @@
       font-size:13px;
     }
 
+    .small-back{
+      margin-top:18px;
+      text-align:center;
+      font-size:14px;
+      color:var(--muted);
+      font-weight:600;
+    }
+
+    .small-back a{
+      color:var(--blue);
+    }
+
     @media (max-width: 860px){
       .layout{
         grid-template-columns:1fr;
@@ -316,16 +353,17 @@
   <div class="container">
 
     <div class="top-card">
-      <h1>🚨 Paiement validé</h1>
-      <p>Votre accès prioritaire est activé. Vous pouvez maintenant envoyer votre urgence plomberie immédiatement.</p>
+      <h1>🚨 Paiement bien enregistré</h1>
+      <p>Votre accès prioritaire est activé. Commencez maintenant par WhatsApp pour transmettre votre urgence plomberie le plus rapidement possible.</p>
+      <div class="subline">Le formulaire ci-dessous sert de complément si nécessaire.</div>
     </div>
 
     <div class="layout">
 
       <div class="card">
-        <h2>Accès WhatsApp immédiat</h2>
+        <h2>Accès WhatsApp prioritaire</h2>
         <p>
-          Pour aller le plus vite possible, commencez par WhatsApp. C’est le canal le plus direct pour l’offre urgence.
+          Pour aller le plus vite possible, commencez par WhatsApp. C’est le canal le plus direct pour cette offre.
         </p>
 
         <div class="whatsapp-box">
@@ -334,7 +372,9 @@
             Cliquez ci-dessous pour envoyer immédiatement votre message.
           </p>
           <a
-            href="https://wa.me/33678532859?text=Bonjour%20je%20viens%20de%20payer%20une%20urgence"
+            href="https://wa.me/33678532859?text=Bonjour%20je%20viens%20de%20payer%20une%20urgence%20sur%20Diag%20Plomberie%20France."
+            target="_blank"
+            rel="noopener noreferrer"
             class="whatsapp-btn"
           >
             Accéder à WhatsApp immédiatement
@@ -342,7 +382,7 @@
         </div>
 
         <div class="info-strip">
-          Conseil : dans votre message WhatsApp, précisez directement le problème, depuis quand il a commencé, et envoyez une photo ou une vidéo si possible.
+          Conseil : dans votre message WhatsApp, indiquez directement le problème, depuis quand il a commencé, et ajoutez une photo ou une vidéo si possible.
         </div>
 
         <div class="steps">
@@ -350,7 +390,7 @@
             <div class="step-num">1</div>
             <div>
               <strong>Ouvrez WhatsApp</strong>
-              Cliquez sur le bouton ci-dessus pour lancer l’échange immédiat.
+              Cliquez sur le bouton ci-dessus pour lancer l’échange prioritaire.
             </div>
           </div>
 
@@ -372,7 +412,7 @@
         </div>
 
         <div class="urgency-note">
-          ⚠️ Si votre situation est urgente, ne tardez pas : ouvrez WhatsApp en priorité pour gagner du temps.
+          ⚠️ En cas d’urgence, ouvrez WhatsApp en priorité. C’est le canal le plus rapide pour cette offre.
         </div>
       </div>
 
@@ -382,15 +422,24 @@
           En complément de WhatsApp, vous pouvez transmettre votre urgence via le formulaire ci-dessous.
         </p>
 
+        <div class="warning-strip">
+          Important : utilisez de préférence le même email et le même numéro que lors du paiement afin de faciliter l’identification de votre demande.
+        </div>
+
         <form
           name="urgence"
           method="POST"
           data-netlify="true"
+          netlify-honeypot="bot-field"
           enctype="multipart/form-data"
-          action="/merci-urgence.html"
+          action="/urgence-envoyee.html"
         >
           <input type="hidden" name="form-name" value="urgence" />
           <input type="hidden" name="offre" value="Urgence WhatsApp" />
+
+          <p style="display:none;">
+            <label>Ne pas remplir ce champ : <input name="bot-field" /></label>
+          </p>
 
           <label for="name">Nom</label>
           <input
@@ -407,6 +456,15 @@
             type="email"
             name="email"
             placeholder="Votre adresse email"
+            required
+          />
+
+          <label for="phone">Téléphone / WhatsApp</label>
+          <input
+            id="phone"
+            type="text"
+            name="phone"
+            placeholder="Votre numéro"
             required
           />
 
@@ -452,6 +510,10 @@
 
         <div class="footer-note">
           WhatsApp reste le canal prioritaire pour cette offre.
+        </div>
+
+        <div class="small-back">
+          Besoin de revenir au site ? <a href="/">Retour à l’accueil</a>
         </div>
       </div>
 
