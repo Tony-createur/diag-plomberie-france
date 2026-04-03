@@ -1196,16 +1196,18 @@
   </div>
 
   <!-- Formulaire caché Netlify pour détecter correctement la form -->
-  <form name="demande-payee" method="POST" data-netlify="true" netlify-honeypot="bot-field" hidden>
-    <input type="hidden" name="form-name" value="demande-payee" />
-    <input type="text" name="bot-field" />
-    <input type="text" name="nom" />
-    <input type="email" name="email" />
-    <input type="tel" name="telephone" />
-    <input type="text" name="ville" />
-    <input type="text" name="urgence" />
-    <textarea name="probleme"></textarea>
-  </form>
+  <form name="demande-payee" method="POST" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data" hidden>
+  <input type="hidden" name="form-name" value="demande-payee" />
+  <input type="text" name="bot-field" />
+
+  <input type="text" name="nom" />
+  <input type="email" name="email" />
+  <input type="tel" name="telephone" />
+  <input type="text" name="ville" />
+  <input type="text" name="urgence" />
+  <textarea name="probleme"></textarea>
+  <input type="file" name="photos_videos" />
+</form>
 
 </body>
 </html>
