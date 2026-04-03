@@ -50,7 +50,9 @@ exports.handler = async (event) => {
         fullSession.customer_details?.email || session.customer_details?.email;
 
       const customerName =
-        fullSession.customer_details?.name || "Client";
+  fullSession.customer_details?.name ||
+  session.metadata?.nom ||
+  "Client";
 
       if (!customerEmail) {
         console.log("Aucun email client trouvé.");
