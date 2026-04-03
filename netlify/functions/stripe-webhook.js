@@ -48,6 +48,9 @@ exports.handler = async (event) => {
         session.customer_details?.email ||
         session.customer_email;
 
+      console.log("SESSION :", session);
+      console.log("CUSTOMER EMAIL :", customerEmail);
+
       const lineItem = fullSession.line_items?.data?.[0];
       const productName = lineItem?.price?.product?.name || "";
 
