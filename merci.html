@@ -26,12 +26,10 @@
       --dark:#0f172a;
       --text:#243041;
       --muted:#667085;
-      --bg:#f5f7fb;
       --white:#ffffff;
       --border:#dbe4f0;
       --shadow:0 12px 40px rgba(15, 23, 42, 0.08);
       --radius:22px;
-      --red:#dc2626;
       --yellow:#fff8db;
     }
 
@@ -184,8 +182,7 @@
     }
 
     input,
-    textarea,
-    select{
+    textarea{
       width:100%;
       padding:14px 16px;
       border:1px solid var(--border);
@@ -199,8 +196,7 @@
     }
 
     input:focus,
-    textarea:focus,
-    select:focus{
+    textarea:focus{
       border-color:var(--blue);
       box-shadow:0 0 0 4px rgba(13,110,253,0.10);
     }
@@ -216,12 +212,14 @@
       margin-top:8px;
     }
 
-    .file-box{
-      margin-top:8px;
-      padding:14px;
-      border:1px dashed #b9c7da;
+    .upload-note{
+      margin-top:18px;
+      padding:14px 16px;
       border-radius:14px;
       background:#f9fbff;
+      border:1px dashed #b9c7da;
+      color:#516074;
+      font-size:14px;
     }
 
     .btn{
@@ -332,9 +330,7 @@
   </style>
 </head>
 <body>
-
   <div class="container">
-
     <div class="top-success">
       <h1>✅ Paiement bien enregistré</h1>
       <p>Dernière étape : remplissez le formulaire ci-dessous pour envoyer votre demande et recevoir votre diagnostic plomberie à distance.</p>
@@ -342,15 +338,12 @@
     </div>
 
     <div class="layout">
-
       <div class="card">
         <h2>Décrivez votre problème maintenant</h2>
-        <p>
-          Plus votre demande est précise, plus le retour sera clair, utile et rapide.
-        </p>
+        <p>Plus votre demande est précise, plus le retour sera clair, utile et rapide.</p>
 
         <div class="info-strip">
-          Indiquez ce qui se passe, depuis quand, ce que vous avez déjà essayé, et ajoutez des photos ou vidéos si possible.
+          Indiquez ce qui se passe, depuis quand, ce que vous avez déjà essayé.
         </div>
 
         <div class="warning-strip">
@@ -363,7 +356,6 @@
           action="/demande-envoyee.html"
           data-netlify="true"
           netlify-honeypot="bot-field"
-          enctype="multipart/form-data"
         >
           <input type="hidden" name="form-name" value="demande-payee" />
           <input type="hidden" name="offre" value="Diagnostic payé" />
@@ -403,25 +395,16 @@
           <textarea
             id="message"
             name="message"
-            placeholder="Exemple : J’ai une fuite sous l’évier depuis ce matin. L’eau coule lentement mais en continu. J’ai fermé partiellement l’arrivée d’eau. Je joins 2 photos et une vidéo."
+            placeholder="Exemple : J’ai une fuite sous l’évier depuis ce matin. L’eau coule lentement mais en continu. J’ai fermé partiellement l’arrivée d’eau."
             required
           ></textarea>
+
           <div class="helper">
             Décrivez la situation de la façon la plus concrète possible.
           </div>
 
-          <label for="fichiers">Photos / vidéos</label>
-          <div class="file-box">
-            <input
-              id="fichiers"
-              type="file"
-              name="fichiers"
-              accept="image/*,video/*"
-              multiple
-            />
-            <div class="helper">
-              Vous pouvez joindre plusieurs fichiers si cela aide à comprendre la situation.
-            </div>
+          <div class="upload-note">
+            Ajout de photos/vidéos en cours d’amélioration. Pour l’instant, envoyez votre demande sans fichier pour garantir une bonne réception.
           </div>
 
           <button type="submit" class="btn">Envoyer ma demande</button>
@@ -438,9 +421,7 @@
 
       <div class="card">
         <h2>Comment bien remplir votre demande</h2>
-        <p>
-          Pour gagner du temps, voici ce qui aide le plus à faire un bon diagnostic.
-        </p>
+        <p>Pour gagner du temps, voici ce qui aide le plus à faire un bon diagnostic.</p>
 
         <div class="steps">
           <div class="step">
@@ -462,8 +443,8 @@
           <div class="step">
             <div class="step-num">3</div>
             <div>
-              <strong>Ajoutez des photos ou vidéos</strong>
-              C’est souvent ce qui permet d’aller plus vite et d’être plus précis.
+              <strong>Soyez concret</strong>
+              Plus votre description est précise, plus le diagnostic sera utile.
             </div>
           </div>
         </div>
@@ -471,7 +452,7 @@
         <div class="bullet-list">
           <div class="bullet">
             <strong>Bon exemple</strong>
-            “Fuite sous lavabo depuis ce matin, surtout quand j’ouvre l’eau chaude, photo du siphon jointe.”
+            “Fuite sous lavabo depuis ce matin, surtout quand j’ouvre l’eau chaude.”
           </div>
 
           <div class="bullet">
@@ -486,8 +467,8 @@
 
         <div class="mini-faq">
           <div class="mini-faq-item">
-            <strong>Dois-je forcément ajouter des fichiers ?</strong>
-            Non, mais c’est fortement conseillé si vous voulez un retour plus précis.
+            <strong>Puis-je envoyer des photos plus tard ?</strong>
+            Oui. Une fois la demande reçue, il sera possible de gérer l’envoi de visuels séparément.
           </div>
 
           <div class="mini-faq-item">
@@ -501,10 +482,7 @@
           </div>
         </div>
       </div>
-
     </div>
-
   </div>
-
 </body>
 </html>
