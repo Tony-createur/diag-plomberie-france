@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="Diagnostic plomberie en ligne rapide. Évitez les devis abusifs, comprenez votre problème avant de payer une intervention, et choisissez le bon niveau d’urgence."
+  />
+  <meta
+    name="keywords"
+    content="diagnostic plomberie, fuite eau, urgence plomberie, chauffe-eau panne, devis plombier, évitez arnaque plombier, diagnostic à distance"
+  />
+  <meta name="robots" content="index, follow" />
+  <title>Diag Plomberie France | Évitez les devis abusifs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    :root{
+      --blue:#0d6efd;
+      --blue-dark:#084298;
+      --blue-soft:#eaf3ff;
+      --red:#ff4d4f;
+      --red-dark:#d9363e;
+      --green:#1f9d55;
+      --green-soft:#ebfff3;
+      --yellow:#fff4cc;
+      --dark:#0f172a;
+      --text:#243041;
+      --muted:#667085;
+      --white:#ffffff;
+      --bg:#f5f7fb;
+      --border:#e5e7eb;
+      --shadow:0 12px 40px rgba(15, 23, 42, 0.08);
+      --radius:22px;
+      --radius-sm:14px;
+      --max:1180px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:'Poppins',sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.6;
+    }
+
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block}
+
+    .top-alert{
+      background:linear-gradient(90deg,#ff5a5f,#ff7a45);
+      color:#fff;
+      text-align:center;
+      font-weight:700;
+      font-size:14px;
+      padding:10px 16px;
+    }
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      background:rgba(255,255,255,0.92);
+      backdrop-filter:blur(12px);
+      border-bottom:1px solid rgba(0,0,0,0.05);
+    }
+
+    .nav-wrap{
+      max-width:var(--max);
+      margin:auto;
+      padding:16px 20px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:0;
+    }
+
+    .brand-badge{
+      width:44px;
+      height:44px;
+      border-radius:14px;
+      background:linear-gradient(135deg,var(--blue),#35a2ff);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#fff;
+      font-size:20px;
+      font-weight:800;
+      box-shadow:0 10px 20px rgba(13,110,253,0.18);
+      flex-shrink:0;
+    }
+
+    .brand-text{
+      display:flex;
+      flex-direction:column;
+      line-height:1.15;
+    }
+
+    .brand-text strong{
+      color:var(--blue);
+      font-size:20px;
+      font-weight:800;
+    }
+
+    .brand-text span{
+      color:var(--muted);
+      font-size:12px;
+      font-weight:600;
+    }
+
+    nav{
+      display:flex;
+      align-items:center;
+      gap:18px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+
+    nav a{
+      color:var(--text);
+      font-weight:600;
+      font-size:14px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding:14px 24px;
+      border-radius:999px;
+      font-weight:700;
+      transition:0.2s ease;
+      border:none;
+      cursor:pointer;
+      box-shadow:none;
+    }
+
+    .btn:hover{
+      transform:translateY(-1px);
+    }
+
+    .btn-primary{
+      background:var(--blue);
+      color:#fff;
+      box-shadow:0 12px 24px rgba(13,110,253,0.18);
+    }
+
+    .btn-primary:hover{
+      background:var(--blue-dark);
+    }
+
+    .btn-danger{
+      background:var(--red);
+      color:#fff;
+      box-shadow:0 12px 24px rgba(255,77,79,0.22);
+    }
+
+    .btn-danger:hover{
+      background:var(--red-dark);
+    }
+
+    .btn-light{
+      background:#fff;
+      color:var(--blue);
+      border:1px solid rgba(13,110,253,0.12);
+    }
+
+    .btn-block{
+      width:100%;
+    }
+
+    .hero{
+      position:relative;
+      overflow:hidden;
+      background:
+        radial-gradient(circle at top right, rgba(255,255,255,0.18), transparent 20%),
+        linear-gradient(135deg,#0d6efd 0%, #1293ff 45%, #1cc0ff 100%);
+      color:#fff;
+      padding:80px 20px 72px;
+    }
+
+    .hero-inner{
+      max-width:var(--max);
+      margin:auto;
+      display:grid;
+      grid-template-columns:1.15fr 0.85fr;
+      gap:34px;
+      align-items:center;
+    }
+
+    .hero-badges{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-bottom:18px;
+    }
+
+    .mini-badge{
+      background:rgba(255,255,255,0.14);
+      border:1px solid rgba(255,255,255,0.2);
+      color:#fff;
+      padding:8px 12px;
+      border-radius:999px;
+      font-size:13px;
+      font-weight:700;
+      backdrop-filter:blur(6px);
+    }
+
+    .hero h1{
+      margin:0 0 14px;
+      font-size:clamp(34px,5vw,58px);
+      line-height:1.07;
+      letter-spacing:-0.02em;
+      font-weight:800;
+    }
+
+    .hero h1 span{
+      color:#fff2a8;
+    }
+
+    .hero p{
+      margin:0 0 12px;
+      font-size:18px;
+      max-width:760px;
+      color:rgba(255,255,255,0.95);
+    }
+
+    .hero-points{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:12px;
+      margin:26px 0 24px;
+      max-width:760px;
+    }
+
+    .hero-point{
+      background:rgba(255,255,255,0.12);
+      border:1px solid rgba(255,255,255,0.15);
+      border-radius:16px;
+      padding:14px 16px;
+      font-size:14px;
+      font-weight:600;
+    }
+
+    .hero-cta{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:8px;
+    }
+
+    .hero-note{
+      margin-top:18px;
+      font-size:14px;
+      font-weight:600;
+      color:#fff7cc;
+    }
+
+    .hero-card{
+      background:rgba(255,255,255,0.12);
+      border:1px solid rgba(255,255,255,0.18);
+      backdrop-filter:blur(10px);
+      border-radius:28px;
+      padding:24px;
+      box-shadow:0 22px 40px rgba(0,0,0,0.12);
+    }
+
+    .hero-card h3{
+      margin:0 0 14px;
+      font-size:24px;
+      line-height:1.2;
+    }
+
+    .hero-card .line{
+      display:flex;
+      align-items:flex-start;
+      gap:12px;
+      margin:14px 0;
+      font-size:15px;
+    }
+
+    .hero-card .line span:first-child{
+      flex-shrink:0;
+      width:28px;
+      height:28px;
+      border-radius:999px;
+      background:rgba(255,255,255,0.18);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:14px;
+      font-weight:700;
+    }
+
+    .section{
+      max-width:var(--max);
+      margin:auto;
+      padding:74px 20px;
+    }
+
+    .section-title{
+      text-align:center;
+      margin-bottom:18px;
+    }
+
+    .section-title h2{
+      margin:0;
+      font-size:clamp(28px,4vw,42px);
+      line-height:1.12;
+      color:var(--dark);
+    }
+
+    .section-title p{
+      max-width:860px;
+      margin:14px auto 0;
+      color:var(--muted);
+      font-size:17px;
+    }
+
+    .social-proof{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:18px;
+      margin-top:-38px;
+      position:relative;
+      z-index:2;
+      max-width:var(--max);
+      padding:0 20px;
+      margin-left:auto;
+      margin-right:auto;
+    }
+
+    .proof-card{
+      background:#fff;
+      border-radius:20px;
+      box-shadow:var(--shadow);
+      padding:22px 20px;
+      text-align:center;
+    }
+
+    .proof-card strong{
+      display:block;
+      font-size:28px;
+      line-height:1;
+      color:var(--blue);
+      margin-bottom:8px;
+    }
+
+    .proof-card span{
+      font-size:14px;
+      color:var(--muted);
+      font-weight:600;
+    }
+
+    .grid-4{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:20px;
+      margin-top:30px;
+    }
+
+    .grid-3{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:20px;
+      margin-top:30px;
+    }
+
+    .card{
+      background:#fff;
+      border:1px solid rgba(0,0,0,0.04);
+      border-radius:22px;
+      padding:26px;
+      box-shadow:var(--shadow);
+    }
+
+    .card-icon{
+      width:52px;
+      height:52px;
+      border-radius:16px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:22px;
+      margin-bottom:16px;
+      background:var(--blue-soft);
+    }
+
+    .card h3{
+      margin:0 0 10px;
+      font-size:20px;
+      line-height:1.2;
+      color:var(--dark);
+    }
+
+    .card p{
+      margin:0;
+      color:var(--muted);
+      font-size:15px;
+    }
+
+    .pain-box{
+      margin-top:34px;
+      background:linear-gradient(180deg,#fff7f7,#fff);
+      border:1px solid #ffd9da;
+      border-radius:24px;
+      padding:26px;
+      box-shadow:var(--shadow);
+    }
+
+    .pain-box strong{
+      display:block;
+      margin-bottom:12px;
+      color:#b42318;
+      font-size:18px;
+    }
+
+    .pain-list{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:14px;
+      margin-top:10px;
+    }
+
+    .pain-item{
+      background:#fff;
+      border:1px solid #ffe1e2;
+      border-radius:16px;
+      padding:16px;
+      font-weight:600;
+      color:#7a271a;
+    }
+
+    .services-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:18px;
+      margin-top:30px;
+    }
+
+    .service-pill{
+      background:#fff;
+      box-shadow:var(--shadow);
+      border-radius:18px;
+      padding:20px;
+      text-align:center;
+      font-weight:700;
+      color:var(--dark);
+      border:1px solid rgba(0,0,0,0.04);
+    }
+
+    .pricing{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:20px;
+      margin-top:34px;
+      align-items:stretch;
+    }
+
+    .price-box{
+      background:#fff;
+      border:1px solid rgba(0,0,0,0.05);
+      border-radius:24px;
+      padding:28px 24px;
+      box-shadow:var(--shadow);
+      position:relative;
+      display:flex;
+      flex-direction:column;
+    }
+
+    .price-box.popular{
+      border:2px solid var(--blue);
+      transform:translateY(-8px);
+    }
+
+    .price-box.whatsapp{
+      border:2px solid #25d366;
+      background:linear-gradient(180deg,#ffffff,#f4fff8);
+    }
+
+    .ribbon{
+      position:absolute;
+      top:-12px;
+      left:24px;
+      background:var(--blue);
+      color:#fff;
+      font-size:12px;
+      font-weight:800;
+      border-radius:999px;
+      padding:7px 12px;
+      letter-spacing:0.02em;
+      box-shadow:0 10px 18px rgba(13,110,253,0.18);
+    }
+
+    .price-box h3{
+      margin:0 0 8px;
+      font-size:24px;
+      color:var(--dark);
+    }
+
+    .price{
+      font-size:38px;
+      font-weight:800;
+      color:var(--dark);
+      line-height:1;
+      margin:10px 0 12px;
+    }
+
+    .price small{
+      font-size:14px;
+      color:var(--muted);
+      font-weight:600;
+    }
+
+    .delay{
+      display:inline-block;
+      background:var(--blue-soft);
+      color:var(--blue-dark);
+      font-size:13px;
+      font-weight:700;
+      padding:8px 12px;
+      border-radius:999px;
+      margin-bottom:16px;
+    }
+
+    .whatsapp .delay{
+      background:var(--green-soft);
+      color:#157347;
+    }
+
+    .features{
+      margin:0 0 22px;
+      padding:0;
+      list-style:none;
+      display:grid;
+      gap:10px;
+      color:var(--text);
+      font-size:14px;
+    }
+
+    .features li{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+    }
+
+    .features li span:first-child{
+      color:var(--green);
+      font-weight:800;
+      flex-shrink:0;
+    }
+
+    .price-box .btn{
+      margin-top:auto;
+    }
+
+    .pricing-note{
+      margin:26px auto 0;
+      max-width:900px;
+      background:var(--yellow);
+      border-left:5px solid #f4b400;
+      border-radius:14px;
+      padding:16px 18px;
+      color:#6b5300;
+      font-weight:600;
+    }
+
+    .steps{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:18px;
+      margin-top:34px;
+    }
+
+    .step{
+      background:#fff;
+      border-radius:22px;
+      padding:24px;
+      box-shadow:var(--shadow);
+      position:relative;
+    }
+
+    .step-number{
+      width:42px;
+      height:42px;
+      border-radius:999px;
+      background:var(--blue);
+      color:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:16px;
+      font-weight:800;
+      margin-bottom:14px;
+    }
+
+    .step h3{
+      margin:0 0 10px;
+      font-size:20px;
+      color:var(--dark);
+    }
+
+    .step p{
+      margin:0;
+      color:var(--muted);
+      font-size:15px;
+    }
+
+    .faq{
+      display:grid;
+      gap:16px;
+      margin-top:34px;
+    }
+
+    .faq-item{
+      background:#fff;
+      border-radius:18px;
+      padding:22px;
+      box-shadow:var(--shadow);
+    }
+
+    .faq-item h3{
+      margin:0 0 8px;
+      font-size:18px;
+      color:var(--dark);
+    }
+
+    .faq-item p{
+      margin:0;
+      color:var(--muted);
+      font-size:15px;
+    }
+
+    .final-cta{
+      background:linear-gradient(135deg,#0d6efd,#1aa0ff);
+      color:#fff;
+      border-radius:30px;
+      padding:38px 28px;
+      box-shadow:0 24px 50px rgba(13,110,253,0.18);
+      text-align:center;
+    }
+
+    .final-cta h2{
+      margin:0 0 12px;
+      font-size:clamp(28px,4vw,40px);
+      line-height:1.1;
+    }
+
+    .final-cta p{
+      margin:0 auto 22px;
+      max-width:820px;
+      color:rgba(255,255,255,0.94);
+      font-size:17px;
+    }
+
+    .final-cta .hero-cta{
+      justify-content:center;
+      margin:0;
+    }
+
+    footer{
+      background:#111827;
+      color:#fff;
+      margin-top:70px;
+    }
+
+    .footer-inner{
+      max-width:var(--max);
+      margin:auto;
+      padding:34px 20px;
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      flex-wrap:wrap;
+      align-items:flex-start;
+    }
+
+    .footer-brand strong{
+      display:block;
+      margin-bottom:8px;
+      font-size:20px;
+    }
+
+    .footer-brand p,
+    .footer-links a{
+      color:rgba(255,255,255,0.8);
+      font-size:14px;
+    }
+
+    .footer-links{
+      display:flex;
+      gap:16px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .sticky-mobile{
+      display:none;
+    }
+
+    @media (max-width: 1080px){
+      .hero-inner,
+      .pricing,
+      .services-grid,
+      .grid-4,
+      .steps,
+      .social-proof{
+        grid-template-columns:repeat(2,1fr);
+      }
+
+      .hero-inner{
+        grid-template-columns:1fr;
+      }
+
+      .hero-card{
+        max-width:760px;
+      }
+
+      .grid-3{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width: 760px){
+      .top-alert{
+        font-size:13px;
+        padding:10px 12px;
+      }
+
+      .nav-wrap{
+        padding:14px 16px;
+      }
+
+      nav{
+        display:none;
+      }
+
+      .hero{
+        padding:56px 16px 54px;
+      }
+
+      .hero p{
+        font-size:16px;
+      }
+
+      .hero-points,
+      .social-proof,
+      .grid-4,
+      .services-grid,
+      .pricing,
+      .steps,
+      .pain-list{
+        grid-template-columns:1fr;
+      }
+
+      .section{
+        padding:60px 16px;
+      }
+
+      .price-box.popular{
+        transform:none;
+      }
+
+      .footer-inner{
+        padding:28px 16px 96px;
+        flex-direction:column;
+      }
+
+      .sticky-mobile{
+        display:flex;
+        position:fixed;
+        left:0;
+        right:0;
+        bottom:0;
+        z-index:1100;
+        background:rgba(255,255,255,0.96);
+        backdrop-filter:blur(12px);
+        border-top:1px solid rgba(0,0,0,0.08);
+        padding:10px 12px;
+        gap:10px;
+      }
+
+      .sticky-mobile a{
+        flex:1;
+        text-align:center;
+        padding:13px 10px;
+        border-radius:14px;
+        font-size:13px;
+        font-weight:800;
+      }
+
+      .sticky-mobile .btn-light{
+        background:#eef5ff;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-alert">
+    🚨 Problème de plomberie ? Obtenez un diagnostic rapide avant de payer un plombier inutilement.
+  </div>
+
+  <header>
+    <div class="nav-wrap">
+      <a href="#" class="brand">
+        <div class="brand-badge">💧</div>
+        <div class="brand-text">
+          <strong>Diag Plomberie France</strong>
+          <span>Diagnostic plomberie à distance</span>
+        </div>
+      </a>
+
+      <nav>
+        <a href="#problemes">Problèmes</a>
+        <a href="#tarifs">Tarifs</a>
+        <a href="#fonctionnement">Fonctionnement</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact" class="btn btn-primary">Commencer</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-badges">
+          <div class="mini-badge">⚠️ Évitez les devis abusifs</div>
+          <div class="mini-badge">💶 Économisez une intervention inutile</div>
+          <div class="mini-badge">📱 100% à distance</div>
+        </div>
+
+        <h1>
+          Ne payez pas un plombier <span>avant d’avoir compris votre problème</span>
+        </h1>
+
+        <p>
+          Fuite d’eau, chauffe-eau, pression, canalisation bouchée, panne ou doute sur un devis :
+          obtenez un avis professionnel clair, rapide et à distance.
+        </p>
+
+        <p>
+          Le but est simple : <strong>vous éviter une intervention inutile, un devis gonflé ou une mauvaise décision dans l’urgence.</strong>
+        </p>
+
+        <div class="hero-points">
+          <div class="hero-point">✔ Diagnostic clair avant intervention</div>
+          <div class="hero-point">✔ Choix entre Standard, Express ou Urgence</div>
+          <div class="hero-point">✔ Envoi facile de photos et vidéos après paiement</div>
+          <div class="hero-point">✔ WhatsApp immédiat pour les cas urgents</div>
+        </div>
+
+        <div class="hero-cta">
+          <a href="#tarifs" class="btn btn-light">Voir les offres</a>
+          <a href="https://buy.stripe.com/4gM9ASbx38HzfLf2je2Ji03" target="_blank" class="btn btn-danger">
+            🚨 Urgence WhatsApp immédiate
+          </a>
+        </div>
+
+        <div class="hero-note">
+          ⏱ Réponse rapide selon l’offre choisie. Paiement sécurisé via Stripe.
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <h3>Pourquoi les clients utilisent ce service</h3>
+
+        <div class="line">
+          <span>1</span>
+          <div><strong>Ils veulent éviter de se faire avoir.</strong><br />Un déplacement ou un devis peut vite coûter cher.</div>
+        </div>
+
+        <div class="line">
+          <span>2</span>
+          <div><strong>Ils veulent comprendre le vrai problème.</strong><br />Avant de payer, ils veulent savoir quoi vérifier et quoi demander.</div>
+        </div>
+
+        <div class="line">
+          <span>3</span>
+          <div><strong>Ils ont besoin d’un avis rapide.</strong><br />Surtout quand la situation devient stressante ou urgente.</div>
+        </div>
+
+        <div class="line">
+          <span>4</span>
+          <div><strong>Ils veulent une solution simple.</strong><br />Paiement, envoi des infos, réponse rapide : tout se fait en ligne.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="social-proof">
+    <div class="proof-card">
+      <strong>+120</strong>
+      <span>diagnostics déjà réalisés</span>
+    </div>
+    <div class="proof-card">
+      <strong>24h</strong>
+      <span>maximum pour l’offre Standard</span>
+    </div>
+    <div class="proof-card">
+      <strong>100%</strong>
+      <span>à distance, partout en France</span>
+    </div>
+    <div class="proof-card">
+      <strong>4 offres</strong>
+      <span>selon votre niveau d’urgence</span>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="section-title">
+      <h2>Ce service est fait pour vous si…</h2>
+      <p>
+        Vous voulez un avis pro avant de dépenser trop vite, accepter un devis douteux ou faire venir quelqu’un pour rien.
+      </p>
+    </div>
+
+    <div class="grid-4">
+      <div class="card">
+        <div class="card-icon">💸</div>
+        <h3>Vous craignez un devis abusif</h3>
+        <p>Vous souhaitez savoir si le problème semble sérieux, urgent ou potentiellement surfacturé.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🚿</div>
+        <h3>Vous avez une fuite ou une panne</h3>
+        <p>Vous voulez comprendre rapidement la situation et savoir quoi faire immédiatement.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🔥</div>
+        <h3>Votre chauffe-eau pose problème</h3>
+        <p>Eau froide, fuite, bruit anormal, panne partielle : vous avez besoin d’un premier avis clair.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">📲</div>
+        <h3>Vous voulez une réponse simple</h3>
+        <p>Pas de déplacement, pas de perte de temps : tout se fait en ligne avec un parcours rapide.</p>
+      </div>
+    </div>
+
+    <div class="pain-box">
+      <strong>⚠️ Ce que ce service vous aide à éviter</strong>
+      <div class="pain-list">
+        <div class="pain-item">Déplacement facturé pour un problème mineur</div>
+        <div class="pain-item">Devis gonflé dans l’urgence</div>
+        <div class="pain-item">Mauvais diagnostic dès le départ</div>
+        <div class="pain-item">Stress + perte de temps + argent inutilement dépensé</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="problemes">
+    <div class="section-title">
+      <h2>Problèmes pris en charge</h2>
+      <p>
+        Voici les cas les plus fréquents traités via Diag Plomberie France.
+      </p>
+    </div>
+
+    <div class="services-grid">
+      <div class="service-pill">💧 Fuite d’eau</div>
+      <div class="service-pill">🔥 Chauffe-eau / ballon</div>
+      <div class="service-pill">🚽 Canalisation bouchée</div>
+      <div class="service-pill">🚿 Pression anormale</div>
+      <div class="service-pill">🛠 Panne ou dysfonctionnement</div>
+      <div class="service-pill">📄 Doute sur un devis</div>
+      <div class="service-pill">🏠 Problème installation sanitaire</div>
+      <div class="service-pill">⚠️ Besoin d’un avis avant intervention</div>
+    </div>
+  </section>
+
+  <section class="section" id="tarifs">
+    <div class="section-title">
+      <h2>Choisissez votre niveau d’urgence</h2>
+      <p>
+        Toute demande détaillée est transmise après paiement afin de garantir un traitement sérieux, prioritaire et sans perte de temps.
+      </p>
+    </div>
+
+    <div class="pricing">
+      <div class="price-box">
+        <h3>Standard</h3>
+        <div class="price">9,99€</div>
+        <div class="delay">Réponse sous 24h</div>
+        <ul class="features">
+          <li><span>✔</span><span>Pour un besoin simple et non urgent</span></li>
+          <li><span>✔</span><span>Envoi de votre problème après paiement</span></li>
+          <li><span>✔</span><span>Photos et vidéos possibles</span></li>
+          <li><span>✔</span><span>Diagnostic à distance clair</span></li>
+        </ul>
+        <a href="https://buy.stripe.com/9B67sKcB7f5XgPj5vq2Ji00" target="_blank" class="btn btn-primary btn-block">
+          💧 Recevoir mon diagnostic
+        </a>
+      </div>
+
+      <div class="price-box popular">
+        <div class="ribbon">POPULAIRE</div>
+        <h3>Express</h3>
+        <div class="price">19,99€</div>
+        <div class="delay">Réponse en quelques heures</div>
+        <ul class="features">
+          <li><span>✔</span><span>Idéal si vous avez besoin d’un retour rapide</span></li>
+          <li><span>✔</span><span>Traitement prioritaire</span></li>
+          <li><span>✔</span><span>Envoi photos / vidéos après paiement</span></li>
+          <li><span>✔</span><span>Évite d’attendre inutilement</span></li>
+        </ul>
+        <a href="https://buy.stripe.com/28E7sKeJf2jb6aF6zu2Ji01" target="_blank" class="btn btn-primary btn-block">
+          ⚡ Diagnostic prioritaire
+        </a>
+      </div>
+
+      <div class="price-box">
+        <h3>Urgence</h3>
+        <div class="price">29,99€</div>
+        <div class="delay">Traitement immédiat</div>
+        <ul class="features">
+          <li><span>✔</span><span>Pour un problème urgent nécessitant un retour très rapide</span></li>
+          <li><span>✔</span><span>Prise en charge accélérée</span></li>
+          <li><span>✔</span><span>Transmission de votre situation dès paiement</span></li>
+          <li><span>✔</span><span>Parfait si la situation vous stresse</span></li>
+        </ul>
+        <a href="https://buy.stripe.com/3cI28qfNj7Dvcz3bTO2Ji02" target="_blank" class="btn btn-danger btn-block">
+          🚨 Intervention urgente
+        </a>
+      </div>
+
+      <div class="price-box whatsapp">
+        <h3>Urgence WhatsApp immédiate</h3>
+        <div class="price">49,99€ <small></small></div>
+        <div class="delay">Échange direct immédiat</div>
+        <ul class="features">
+          <li><span>✔</span><span>Accès rapide via WhatsApp après paiement</span></li>
+          <li><span>✔</span><span>Pour les cas les plus urgents</span></li>
+          <li><span>✔</span><span>Échange direct et prioritaire</span></li>
+          <li><span>✔</span><span>Le format le plus rapide du site</span></li>
+        </ul>
+        <a href="https://buy.stripe.com/4gM9ASbx38HzfLf2je2Ji03" target="_blank" class="btn btn-danger btn-block">
+          💬 Accès WhatsApp immédiat
+        </a>
+      </div>
+    </div>
+
+    <div class="pricing-note">
+      ⚠️ Une intervention classique peut facilement coûter bien plus cher qu’un diagnostic à distance. Ici, vous obtenez d’abord un avis clair avant de payer n’importe quoi.
+    </div>
+  </section>
+
+  <section class="section" id="fonctionnement">
+    <div class="section-title">
+      <h2>Comment ça fonctionne ?</h2>
+      <p>
+        Le parcours a été pensé pour être simple, rapide et sans perte de temps.
+      </p>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">1</div>
+        <h3>Choisissez votre offre</h3>
+        <p>Sélectionnez le niveau d’urgence adapté à votre situation.</p>
+      </div>
+
+      <div class="step">
+        <div class="step-number">2</div>
+        <h3>Paiement sécurisé</h3>
+        <p>Vous êtes redirigé vers Stripe pour régler rapidement et en toute sécurité.</p>
+      </div>
+
+      <div class="step">
+        <div class="step-number">3</div>
+        <h3>Expliquez votre problème</h3>
+        <p>Après paiement, vous décrivez la situation et vous pouvez envoyer photos ou vidéos.</p>
+      </div>
+
+      <div class="step">
+        <div class="step-number">4</div>
+        <h3>Recevez un retour clair</h3>
+        <p>Vous obtenez un diagnostic à distance selon le délai prévu par votre offre.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-title">
+      <h2>Ce que vous obtenez concrètement</h2>
+      <p>
+        L’objectif n’est pas de vous noyer dans des explications compliquées, mais de vous donner une vision claire de la situation.
+      </p>
+    </div>
+
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-icon">🔎</div>
+        <h3>Un premier diagnostic utile</h3>
+        <p>Vous comprenez mieux le problème, son niveau d’urgence et les premières vérifications à faire.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🧠</div>
+        <h3>Un avis avant de dépenser</h3>
+        <p>Vous savez mieux comment réagir avant d’accepter un déplacement ou un devis potentiellement trop élevé.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">⚡</div>
+        <h3>Un gain de temps précieux</h3>
+        <p>Vous évitez les hésitations, les mauvaises décisions et la perte de temps quand la situation devient urgente.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="faq">
+    <div class="section-title">
+      <h2>Questions fréquentes</h2>
+      <p>
+        Voici les réponses aux questions les plus courantes avant achat.
+      </p>
+    </div>
+
+    <div class="faq">
+      <div class="faq-item">
+        <h3>Ce service remplace-t-il un plombier sur place ?</h3>
+        <p>Non. Il s’agit d’un diagnostic plomberie à distance. Le but est de vous aider à comprendre la situation avant d’engager des frais ou d’accepter un devis.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Comment envoyer mes photos ou vidéos ?</h3>
+        <p>Après paiement, vous êtes redirigé vers une page de confirmation qui vous permet d’expliquer votre problème et d’ajouter vos fichiers.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>En combien de temps vais-je recevoir une réponse ?</h3>
+        <p>Le délai dépend de l’offre choisie : Standard sous 24h, Express en quelques heures, Urgence en traitement immédiat, et WhatsApp immédiat pour le plus rapide.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Est-ce utile même si je ne suis pas certain de la panne ?</h3>
+        <p>Oui, justement. Le service est là pour vous aider à clarifier le problème et éviter de partir dans la mauvaise direction.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="final-cta">
+      <h2>Besoin d’un avis rapide avant de payer trop cher ?</h2>
+      <p>
+        Choisissez l’offre adaptée à votre niveau d’urgence et obtenez un diagnostic plomberie à distance simple, clair et rapide.
+      </p>
+
+      <div class="hero-cta">
+        <a href="#tarifs" class="btn btn-light">Voir les tarifs</a>
+        <a href="https://buy.stripe.com/4gM9ASbx38HzfLf2je2Ji03" target="_blank" class="btn btn-danger">
+          🚨 WhatsApp immédiat
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <strong>Diag Plomberie France</strong>
+        <p>Diagnostic plomberie à distance partout en France.</p>
+        <p>Email : contact@diagplomberiefrance.com</p>
+      </div>
+
+      <div class="footer-links">
+        <a href="mentions-legales.html">Mentions légales</a>
+        <a href="cgv.html">CGV</a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="sticky-mobile">
+    <a href="#tarifs" class="btn-light">Voir les offres</a>
+    <a href="https://buy.stripe.com/4gM9ASbx38HzfLf2je2Ji03" target="_blank" class="btn-danger">Urgence</a>
+  </div>
+
+</body>
+</html>
