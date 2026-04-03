@@ -6,8 +6,9 @@
   <title>Paiement validé | Diag Plomberie France</title>
   <meta
     name="description"
-    content="Paiement validé. Décrivez votre problème de plomberie pour recevoir votre diagnostic à distance."
+    content="Paiement validé. Dernière étape : décrivez votre problème de plomberie pour recevoir votre diagnostic à distance."
   />
+  <meta name="robots" content="noindex, nofollow" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -19,7 +20,8 @@
     :root{
       --blue:#0d6efd;
       --blue-dark:#084298;
-      --green:#1f9d55;
+      --blue-soft:#eef5ff;
+      --green:#16a34a;
       --green-soft:#ebfff3;
       --dark:#0f172a;
       --text:#243041;
@@ -29,6 +31,8 @@
       --border:#dbe4f0;
       --shadow:0 12px 40px rgba(15, 23, 42, 0.08);
       --radius:22px;
+      --red:#dc2626;
+      --yellow:#fff8db;
     }
 
     *{box-sizing:border-box}
@@ -42,16 +46,21 @@
       padding:24px 16px 40px;
     }
 
+    a{
+      color:inherit;
+      text-decoration:none;
+    }
+
     .container{
-      max-width:980px;
+      max-width:1050px;
       margin:0 auto;
     }
 
     .top-success{
       background:linear-gradient(135deg,#16a34a,#22c55e);
       color:#fff;
-      border-radius:24px;
-      padding:28px 24px;
+      border-radius:26px;
+      padding:30px 24px;
       box-shadow:0 18px 40px rgba(34,197,94,0.18);
       margin-bottom:22px;
       text-align:center;
@@ -66,12 +75,19 @@
     .top-success p{
       margin:0;
       font-size:16px;
-      color:rgba(255,255,255,0.95);
+      color:rgba(255,255,255,0.96);
+    }
+
+    .top-success .subline{
+      margin-top:10px;
+      font-size:14px;
+      font-weight:700;
+      color:#f0fff4;
     }
 
     .layout{
       display:grid;
-      grid-template-columns:1.05fr 0.95fr;
+      grid-template-columns:1.08fr 0.92fr;
       gap:22px;
       align-items:start;
     }
@@ -97,12 +113,23 @@
     }
 
     .info-strip{
-      background:#eef5ff;
+      background:var(--blue-soft);
       border-left:5px solid var(--blue);
       border-radius:14px;
       padding:14px 16px;
       margin:18px 0 22px;
       color:var(--blue-dark);
+      font-weight:600;
+      font-size:14px;
+    }
+
+    .warning-strip{
+      background:var(--yellow);
+      border-left:5px solid #f4b400;
+      border-radius:14px;
+      padding:14px 16px;
+      margin:0 0 20px;
+      color:#755b00;
       font-weight:600;
       font-size:14px;
     }
@@ -179,7 +206,7 @@
     }
 
     textarea{
-      min-height:170px;
+      min-height:190px;
       resize:vertical;
     }
 
@@ -250,11 +277,43 @@
       margin-bottom:4px;
     }
 
+    .mini-faq{
+      margin-top:20px;
+      display:grid;
+      gap:12px;
+    }
+
+    .mini-faq-item{
+      border:1px solid #edf2f7;
+      border-radius:16px;
+      padding:16px;
+      background:#fff;
+    }
+
+    .mini-faq-item strong{
+      display:block;
+      margin-bottom:6px;
+      color:var(--dark);
+      font-size:15px;
+    }
+
     .footer-note{
       text-align:center;
       margin-top:18px;
       color:var(--muted);
       font-size:13px;
+    }
+
+    .small-back{
+      margin-top:18px;
+      text-align:center;
+      font-size:14px;
+      color:var(--muted);
+      font-weight:600;
+    }
+
+    .small-back a{
+      color:var(--blue);
     }
 
     @media (max-width: 860px){
@@ -277,31 +336,41 @@
   <div class="container">
 
     <div class="top-success">
-      <h1>✅ Paiement validé</h1>
-      <p>Votre demande peut maintenant être transmise pour recevoir votre diagnostic plomberie à distance.</p>
+      <h1>✅ Paiement bien enregistré</h1>
+      <p>Dernière étape : remplissez le formulaire ci-dessous pour envoyer votre demande et recevoir votre diagnostic plomberie à distance.</p>
+      <div class="subline">Sans ce formulaire, votre demande ne peut pas être traitée.</div>
     </div>
 
     <div class="layout">
 
       <div class="card">
-        <h2>Décrivez votre problème</h2>
+        <h2>Décrivez votre problème maintenant</h2>
         <p>
-          Plus votre demande est claire, plus le diagnostic sera rapide et précis.
+          Plus votre demande est précise, plus le retour sera clair, utile et rapide.
         </p>
 
         <div class="info-strip">
-          Conseil : indiquez ce qui se passe, depuis quand, ce que vous avez déjà testé, et ajoutez des photos ou vidéos si possible.
+          Indiquez ce qui se passe, depuis quand, ce que vous avez déjà essayé, et ajoutez des photos ou vidéos si possible.
+        </div>
+
+        <div class="warning-strip">
+          Important : utilisez de préférence le même email que lors du paiement afin de faciliter l’identification de votre demande.
         </div>
 
         <form
           name="demande-payee"
           method="POST"
           data-netlify="true"
+          netlify-honeypot="bot-field"
           enctype="multipart/form-data"
-          action="/merci.html"
+          action="/demande-envoyee.html"
         >
           <input type="hidden" name="form-name" value="demande-payee" />
-          <input type="hidden" name="offre" value="Standard / Express / Urgence" />
+          <input type="hidden" name="offre" value="Diagnostic payé" />
+
+          <p style="display:none;">
+            <label>Ne pas remplir ce champ : <input name="bot-field" /></label>
+          </p>
 
           <label for="name">Nom</label>
           <input
@@ -321,6 +390,15 @@
             required
           />
 
+          <label for="phone">Téléphone / WhatsApp</label>
+          <input
+            id="phone"
+            type="text"
+            name="phone"
+            placeholder="Votre numéro"
+            required
+          />
+
           <label for="message">Votre problème</label>
           <textarea
             id="message"
@@ -329,7 +407,7 @@
             required
           ></textarea>
           <div class="helper">
-            Décrivez le problème de la façon la plus concrète possible.
+            Décrivez la situation de la façon la plus concrète possible.
           </div>
 
           <label for="fichiers">Photos / vidéos</label>
@@ -342,7 +420,7 @@
               multiple
             />
             <div class="helper">
-              Vous pouvez envoyer plusieurs fichiers si cela aide à comprendre la situation.
+              Vous pouvez joindre plusieurs fichiers si cela aide à comprendre la situation.
             </div>
           </div>
 
@@ -351,6 +429,10 @@
 
         <div class="footer-note">
           En validant, votre demande est transmise pour traitement.
+        </div>
+
+        <div class="small-back">
+          Besoin de revenir au site ? <a href="/">Retour à l’accueil</a>
         </div>
       </div>
 
@@ -400,6 +482,23 @@
 
         <div class="side-note">
           ✅ Plus votre message est précis, plus le retour peut être utile, clair et rapide.
+        </div>
+
+        <div class="mini-faq">
+          <div class="mini-faq-item">
+            <strong>Dois-je forcément ajouter des fichiers ?</strong>
+            Non, mais c’est fortement conseillé si vous voulez un retour plus précis.
+          </div>
+
+          <div class="mini-faq-item">
+            <strong>Ce service remplace-t-il une intervention sur place ?</strong>
+            Non. Il s’agit d’un diagnostic et d’un avis à distance. Une intervention physique peut rester nécessaire selon la situation.
+          </div>
+
+          <div class="mini-faq-item">
+            <strong>Que se passe-t-il après l’envoi ?</strong>
+            Votre demande est reçue puis traitée selon le niveau de priorité correspondant à votre achat.
+          </div>
         </div>
       </div>
 
