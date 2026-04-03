@@ -88,7 +88,6 @@
     }
 
     input,
-    select,
     textarea{
       width:100%;
       padding:16px 16px;
@@ -102,7 +101,6 @@
     }
 
     input:focus,
-    select:focus,
     textarea:focus{
       border-color:var(--blue);
       box-shadow:0 0 0 4px rgba(13,110,253,0.10);
@@ -155,6 +153,19 @@
 
     .hidden{
       display:none;
+    }
+
+    .files-box{
+      background:#f8fbff;
+      border:1px solid #dfeaf7;
+      border-radius:18px;
+      padding:16px;
+    }
+
+    .files-box h3{
+      margin:0 0 12px;
+      font-size:16px;
+      color:#0f172a;
     }
 
     @media (max-width:640px){
@@ -222,31 +233,30 @@
           </div>
 
           <div>
-            <label for="urgence">Niveau d’urgence</label>
-            <select id="urgence" name="urgence" required>
-              <option value="">Choisir</option>
-              <option value="Pas urgent">Pas urgent</option>
-              <option value="Rapide">Rapide</option>
-              <option value="Urgence absolue">Urgence absolue</option>
-            </select>
-          </div>
-
-          <div>
             <label for="probleme">Décrivez votre problème</label>
             <textarea id="probleme" name="probleme" required></textarea>
           </div>
 
-          <div>
-            <label for="photos_videos">Ajouter vos photos ou vidéos</label>
-            <input
-              type="file"
-              id="photos_videos"
-              name="photos_videos"
-              accept="image/*,video/*"
-              multiple
-            />
+          <div class="files-box">
+            <h3>Ajoutez vos photos / vidéos</h3>
+
+            <div style="margin-bottom:14px;">
+              <label for="photo_video_1">Fichier 1</label>
+              <input type="file" id="photo_video_1" name="photo_video_1" accept="image/*,video/*" />
+            </div>
+
+            <div style="margin-bottom:14px;">
+              <label for="photo_video_2">Fichier 2</label>
+              <input type="file" id="photo_video_2" name="photo_video_2" accept="image/*,video/*" />
+            </div>
+
+            <div>
+              <label for="photo_video_3">Fichier 3</label>
+              <input type="file" id="photo_video_3" name="photo_video_3" accept="image/*,video/*" />
+            </div>
+
             <div class="upload-note">
-              Vous pouvez ajouter plusieurs photos ou vidéos pour mieux expliquer le problème.
+              Ajoutez seulement les fichiers utiles. Netlify limite la taille totale de la requête à 8 MB. :contentReference[oaicite:1]{index=1}
             </div>
           </div>
         </div>
