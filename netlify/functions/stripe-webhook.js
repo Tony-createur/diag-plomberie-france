@@ -96,18 +96,19 @@ exports.handler = async (event) => {
           </p>
 
           <p>
-            Votre demande a bien été transmise à <strong>Diag Plomberie France</strong>.
-          </p>
+  Votre paiement est confirmé. Vous pouvez maintenant envoyer votre demande complète (photos, vidéos, détails) en cliquant ci-dessous :
+</p>
 
-          <div style="background:#f6f8fb;padding:18px;border-radius:12px;margin:20px 0;">
-            <h3 style="margin-top:0;">Récapitulatif</h3>
-            <p><strong>Montant payé :</strong> ${montant}</p>
-            <p><strong>Niveau d’urgence :</strong> ${urgence}</p>
-            <p><strong>Téléphone :</strong> ${telephone}</p>
-            <p><strong>Ville :</strong> ${ville}</p>
-            <p><strong>Type de logement :</strong> ${logement}</p>
-            <p><strong>Problème déclaré :</strong><br>${probleme}</p>
-          </div>
+<p style="text-align:center;margin:25px 0;">
+  <a href="https://diagplomberiefrance.com/demande-envoyee.html"
+     style="background:#0d6efd;color:#fff;padding:14px 22px;border-radius:10px;text-decoration:none;font-weight:700;display:inline-block;">
+     👉 Accéder à mon formulaire
+  </a>
+</p>
+
+<p>
+  Ce formulaire vous permet de transmettre tous les éléments nécessaires pour votre diagnostic.
+</p>
 
           <p>
             Vous serez recontacté rapidement si nécessaire, ou votre analyse sera traitée selon la formule choisie.
