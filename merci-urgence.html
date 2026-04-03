@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Urgence validée | Diag Plomberie France</title>
+  <meta
+    name="description"
+    content="Paiement validé. Accédez immédiatement à WhatsApp et envoyez votre urgence plomberie."
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    :root{
+      --green:#25d366;
+      --green-dark:#1faa52;
+      --green-soft:#ecfff3;
+      --blue:#0d6efd;
+      --blue-dark:#084298;
+      --red:#ff4d4f;
+      --dark:#0f172a;
+      --text:#243041;
+      --muted:#667085;
+      --bg:#f5f7fb;
+      --white:#ffffff;
+      --border:#dbe4f0;
+      --shadow:0 12px 40px rgba(15, 23, 42, 0.08);
+      --radius:22px;
+    }
+
+    *{box-sizing:border-box}
+
+    body{
+      margin:0;
+      font-family:'Poppins',sans-serif;
+      background:linear-gradient(180deg,#f4fff8 0%, #f7f9fc 100%);
+      color:var(--text);
+      line-height:1.6;
+      padding:24px 16px 40px;
+    }
+
+    .container{
+      max-width:1020px;
+      margin:0 auto;
+    }
+
+    .top-card{
+      background:linear-gradient(135deg,#1faa52,#25d366);
+      color:#fff;
+      border-radius:26px;
+      padding:30px 24px;
+      box-shadow:0 18px 40px rgba(37,211,102,0.20);
+      text-align:center;
+      margin-bottom:22px;
+    }
+
+    .top-card h1{
+      margin:0 0 10px;
+      font-size:clamp(28px,4vw,42px);
+      line-height:1.1;
+    }
+
+    .top-card p{
+      margin:0;
+      font-size:16px;
+      color:rgba(255,255,255,0.96);
+    }
+
+    .layout{
+      display:grid;
+      grid-template-columns:1.02fr 0.98fr;
+      gap:22px;
+      align-items:start;
+    }
+
+    .card{
+      background:var(--white);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:28px;
+    }
+
+    .card h2{
+      margin:0 0 10px;
+      font-size:28px;
+      line-height:1.15;
+      color:var(--dark);
+    }
+
+    .card p{
+      margin:0 0 12px;
+      color:var(--muted);
+      font-size:15px;
+    }
+
+    .whatsapp-box{
+      background:linear-gradient(180deg,#f4fff8,#ffffff);
+      border:2px solid #b8efc9;
+      border-radius:20px;
+      padding:20px;
+      margin:18px 0 20px;
+      text-align:center;
+    }
+
+    .whatsapp-box strong{
+      display:block;
+      font-size:18px;
+      color:#166534;
+      margin-bottom:8px;
+    }
+
+    .whatsapp-btn{
+      display:block;
+      width:100%;
+      text-align:center;
+      background:linear-gradient(135deg,var(--green),#33e078);
+      color:#fff;
+      padding:17px 18px;
+      border-radius:18px;
+      text-decoration:none;
+      font-size:17px;
+      font-weight:800;
+      box-shadow:0 16px 30px rgba(37,211,102,0.20);
+      transition:0.2s ease;
+      margin-top:14px;
+    }
+
+    .whatsapp-btn:hover{
+      transform:translateY(-1px);
+      background:linear-gradient(135deg,var(--green-dark),#28c76f);
+    }
+
+    .info-strip{
+      background:#eef5ff;
+      border-left:5px solid var(--blue);
+      border-radius:14px;
+      padding:14px 16px;
+      margin:18px 0 22px;
+      color:var(--blue-dark);
+      font-weight:600;
+      font-size:14px;
+    }
+
+    .steps{
+      display:grid;
+      gap:14px;
+      margin-top:18px;
+    }
+
+    .step{
+      display:flex;
+      gap:14px;
+      align-items:flex-start;
+      padding:16px;
+      border:1px solid #edf2f7;
+      border-radius:16px;
+      background:#fff;
+    }
+
+    .step-num{
+      width:34px;
+      height:34px;
+      flex-shrink:0;
+      border-radius:999px;
+      background:var(--green);
+      color:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:800;
+      font-size:14px;
+    }
+
+    .step strong{
+      display:block;
+      color:var(--dark);
+      margin-bottom:4px;
+      font-size:15px;
+    }
+
+    form{
+      margin-top:8px;
+    }
+
+    label{
+      display:block;
+      margin:16px 0 8px;
+      font-size:14px;
+      font-weight:700;
+      color:var(--dark);
+    }
+
+    input,
+    textarea,
+    select{
+      width:100%;
+      padding:14px 16px;
+      border:1px solid var(--border);
+      border-radius:14px;
+      font-family:inherit;
+      font-size:15px;
+      color:var(--text);
+      background:#fff;
+      outline:none;
+      transition:0.2s ease;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus{
+      border-color:var(--blue);
+      box-shadow:0 0 0 4px rgba(13,110,253,0.10);
+    }
+
+    textarea{
+      min-height:170px;
+      resize:vertical;
+    }
+
+    .helper{
+      font-size:13px;
+      color:var(--muted);
+      margin-top:8px;
+    }
+
+    .file-box{
+      margin-top:8px;
+      padding:14px;
+      border:1px dashed #b9c7da;
+      border-radius:14px;
+      background:#f9fbff;
+    }
+
+    .submit-btn{
+      width:100%;
+      margin-top:22px;
+      background:linear-gradient(135deg,var(--blue),#2d8cff);
+      color:#fff;
+      border:none;
+      padding:16px 18px;
+      border-radius:16px;
+      font-size:16px;
+      font-weight:800;
+      cursor:pointer;
+      font-family:inherit;
+      box-shadow:0 14px 30px rgba(13,110,253,0.18);
+      transition:0.2s ease;
+    }
+
+    .submit-btn:hover{
+      transform:translateY(-1px);
+      background:linear-gradient(135deg,var(--blue-dark),#1976d2);
+    }
+
+    .urgency-note{
+      margin-top:18px;
+      background:#fff7ed;
+      border:1px solid #fed7aa;
+      border-radius:16px;
+      padding:16px;
+      color:#9a3412;
+      font-size:14px;
+      font-weight:600;
+    }
+
+    .bullet-list{
+      display:grid;
+      gap:12px;
+      margin-top:18px;
+    }
+
+    .bullet{
+      background:#fff;
+      border:1px solid #edf2f7;
+      border-radius:16px;
+      padding:16px;
+      font-size:14px;
+      color:var(--text);
+    }
+
+    .bullet strong{
+      color:var(--dark);
+      display:block;
+      margin-bottom:4px;
+    }
+
+    .footer-note{
+      text-align:center;
+      margin-top:18px;
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    @media (max-width: 860px){
+      .layout{
+        grid-template-columns:1fr;
+      }
+
+      .card{
+        padding:22px;
+      }
+
+      .top-card{
+        padding:24px 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <div class="top-card">
+      <h1>🚨 Paiement validé</h1>
+      <p>Votre accès prioritaire est activé. Vous pouvez maintenant envoyer votre urgence plomberie immédiatement.</p>
+    </div>
+
+    <div class="layout">
+
+      <div class="card">
+        <h2>Accès WhatsApp immédiat</h2>
+        <p>
+          Pour aller le plus vite possible, commencez par WhatsApp. C’est le canal le plus direct pour l’offre urgence.
+        </p>
+
+        <div class="whatsapp-box">
+          <strong>💬 Ouvrir WhatsApp maintenant</strong>
+          <p style="margin:0;color:#166534;">
+            Cliquez ci-dessous pour envoyer immédiatement votre message.
+          </p>
+          <a
+            href="https://wa.me/33678532859?text=Bonjour%20je%20viens%20de%20payer%20une%20urgence"
+            class="whatsapp-btn"
+          >
+            Accéder à WhatsApp immédiatement
+          </a>
+        </div>
+
+        <div class="info-strip">
+          Conseil : dans votre message WhatsApp, précisez directement le problème, depuis quand il a commencé, et envoyez une photo ou une vidéo si possible.
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div>
+              <strong>Ouvrez WhatsApp</strong>
+              Cliquez sur le bouton ci-dessus pour lancer l’échange immédiat.
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-num">2</div>
+            <div>
+              <strong>Expliquez votre urgence</strong>
+              Décrivez clairement ce qui fuit, déborde, ne chauffe plus ou vous inquiète.
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-num">3</div>
+            <div>
+              <strong>Ajoutez vos médias</strong>
+              Photos et vidéos permettent souvent d’aller beaucoup plus vite.
+            </div>
+          </div>
+        </div>
+
+        <div class="urgency-note">
+          ⚠️ Si votre situation est urgente, ne tardez pas : ouvrez WhatsApp en priorité pour gagner du temps.
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Envoyer aussi votre demande ici</h2>
+        <p>
+          En complément de WhatsApp, vous pouvez transmettre votre urgence via le formulaire ci-dessous.
+        </p>
+
+        <form
+          name="urgence"
+          method="POST"
+          data-netlify="true"
+          enctype="multipart/form-data"
+          action="/merci-urgence.html"
+        >
+          <input type="hidden" name="form-name" value="urgence" />
+          <input type="hidden" name="offre" value="Urgence WhatsApp" />
+
+          <label for="name">Nom</label>
+          <input
+            id="name"
+            type="text"
+            name="name"
+            placeholder="Votre nom"
+            required
+          />
+
+          <label for="email">Email</label>
+          <input
+            id="email"
+            type="email"
+            name="email"
+            placeholder="Votre adresse email"
+            required
+          />
+
+          <label for="message">Décrivez votre urgence</label>
+          <textarea
+            id="message"
+            name="message"
+            placeholder="Exemple : Forte fuite sous évier depuis 20 minutes, impossible de stopper complètement l’eau, j’ai fermé en partie l’arrivée. J’ajoute des photos."
+            required
+          ></textarea>
+          <div class="helper">
+            Soyez le plus précis possible pour accélérer la prise en charge.
+          </div>
+
+          <label for="fichiers">Photos / vidéos</label>
+          <div class="file-box">
+            <input
+              id="fichiers"
+              type="file"
+              name="fichiers"
+              accept="image/*,video/*"
+              multiple
+            />
+            <div class="helper">
+              Vous pouvez joindre plusieurs fichiers si cela aide à comprendre l’urgence.
+            </div>
+          </div>
+
+          <button type="submit" class="submit-btn">Envoyer mon urgence</button>
+        </form>
+
+        <div class="bullet-list">
+          <div class="bullet">
+            <strong>Bon exemple</strong>
+            “Grosse fuite sous meuble évier depuis 20 minutes, eau continue malgré fermeture partielle, vidéo jointe.”
+          </div>
+
+          <div class="bullet">
+            <strong>À éviter</strong>
+            “Urgent merci.”
+          </div>
+        </div>
+
+        <div class="footer-note">
+          WhatsApp reste le canal prioritaire pour cette offre.
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</body>
+</html>
