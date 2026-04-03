@@ -647,6 +647,121 @@
       font-size:15px;
     }
 
+    .checkout-wrap{
+      display:grid;
+      grid-template-columns:0.95fr 1.05fr;
+      gap:24px;
+      margin-top:34px;
+      align-items:start;
+    }
+
+    .checkout-card{
+      background:#fff;
+      border-radius:24px;
+      box-shadow:var(--shadow);
+      padding:28px;
+      border:1px solid rgba(0,0,0,0.04);
+    }
+
+    .selected-offer{
+      background:linear-gradient(180deg,#eef5ff,#ffffff);
+      border:1px solid #d9e8ff;
+    }
+
+    .selected-offer .offer-badge{
+      display:inline-block;
+      background:var(--blue);
+      color:#fff;
+      font-size:12px;
+      font-weight:800;
+      padding:7px 12px;
+      border-radius:999px;
+      margin-bottom:14px;
+    }
+
+    .selected-offer h3{
+      margin:0 0 8px;
+      font-size:26px;
+      color:var(--dark);
+    }
+
+    .selected-offer p{
+      margin:0 0 10px;
+      color:var(--muted);
+    }
+
+    .selected-price{
+      font-size:36px;
+      font-weight:800;
+      color:var(--blue);
+      line-height:1;
+      margin-top:10px;
+    }
+
+    .form-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:14px;
+    }
+
+    .field{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+
+    .field.full{
+      grid-column:1 / -1;
+    }
+
+    .field label{
+      font-size:14px;
+      font-weight:700;
+      color:var(--dark);
+    }
+
+    .field input,
+    .field select,
+    .field textarea{
+      width:100%;
+      border:1px solid var(--border);
+      background:#fff;
+      border-radius:14px;
+      padding:14px 14px;
+      font:inherit;
+      color:var(--text);
+      outline:none;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus{
+      border-color:#9bc2ff;
+      box-shadow:0 0 0 4px rgba(13,110,253,0.08);
+    }
+
+    .field textarea{
+      min-height:140px;
+      resize:vertical;
+    }
+
+    .form-note{
+      margin-top:16px;
+      background:#f8fafc;
+      border:1px solid #e8edf3;
+      border-radius:14px;
+      padding:14px 16px;
+      font-size:14px;
+      color:var(--muted);
+    }
+
+    .form-status{
+      margin-top:14px;
+      font-size:14px;
+      font-weight:600;
+      color:var(--blue-dark);
+    }
+
     .final-cta{
       background:linear-gradient(135deg,#0d6efd,#1aa0ff);
       color:#fff;
@@ -720,7 +835,8 @@
       .services-grid,
       .grid-4,
       .steps,
-      .social-proof{
+      .social-proof,
+      .checkout-wrap{
         grid-template-columns:repeat(2,1fr);
       }
 
@@ -733,6 +849,10 @@
       }
 
       .grid-3{
+        grid-template-columns:1fr;
+      }
+
+      .checkout-wrap{
         grid-template-columns:1fr;
       }
     }
@@ -765,7 +885,8 @@
       .services-grid,
       .pricing,
       .steps,
-      .pain-list{
+      .pain-list,
+      .form-grid{
         grid-template-columns:1fr;
       }
 
@@ -832,7 +953,7 @@
         <a href="#tarifs">Tarifs</a>
         <a href="#fonctionnement">Fonctionnement</a>
         <a href="#faq">FAQ</a>
-        <a href="#contact" class="btn btn-primary">Commencer</a>
+        <a href="#checkout-form" class="btn btn-primary">Commencer</a>
       </nav>
     </div>
   </header>
@@ -868,7 +989,7 @@
 
         <div class="hero-cta">
           <a href="#tarifs" class="btn btn-light">Voir les offres</a>
-          <a href="https://buy.stripe.com/4gM9ASbx38HzfLf2je2Ji03" target="_blank" class="btn btn-danger">
+          <a href="#checkout-form" class="btn btn-danger choose-offer" data-service="Urgence WhatsApp immédiate" data-amount="4999">
             🚨 Urgence WhatsApp immédiate
           </a>
         </div>
@@ -1007,7 +1128,7 @@
           <li><span>✔</span><span>Photos et vidéos possibles</span></li>
           <li><span>✔</span><span>Diagnostic à distance clair</span></li>
         </ul>
-        <a href="https://buy.stripe.com/9B67sKcB7f5XgPj5vq2Ji00" target="_blank" class="btn btn-primary btn-block">
+        <a href="#checkout-form" class="btn btn-primary btn-block choose-offer" data-service="Diagnostic plomberie Standard" data-amount="999">
           💧 Recevoir mon diagnostic
         </a>
       </div>
@@ -1023,7 +1144,7 @@
           <li><span>✔</span><span>Envoi photos / vidéos après paiement</span></li>
           <li><span>✔</span><span>Évite d’attendre inutilement</span></li>
         </ul>
-        <a href="https://buy.stripe.com/28E7sKeJf2jb6aF6zu2Ji01" target="_blank" class="btn btn-primary btn-block">
+        <a href="#checkout-form" class="btn btn-primary btn-block choose-offer" data-service="Diagnostic plomberie Express" data-amount="1999">
           ⚡ Diagnostic prioritaire
         </a>
       </div>
@@ -1038,14 +1159,14 @@
           <li><span>✔</span><span>Transmission de votre situation dès paiement</span></li>
           <li><span>✔</span><span>Parfait si la situation vous stresse</span></li>
         </ul>
-        <a href="https://buy.stripe.com/3cI28qfNj7Dvcz3bTO2Ji02" target="_blank" class="btn btn-danger btn-block">
+        <a href="#checkout-form" class="btn btn-danger btn-block choose-offer" data-service="Diagnostic plomberie Urgence" data-amount="2999">
           🚨 Intervention urgente
         </a>
       </div>
 
       <div class="price-box whatsapp">
         <h3>Urgence WhatsApp immédiate</h3>
-        <div class="price">49,99€ <small></small></div>
+        <div class="price">49,99€</div>
         <div class="delay">Échange direct immédiat</div>
         <ul class="features">
           <li><span>✔</span><span>Accès rapide via WhatsApp après paiement</span></li>
@@ -1053,7 +1174,7 @@
           <li><span>✔</span><span>Échange direct et prioritaire</span></li>
           <li><span>✔</span><span>Le format le plus rapide du site</span></li>
         </ul>
-        <a href="https://buy.stripe.com/4gM9ASbx38HzfLf2je2Ji03" target="_blank" class="btn btn-danger btn-block">
+        <a href="#checkout-form" class="btn btn-danger btn-block choose-offer" data-service="Urgence WhatsApp immédiate" data-amount="4999">
           💬 Accès WhatsApp immédiat
         </a>
       </div>
@@ -1061,6 +1182,91 @@
 
     <div class="pricing-note">
       ⚠️ Une intervention classique peut facilement coûter bien plus cher qu’un diagnostic à distance. Ici, vous obtenez d’abord un avis clair avant de payer n’importe quoi.
+    </div>
+  </section>
+
+  <section class="section" id="checkout-form">
+    <div class="section-title">
+      <h2>Expliquez votre problème et passez au paiement</h2>
+      <p>
+        Choisissez une offre, remplissez le formulaire, puis vous serez redirigé vers Stripe pour payer en toute sécurité.
+      </p>
+    </div>
+
+    <div class="checkout-wrap">
+      <div class="checkout-card selected-offer">
+        <div class="offer-badge">OFFRE SÉLECTIONNÉE</div>
+        <h3 id="selected-service-label">Diagnostic plomberie Express</h3>
+        <p>Vous pouvez changer d’offre à tout moment en cliquant sur une autre formule plus haut.</p>
+        <div class="selected-price" id="selected-price-label">19,99€</div>
+        <p id="selected-delay-label">Réponse en quelques heures</p>
+      </div>
+
+      <div class="checkout-card">
+        <form id="diag-form">
+          <input type="hidden" id="service" value="Diagnostic plomberie Express" />
+          <input type="hidden" id="amount" value="1999" />
+
+          <div class="form-grid">
+            <div class="field">
+              <label for="nom">Nom</label>
+              <input id="nom" type="text" placeholder="Votre nom" required />
+            </div>
+
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" type="email" placeholder="Votre email" required />
+            </div>
+
+            <div class="field">
+              <label for="telephone">Téléphone</label>
+              <input id="telephone" type="tel" placeholder="Votre téléphone" required />
+            </div>
+
+            <div class="field">
+              <label for="ville">Ville</label>
+              <input id="ville" type="text" placeholder="Votre ville" required />
+            </div>
+
+            <div class="field">
+              <label for="logement">Type de logement</label>
+              <select id="logement" required>
+                <option value="">Choisir</option>
+                <option value="Appartement">Appartement</option>
+                <option value="Maison">Maison</option>
+                <option value="Local professionnel">Local professionnel</option>
+                <option value="Autre">Autre</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="urgence">Niveau d’urgence</label>
+              <select id="urgence" required>
+                <option value="">Choisir</option>
+                <option value="Pas urgent">Pas urgent</option>
+                <option value="Sous 24h">Sous 24h</option>
+                <option value="Urgent">Urgent</option>
+                <option value="Très urgent">Très urgent</option>
+              </select>
+            </div>
+
+            <div class="field full">
+              <label for="probleme">Décrivez votre problème</label>
+              <textarea id="probleme" placeholder="Exemple : fuite sous évier, chauffe-eau ne chauffe plus, bruit anormal, doute sur devis..." required></textarea>
+            </div>
+          </div>
+
+          <div class="form-note">
+            Après paiement, votre demande sera enregistrée avec votre offre choisie et vous recevrez un email automatique de confirmation.
+          </div>
+
+          <div class="form-status" id="form-status"></div>
+
+          <button type="submit" class="btn btn-primary btn-block" id="submit-btn" style="margin-top:18px;">
+            Continuer vers le paiement sécurisé
+          </button>
+        </form>
+      </div>
     </div>
   </section>
 
@@ -1081,14 +1287,14 @@
 
       <div class="step">
         <div class="step-number">2</div>
-        <h3>Paiement sécurisé</h3>
-        <p>Vous êtes redirigé vers Stripe pour régler rapidement et en toute sécurité.</p>
+        <h3>Remplissez votre demande</h3>
+        <p>Vous expliquez le problème avant paiement pour que tout soit transmis proprement.</p>
       </div>
 
       <div class="step">
         <div class="step-number">3</div>
-        <h3>Expliquez votre problème</h3>
-        <p>Après paiement, vous décrivez la situation et vous pouvez envoyer photos ou vidéos.</p>
+        <h3>Paiement sécurisé</h3>
+        <p>Vous êtes redirigé vers Stripe pour régler rapidement et en toute sécurité.</p>
       </div>
 
       <div class="step">
@@ -1168,7 +1374,7 @@
 
       <div class="hero-cta">
         <a href="#tarifs" class="btn btn-light">Voir les tarifs</a>
-        <a href="https://buy.stripe.com/4gM9ASbx38HzfLf2je2Ji03" target="_blank" class="btn btn-danger">
+        <a href="#checkout-form" class="btn btn-danger choose-offer" data-service="Urgence WhatsApp immédiate" data-amount="4999">
           🚨 WhatsApp immédiat
         </a>
       </div>
@@ -1192,31 +1398,129 @@
 
   <div class="sticky-mobile">
     <a href="#tarifs" class="btn-light">Voir les offres</a>
-    <a href="https://buy.stripe.com/4gM9ASbx38HzfLf2je2Ji03" target="_blank" class="btn-danger">Urgence</a>
+    <a href="#checkout-form" class="btn-danger choose-offer" data-service="Diagnostic plomberie Urgence" data-amount="2999">Urgence</a>
   </div>
 
-  <!-- Formulaire caché Netlify pour détecter correctement la form -->
   <form
-  name="demande-payee"
-  method="POST"
-  data-netlify="true"
-  netlify-honeypot="bot-field"
-  enctype="multipart/form-data"
-  hidden
->
-  <input type="hidden" name="form-name" value="demande-payee" />
-  <input type="text" name="bot-field" />
+    name="demande-payee"
+    method="POST"
+    data-netlify="true"
+    netlify-honeypot="bot-field"
+    enctype="multipart/form-data"
+    hidden
+  >
+    <input type="hidden" name="form-name" value="demande-payee" />
+    <input type="text" name="bot-field" />
+    <input type="text" name="nom" />
+    <input type="email" name="email" />
+    <input type="tel" name="telephone" />
+    <input type="text" name="ville" />
+    <textarea name="probleme"></textarea>
+    <input type="file" name="photo_video_1" />
+    <input type="file" name="photo_video_2" />
+    <input type="file" name="photo_video_3" />
+  </form>
 
-  <input type="text" name="nom" />
-  <input type="email" name="email" />
-  <input type="tel" name="telephone" />
-  <input type="text" name="ville" />
-  <textarea name="probleme"></textarea>
+  <script>
+    const offerButtons = document.querySelectorAll(".choose-offer");
+    const serviceInput = document.getElementById("service");
+    const amountInput = document.getElementById("amount");
+    const serviceLabel = document.getElementById("selected-service-label");
+    const priceLabel = document.getElementById("selected-price-label");
+    const delayLabel = document.getElementById("selected-delay-label");
+    const form = document.getElementById("diag-form");
+    const submitBtn = document.getElementById("submit-btn");
+    const formStatus = document.getElementById("form-status");
 
-  <input type="file" name="photo_video_1" />
-  <input type="file" name="photo_video_2" />
-  <input type="file" name="photo_video_3" />
-</form>
+    const offerDetails = {
+      "Diagnostic plomberie Standard": {
+        price: "9,99€",
+        delay: "Réponse sous 24h"
+      },
+      "Diagnostic plomberie Express": {
+        price: "19,99€",
+        delay: "Réponse en quelques heures"
+      },
+      "Diagnostic plomberie Urgence": {
+        price: "29,99€",
+        delay: "Traitement immédiat"
+      },
+      "Urgence WhatsApp immédiate": {
+        price: "49,99€",
+        delay: "Échange direct immédiat"
+      }
+    };
+
+    function updateSelectedOffer(service, amount) {
+      serviceInput.value = service;
+      amountInput.value = amount;
+
+      const detail = offerDetails[service] || {
+        price: (amount / 100).toFixed(2).replace(".", ",") + "€",
+        delay: "Réponse rapide"
+      };
+
+      serviceLabel.textContent = service;
+      priceLabel.textContent = detail.price;
+      delayLabel.textContent = detail.delay;
+    }
+
+    offerButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const service = button.dataset.service;
+        const amount = button.dataset.amount;
+        updateSelectedOffer(service, amount);
+      });
+    });
+
+    form.addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      formStatus.textContent = "";
+      const originalText = submitBtn.textContent;
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Redirection vers Stripe...";
+
+      const formData = {
+        nom: document.getElementById("nom").value.trim(),
+        email: document.getElementById("email").value.trim(),
+        telephone: document.getElementById("telephone").value.trim(),
+        ville: document.getElementById("ville").value.trim(),
+        logement: document.getElementById("logement").value,
+        urgence: document.getElementById("urgence").value,
+        probleme: document.getElementById("probleme").value.trim(),
+        service: serviceInput.value,
+        amount: amountInput.value
+      };
+
+      try {
+        const response = await fetch("/.netlify/functions/create-checkout", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(formData)
+        });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+          throw new Error(result.error || result.details || "Erreur lors de la création du paiement.");
+        }
+
+        if (!result.url) {
+          throw new Error("Lien de paiement introuvable.");
+        }
+
+        window.location.href = result.url;
+      } catch (error) {
+        console.error(error);
+        formStatus.textContent = error.message || "Une erreur est survenue. Merci de réessayer.";
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
+      }
+    });
+  </script>
 
 </body>
 </html>
