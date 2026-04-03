@@ -18,8 +18,12 @@ exports.handler = async (event) => {
   let stripeEvent;
 
   try {
+    const rawBody = event.isBase64Encoded
+      ? Buffer.from(event.body, "base64").toString("utf8")
+      : event.body;
+
     stripeEvent = stripe.webhooks.constructEvent(
-      event.body,
+      rawBody,
       signature,
       process.env.STRIPE_WEBHOOK_SECRET
     );
@@ -48,7 +52,7 @@ exports.handler = async (event) => {
       const productName = lineItem?.price?.product?.name || "";
 
       const baseUrl =
-        process.env.APP_BASE_URL || "https://diagplomberiefrance.fr";
+        process.env.APP_BASE_URL || "https://diagplomberiefrance.com";
 
       if (!customerEmail) {
         console.log("Aucun email client trouvé pour la session :", session.id);
