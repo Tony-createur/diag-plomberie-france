@@ -5,59 +5,187 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Demande envoyée | Diag Plomberie France</title>
   <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f7f7f7;
-      color: #1a1a1a;
+    :root{
+      --blue:#0d6efd;
+      --blue-dark:#084298;
+      --green:#198754;
+      --green-soft:#eafaf1;
+      --text:#1f2937;
+      --muted:#6b7280;
+      --bg:#f4f7fb;
+      --white:#ffffff;
+      --shadow:0 18px 50px rgba(15,23,42,0.08);
+      --radius:24px;
     }
 
-    .wrap {
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 40px 20px;
+    *{box-sizing:border-box}
+
+    body{
+      margin:0;
+      font-family:'Poppins',sans-serif;
+      background:linear-gradient(180deg,#eef5ff 0%, #f7fbff 35%, #f4f7fb 100%);
+      color:var(--text);
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
     }
 
-    .card {
-      background: #ffffff;
-      border-radius: 18px;
-      padding: 30px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-      text-align: center;
+    .card{
+      width:100%;
+      max-width:760px;
+      background:var(--white);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:42px 30px;
+      text-align:center;
     }
 
-    h1 {
-      margin-top: 0;
-      font-size: 30px;
+    .icon{
+      width:82px;
+      height:82px;
+      margin:0 auto 22px;
+      border-radius:999px;
+      background:var(--green-soft);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:38px;
     }
 
-    p {
-      color: #444;
-      line-height: 1.6;
+    h1{
+      margin:0 0 14px;
+      font-size:clamp(30px,4vw,46px);
+      line-height:1.1;
+      color:#0f172a;
     }
 
-    .btn {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 14px 22px;
-      border-radius: 12px;
-      background: #0f766e;
-      color: #fff;
-      text-decoration: none;
-      font-weight: 700;
+    p{
+      margin:0 auto 12px;
+      max-width:600px;
+      color:var(--muted);
+      font-size:17px;
+      line-height:1.7;
+    }
+
+    .info-box{
+      margin:28px auto 0;
+      background:#f8fafc;
+      border:1px solid #e5e7eb;
+      border-radius:18px;
+      padding:18px;
+      text-align:left;
+      max-width:560px;
+    }
+
+    .info-box strong{
+      display:block;
+      margin-bottom:10px;
+      color:#111827;
+      font-size:16px;
+    }
+
+    .info-box ul{
+      margin:0;
+      padding-left:18px;
+      color:#4b5563;
+    }
+
+    .info-box li{
+      margin:8px 0;
+    }
+
+    .actions{
+      display:flex;
+      justify-content:center;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:30px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:14px 22px;
+      border-radius:999px;
+      font-weight:700;
+      text-decoration:none;
+      transition:0.2s ease;
+    }
+
+    .btn:hover{
+      transform:translateY(-1px);
+    }
+
+    .btn-primary{
+      background:var(--blue);
+      color:#fff;
+      box-shadow:0 12px 24px rgba(13,110,253,0.18);
+    }
+
+    .btn-primary:hover{
+      background:var(--blue-dark);
+    }
+
+    .btn-light{
+      background:#fff;
+      color:var(--blue);
+      border:1px solid rgba(13,110,253,0.15);
+    }
+
+    @media (max-width:640px){
+      .card{
+        padding:34px 20px;
+      }
+
+      p{
+        font-size:16px;
+      }
+
+      .actions{
+        flex-direction:column;
+      }
+
+      .actions .btn{
+        width:100%;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="card">
-      <h1>Demande bien envoyée</h1>
-      <p>
-        Merci, votre demande a bien été transmise.
-        Nous pouvons maintenant traiter votre diagnostic.
-      </p>
-      <a href="/" class="btn">Retour à l’accueil</a>
+  <div class="card">
+    <div class="icon">✅</div>
+    <h1>Votre demande a bien été envoyée</h1>
+    <p>
+      Merci. Nous avons bien reçu votre demande de diagnostic plomberie.
+      Votre situation va pouvoir être traitée selon le niveau d’urgence choisi.
+    </p>
+    <p>
+      Surveillez votre boîte mail et vos messages si vous avez choisi une formule rapide ou urgente.
+    </p>
+
+    <div class="info-box">
+      <strong>Rappel :</strong>
+      <ul>
+        <li>Standard : réponse sous 24h maximum</li>
+        <li>Express : réponse en quelques heures</li>
+        <li>Urgence : traitement prioritaire</li>
+        <li>WhatsApp immédiat : échange direct rapide</li>
+      </ul>
+    </div>
+
+    <div class="actions">
+      <a href="/" class="btn btn-light">Retour à l’accueil</a>
+      <a href="/merci.html" class="btn btn-primary">Envoyer une autre demande</a>
     </div>
   </div>
 </body>
