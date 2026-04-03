@@ -5,99 +5,169 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Merci | Diag Plomberie France</title>
   <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f7f7f7;
-      color: #1a1a1a;
+    :root{
+      --blue:#0d6efd;
+      --blue-dark:#084298;
+      --teal:#157f79;
+      --teal-dark:#0f6a65;
+      --bg:#f4f7fb;
+      --white:#ffffff;
+      --text:#1f2937;
+      --muted:#6b7280;
+      --border:#dbe2ea;
+      --shadow:0 18px 50px rgba(15,23,42,0.08);
+      --radius:24px;
     }
 
-    .wrap {
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 40px 20px;
+    *{box-sizing:border-box}
+
+    body{
+      margin:0;
+      font-family:'Poppins',sans-serif;
+      background:linear-gradient(180deg,#eef5ff 0%, #f7fbff 35%, #f4f7fb 100%);
+      color:var(--text);
     }
 
-    .card {
-      background: #ffffff;
-      border-radius: 18px;
-      padding: 28px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    .wrap{
+      max-width:860px;
+      margin:0 auto;
+      padding:48px 20px;
     }
 
-    h1 {
-      margin-top: 0;
-      font-size: 30px;
-      line-height: 1.2;
+    .card{
+      background:var(--white);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:34px;
     }
 
-    p {
-      line-height: 1.6;
-      color: #444;
+    .top-badge{
+      display:inline-block;
+      margin-bottom:16px;
+      background:#eaf3ff;
+      color:var(--blue-dark);
+      padding:8px 14px;
+      border-radius:999px;
+      font-size:13px;
+      font-weight:700;
     }
 
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 16px;
-      margin-top: 24px;
+    h1{
+      margin:0 0 10px;
+      font-size:clamp(30px,4vw,44px);
+      line-height:1.1;
+      color:#0f172a;
     }
 
-    label {
-      display: block;
-      font-weight: 700;
-      margin-bottom: 8px;
+    .intro{
+      margin:0 0 28px;
+      color:var(--muted);
+      font-size:16px;
+      line-height:1.7;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:18px;
+    }
+
+    label{
+      display:block;
+      margin-bottom:8px;
+      font-size:15px;
+      font-weight:700;
+      color:#111827;
     }
 
     input,
-    textarea,
-    select {
-      width: 100%;
-      padding: 14px 14px;
-      border: 1px solid #d8d8d8;
-      border-radius: 12px;
-      font-size: 16px;
-      box-sizing: border-box;
+    select,
+    textarea{
+      width:100%;
+      padding:16px 16px;
+      border:1px solid var(--border);
+      border-radius:16px;
+      font-size:16px;
+      font-family:inherit;
+      background:#fff;
+      transition:0.2s ease;
+      outline:none;
     }
 
-    textarea {
-      min-height: 140px;
-      resize: vertical;
+    input:focus,
+    select:focus,
+    textarea:focus{
+      border-color:var(--blue);
+      box-shadow:0 0 0 4px rgba(13,110,253,0.10);
     }
 
-    .btn {
-      display: inline-block;
-      width: 100%;
-      border: none;
-      border-radius: 12px;
-      padding: 16px 20px;
-      font-size: 17px;
-      font-weight: 700;
-      cursor: pointer;
-      background: #0f766e;
-      color: #fff;
-      margin-top: 10px;
+    textarea{
+      min-height:170px;
+      resize:vertical;
     }
 
-    .small {
-      font-size: 14px;
-      color: #666;
-      margin-top: 14px;
+    .btn{
+      width:100%;
+      margin-top:10px;
+      border:none;
+      border-radius:16px;
+      padding:18px 20px;
+      font-size:20px;
+      font-weight:800;
+      font-family:inherit;
+      cursor:pointer;
+      color:#fff;
+      background:var(--teal);
+      transition:0.2s ease;
+      box-shadow:0 14px 24px rgba(21,127,121,0.18);
     }
 
-    .hidden {
-      display: none;
+    .btn:hover{
+      background:var(--teal-dark);
+      transform:translateY(-1px);
+    }
+
+    .small{
+      margin-top:16px;
+      font-size:14px;
+      color:var(--muted);
+      line-height:1.6;
+    }
+
+    .hidden{
+      display:none;
+    }
+
+    @media (max-width:640px){
+      .wrap{
+        padding:28px 14px;
+      }
+
+      .card{
+        padding:24px 18px;
+      }
+
+      .btn{
+        font-size:18px;
+      }
     }
   </style>
 </head>
 <body>
   <div class="wrap">
     <div class="card">
+      <div class="top-badge">✅ Paiement confirmé</div>
       <h1>Merci pour votre paiement</h1>
-      <p>
-        Votre paiement a bien été reçu.  
-        Pour recevoir votre diagnostic, merci de compléter ce formulaire.
+      <p class="intro">
+        Votre paiement a bien été reçu. Pour recevoir votre diagnostic plomberie,
+        merci de compléter le formulaire ci-dessous avec le plus de détails possible.
       </p>
 
       <form
@@ -141,9 +211,9 @@
             <label for="urgence">Niveau d’urgence</label>
             <select id="urgence" name="urgence" required>
               <option value="">Choisir</option>
-              <option value="Urgence absolue">Urgence absolue</option>
-              <option value="Rapide">Rapide</option>
               <option value="Pas urgent">Pas urgent</option>
+              <option value="Rapide">Rapide</option>
+              <option value="Urgence absolue">Urgence absolue</option>
             </select>
           </div>
 
@@ -156,7 +226,7 @@
         <button type="submit" class="btn">Envoyer ma demande</button>
 
         <p class="small">
-          Après envoi, vous serez redirigé automatiquement vers la page de confirmation.
+          Après validation, votre demande sera transmise et vous serez redirigé vers une page de confirmation.
         </p>
       </form>
     </div>
