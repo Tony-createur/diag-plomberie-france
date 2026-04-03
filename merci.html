@@ -3,485 +3,162 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Paiement validé | Diag Plomberie France</title>
-  <meta
-    name="description"
-    content="Paiement validé. Dernière étape : décrivez votre problème de plomberie pour recevoir votre diagnostic à distance."
-  />
+  <title>Merci | Diag Plomberie France</title>
   <meta name="robots" content="noindex, nofollow" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
-    rel="stylesheet"
-  />
-
   <style>
-    :root{
-      --blue:#0d6efd;
-      --blue-dark:#084298;
-      --blue-soft:#eef5ff;
-      --green:#16a34a;
-      --green-soft:#ebfff3;
-      --dark:#0f172a;
-      --text:#243041;
-      --muted:#667085;
-      --white:#ffffff;
-      --border:#dbe4f0;
-      --shadow:0 12px 40px rgba(15, 23, 42, 0.08);
-      --radius:22px;
-      --yellow:#fff8db;
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      color: #1a1a1a;
     }
 
-    *{box-sizing:border-box}
-
-    body{
-      margin:0;
-      font-family:'Poppins',sans-serif;
-      background:linear-gradient(180deg,#f4f8ff 0%, #f7f9fc 100%);
-      color:var(--text);
-      line-height:1.6;
-      padding:24px 16px 40px;
+    .wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 40px 20px;
     }
 
-    a{
-      color:inherit;
-      text-decoration:none;
+    .card {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 28px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
     }
 
-    .container{
-      max-width:1050px;
-      margin:0 auto;
+    h1 {
+      margin-top: 0;
+      font-size: 30px;
+      line-height: 1.2;
     }
 
-    .top-success{
-      background:linear-gradient(135deg,#16a34a,#22c55e);
-      color:#fff;
-      border-radius:26px;
-      padding:30px 24px;
-      box-shadow:0 18px 40px rgba(34,197,94,0.18);
-      margin-bottom:22px;
-      text-align:center;
+    p {
+      line-height: 1.6;
+      color: #444;
     }
 
-    .top-success h1{
-      margin:0 0 10px;
-      font-size:clamp(28px,4vw,42px);
-      line-height:1.1;
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-top: 24px;
     }
 
-    .top-success p{
-      margin:0;
-      font-size:16px;
-      color:rgba(255,255,255,0.96);
-    }
-
-    .top-success .subline{
-      margin-top:10px;
-      font-size:14px;
-      font-weight:700;
-      color:#f0fff4;
-    }
-
-    .layout{
-      display:grid;
-      grid-template-columns:1.08fr 0.92fr;
-      gap:22px;
-      align-items:start;
-    }
-
-    .card{
-      background:var(--white);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-      padding:28px;
-    }
-
-    .card h2{
-      margin:0 0 10px;
-      font-size:28px;
-      line-height:1.15;
-      color:var(--dark);
-    }
-
-    .card p{
-      margin:0 0 12px;
-      color:var(--muted);
-      font-size:15px;
-    }
-
-    .info-strip{
-      background:var(--blue-soft);
-      border-left:5px solid var(--blue);
-      border-radius:14px;
-      padding:14px 16px;
-      margin:18px 0 22px;
-      color:var(--blue-dark);
-      font-weight:600;
-      font-size:14px;
-    }
-
-    .warning-strip{
-      background:var(--yellow);
-      border-left:5px solid #f4b400;
-      border-radius:14px;
-      padding:14px 16px;
-      margin:0 0 20px;
-      color:#755b00;
-      font-weight:600;
-      font-size:14px;
-    }
-
-    .steps{
-      display:grid;
-      gap:14px;
-      margin-top:18px;
-    }
-
-    .step{
-      display:flex;
-      gap:14px;
-      align-items:flex-start;
-      padding:16px;
-      border:1px solid #edf2f7;
-      border-radius:16px;
-      background:#fff;
-    }
-
-    .step-num{
-      width:34px;
-      height:34px;
-      flex-shrink:0;
-      border-radius:999px;
-      background:var(--blue);
-      color:#fff;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-weight:800;
-      font-size:14px;
-    }
-
-    .step strong{
-      display:block;
-      color:var(--dark);
-      margin-bottom:4px;
-      font-size:15px;
-    }
-
-    form{
-      margin-top:8px;
-    }
-
-    label{
-      display:block;
-      margin:16px 0 8px;
-      font-size:14px;
-      font-weight:700;
-      color:var(--dark);
+    label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 8px;
     }
 
     input,
-    textarea{
-      width:100%;
-      padding:14px 16px;
-      border:1px solid var(--border);
-      border-radius:14px;
-      font-family:inherit;
-      font-size:15px;
-      color:var(--text);
-      background:#fff;
-      outline:none;
-      transition:0.2s ease;
+    textarea,
+    select {
+      width: 100%;
+      padding: 14px 14px;
+      border: 1px solid #d8d8d8;
+      border-radius: 12px;
+      font-size: 16px;
+      box-sizing: border-box;
     }
 
-    input:focus,
-    textarea:focus{
-      border-color:var(--blue);
-      box-shadow:0 0 0 4px rgba(13,110,253,0.10);
+    textarea {
+      min-height: 140px;
+      resize: vertical;
     }
 
-    textarea{
-      min-height:190px;
-      resize:vertical;
+    .btn {
+      display: inline-block;
+      width: 100%;
+      border: none;
+      border-radius: 12px;
+      padding: 16px 20px;
+      font-size: 17px;
+      font-weight: 700;
+      cursor: pointer;
+      background: #0f766e;
+      color: #fff;
+      margin-top: 10px;
     }
 
-    .helper{
-      font-size:13px;
-      color:var(--muted);
-      margin-top:8px;
+    .small {
+      font-size: 14px;
+      color: #666;
+      margin-top: 14px;
     }
 
-    .upload-note{
-      margin-top:18px;
-      padding:14px 16px;
-      border-radius:14px;
-      background:#f9fbff;
-      border:1px dashed #b9c7da;
-      color:#516074;
-      font-size:14px;
-    }
-
-    .btn{
-      width:100%;
-      margin-top:22px;
-      background:linear-gradient(135deg,var(--blue),#2d8cff);
-      color:#fff;
-      border:none;
-      padding:16px 18px;
-      border-radius:16px;
-      font-size:16px;
-      font-weight:800;
-      cursor:pointer;
-      font-family:inherit;
-      box-shadow:0 14px 30px rgba(13,110,253,0.18);
-      transition:0.2s ease;
-    }
-
-    .btn:hover{
-      transform:translateY(-1px);
-      background:linear-gradient(135deg,var(--blue-dark),#1976d2);
-    }
-
-    .side-note{
-      background:var(--green-soft);
-      border:1px solid #c8f1d6;
-      border-radius:16px;
-      padding:16px;
-      margin-top:18px;
-      color:#166534;
-      font-size:14px;
-      font-weight:600;
-    }
-
-    .bullet-list{
-      display:grid;
-      gap:12px;
-      margin-top:18px;
-    }
-
-    .bullet{
-      background:#fff;
-      border:1px solid #edf2f7;
-      border-radius:16px;
-      padding:16px;
-      font-size:14px;
-      color:var(--text);
-    }
-
-    .bullet strong{
-      color:var(--dark);
-      display:block;
-      margin-bottom:4px;
-    }
-
-    .mini-faq{
-      margin-top:20px;
-      display:grid;
-      gap:12px;
-    }
-
-    .mini-faq-item{
-      border:1px solid #edf2f7;
-      border-radius:16px;
-      padding:16px;
-      background:#fff;
-    }
-
-    .mini-faq-item strong{
-      display:block;
-      margin-bottom:6px;
-      color:var(--dark);
-      font-size:15px;
-    }
-
-    .footer-note{
-      text-align:center;
-      margin-top:18px;
-      color:var(--muted);
-      font-size:13px;
-    }
-
-    .small-back{
-      margin-top:18px;
-      text-align:center;
-      font-size:14px;
-      color:var(--muted);
-      font-weight:600;
-    }
-
-    .small-back a{
-      color:var(--blue);
-    }
-
-    @media (max-width: 860px){
-      .layout{
-        grid-template-columns:1fr;
-      }
-
-      .card{
-        padding:22px;
-      }
-
-      .top-success{
-        padding:24px 18px;
-      }
+    .hidden {
+      display: none;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="top-success">
-      <h1>✅ Paiement bien enregistré</h1>
-      <p>Dernière étape : remplissez le formulaire ci-dessous pour envoyer votre demande et recevoir votre diagnostic plomberie à distance.</p>
-      <div class="subline">Sans ce formulaire, votre demande ne peut pas être traitée.</div>
-    </div>
+  <div class="wrap">
+    <div class="card">
+      <h1>Merci pour votre paiement</h1>
+      <p>
+        Votre paiement a bien été reçu.  
+        Pour recevoir votre diagnostic, merci de compléter ce formulaire.
+      </p>
 
-    <div class="layout">
-      <div class="card">
-        <h2>Décrivez votre problème maintenant</h2>
-        <p>Plus votre demande est précise, plus le retour sera clair, utile et rapide.</p>
+      <form
+        name="demande-payee"
+        method="POST"
+        action="/demande-envoyee.html"
+        data-netlify="true"
+        netlify-honeypot="bot-field"
+      >
+        <input type="hidden" name="form-name" value="demande-payee" />
 
-        <div class="info-strip">
-          Indiquez ce qui se passe, depuis quand, ce que vous avez déjà essayé.
-        </div>
+        <p class="hidden">
+          <label>
+            Ne pas remplir :
+            <input name="bot-field" />
+          </label>
+        </p>
 
-        <div class="warning-strip">
-          Important : utilisez de préférence le même email que lors du paiement afin de faciliter l’identification de votre demande.
-        </div>
-
-        <form
-          name="demande-payee"
-          method="POST"
-          action="/demande-envoyee.html"
-          data-netlify="true"
-          netlify-honeypot="bot-field"
-        >
-          <input type="hidden" name="form-name" value="demande-payee" />
-          <input type="hidden" name="offre" value="Diagnostic payé" />
-
-          <p style="display:none;">
-            <label>Ne pas remplir ce champ : <input name="bot-field" /></label>
-          </p>
-
-          <label for="name">Nom</label>
-          <input
-            id="name"
-            type="text"
-            name="name"
-            placeholder="Votre nom"
-            required
-          />
-
-          <label for="email">Email</label>
-          <input
-            id="email"
-            type="email"
-            name="email"
-            placeholder="Votre adresse email"
-            required
-          />
-
-          <label for="phone">Téléphone / WhatsApp</label>
-          <input
-            id="phone"
-            type="text"
-            name="phone"
-            placeholder="Votre numéro"
-            required
-          />
-
-          <label for="message">Votre problème</label>
-          <textarea
-            id="message"
-            name="message"
-            placeholder="Exemple : J’ai une fuite sous l’évier depuis ce matin. L’eau coule lentement mais en continu. J’ai fermé partiellement l’arrivée d’eau."
-            required
-          ></textarea>
-
-          <div class="helper">
-            Décrivez la situation de la façon la plus concrète possible.
+        <div class="grid">
+          <div>
+            <label for="nom">Nom / Prénom</label>
+            <input type="text" id="nom" name="nom" required />
           </div>
 
-          <div class="upload-note">
-            Ajout de photos/vidéos en cours d’amélioration. Pour l’instant, envoyez votre demande sans fichier pour garantir une bonne réception.
+          <div>
+            <label for="email">Adresse email</label>
+            <input type="email" id="email" name="email" required />
           </div>
 
-          <button type="submit" class="btn">Envoyer ma demande</button>
-        </form>
-
-        <div class="footer-note">
-          En validant, votre demande est transmise pour traitement.
-        </div>
-
-        <div class="small-back">
-          Besoin de revenir au site ? <a href="/">Retour à l’accueil</a>
-        </div>
-      </div>
-
-      <div class="card">
-        <h2>Comment bien remplir votre demande</h2>
-        <p>Pour gagner du temps, voici ce qui aide le plus à faire un bon diagnostic.</p>
-
-        <div class="steps">
-          <div class="step">
-            <div class="step-num">1</div>
-            <div>
-              <strong>Expliquez le problème précisément</strong>
-              Dites ce qui fuit, ne chauffe plus, se bouche, fait du bruit ou fonctionne mal.
-            </div>
+          <div>
+            <label for="telephone">Téléphone</label>
+            <input type="tel" id="telephone" name="telephone" required />
           </div>
 
-          <div class="step">
-            <div class="step-num">2</div>
-            <div>
-              <strong>Précisez depuis quand</strong>
-              Depuis aujourd’hui, cette nuit, plusieurs jours, après une manipulation, etc.
-            </div>
+          <div>
+            <label for="ville">Ville</label>
+            <input type="text" id="ville" name="ville" required />
           </div>
 
-          <div class="step">
-            <div class="step-num">3</div>
-            <div>
-              <strong>Soyez concret</strong>
-              Plus votre description est précise, plus le diagnostic sera utile.
-            </div>
+          <div>
+            <label for="urgence">Niveau d’urgence</label>
+            <select id="urgence" name="urgence" required>
+              <option value="">Choisir</option>
+              <option value="Urgence absolue">Urgence absolue</option>
+              <option value="Rapide">Rapide</option>
+              <option value="Pas urgent">Pas urgent</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="probleme">Décrivez votre problème</label>
+            <textarea id="probleme" name="probleme" required></textarea>
           </div>
         </div>
 
-        <div class="bullet-list">
-          <div class="bullet">
-            <strong>Bon exemple</strong>
-            “Fuite sous lavabo depuis ce matin, surtout quand j’ouvre l’eau chaude.”
-          </div>
+        <button type="submit" class="btn">Envoyer ma demande</button>
 
-          <div class="bullet">
-            <strong>Moins bon exemple</strong>
-            “Ça ne marche pas.”
-          </div>
-        </div>
-
-        <div class="side-note">
-          ✅ Plus votre message est précis, plus le retour peut être utile, clair et rapide.
-        </div>
-
-        <div class="mini-faq">
-          <div class="mini-faq-item">
-            <strong>Puis-je envoyer des photos plus tard ?</strong>
-            Oui. Une fois la demande reçue, il sera possible de gérer l’envoi de visuels séparément.
-          </div>
-
-          <div class="mini-faq-item">
-            <strong>Ce service remplace-t-il une intervention sur place ?</strong>
-            Non. Il s’agit d’un diagnostic et d’un avis à distance. Une intervention physique peut rester nécessaire selon la situation.
-          </div>
-
-          <div class="mini-faq-item">
-            <strong>Que se passe-t-il après l’envoi ?</strong>
-            Votre demande est reçue puis traitée selon le niveau de priorité correspondant à votre achat.
-          </div>
-        </div>
-      </div>
+        <p class="small">
+          Après envoi, vous serez redirigé automatiquement vers la page de confirmation.
+        </p>
+      </form>
     </div>
   </div>
 </body>
