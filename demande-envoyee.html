@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Demande envoyée | Diag Plomberie France</title>
+  <meta
+    name="description"
+    content="Votre demande a bien été envoyée. Nous allons la traiter selon le niveau de priorité correspondant à votre achat."
+  />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    :root{
+      --blue:#0d6efd;
+      --blue-dark:#084298;
+      --blue-soft:#eef5ff;
+      --green:#16a34a;
+      --green-soft:#ebfff3;
+      --dark:#0f172a;
+      --text:#243041;
+      --muted:#667085;
+      --bg:#f5f7fb;
+      --white:#ffffff;
+      --border:#dbe4f0;
+      --shadow:0 12px 40px rgba(15, 23, 42, 0.08);
+      --radius:24px;
+      --yellow:#fff8db;
+    }
+
+    *{box-sizing:border-box}
+
+    body{
+      margin:0;
+      font-family:'Poppins',sans-serif;
+      background:linear-gradient(180deg,#f4f8ff 0%, #f7f9fc 100%);
+      color:var(--text);
+      line-height:1.6;
+      padding:24px 16px 40px;
+    }
+
+    a{
+      color:inherit;
+      text-decoration:none;
+    }
+
+    .container{
+      max-width:980px;
+      margin:0 auto;
+    }
+
+    .top-success{
+      background:linear-gradient(135deg,#16a34a,#22c55e);
+      color:#fff;
+      border-radius:26px;
+      padding:34px 24px;
+      box-shadow:0 18px 40px rgba(34,197,94,0.18);
+      text-align:center;
+      margin-bottom:22px;
+    }
+
+    .top-success h1{
+      margin:0 0 12px;
+      font-size:clamp(30px,4vw,46px);
+      line-height:1.08;
+    }
+
+    .top-success p{
+      margin:0;
+      font-size:16px;
+      color:rgba(255,255,255,0.96);
+    }
+
+    .layout{
+      display:grid;
+      grid-template-columns:1.05fr 0.95fr;
+      gap:22px;
+      align-items:start;
+    }
+
+    .card{
+      background:var(--white);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:28px;
+    }
+
+    .card h2{
+      margin:0 0 10px;
+      font-size:28px;
+      line-height:1.15;
+      color:var(--dark);
+    }
+
+    .card p{
+      margin:0 0 12px;
+      color:var(--muted);
+      font-size:15px;
+    }
+
+    .info-strip{
+      background:var(--blue-soft);
+      border-left:5px solid var(--blue);
+      border-radius:14px;
+      padding:14px 16px;
+      margin:18px 0 22px;
+      color:var(--blue-dark);
+      font-weight:600;
+      font-size:14px;
+    }
+
+    .warning-strip{
+      background:var(--yellow);
+      border-left:5px solid #f4b400;
+      border-radius:14px;
+      padding:14px 16px;
+      margin:18px 0 0;
+      color:#755b00;
+      font-weight:600;
+      font-size:14px;
+    }
+
+    .steps{
+      display:grid;
+      gap:14px;
+      margin-top:18px;
+    }
+
+    .step{
+      display:flex;
+      gap:14px;
+      align-items:flex-start;
+      padding:16px;
+      border:1px solid #edf2f7;
+      border-radius:16px;
+      background:#fff;
+    }
+
+    .step-num{
+      width:36px;
+      height:36px;
+      flex-shrink:0;
+      border-radius:999px;
+      background:var(--blue);
+      color:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:800;
+      font-size:14px;
+    }
+
+    .step strong{
+      display:block;
+      color:var(--dark);
+      margin-bottom:4px;
+      font-size:15px;
+    }
+
+    .status-box{
+      background:var(--green-soft);
+      border:1px solid #c8f1d6;
+      border-radius:16px;
+      padding:18px;
+      margin-top:18px;
+      color:#166534;
+      font-size:14px;
+      font-weight:600;
+    }
+
+    .bullet-list{
+      display:grid;
+      gap:12px;
+      margin-top:18px;
+    }
+
+    .bullet{
+      background:#fff;
+      border:1px solid #edf2f7;
+      border-radius:16px;
+      padding:16px;
+      font-size:14px;
+      color:var(--text);
+    }
+
+    .bullet strong{
+      color:var(--dark);
+      display:block;
+      margin-bottom:4px;
+    }
+
+    .cta-row{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:22px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding:14px 20px;
+      border-radius:16px;
+      font-weight:800;
+      font-size:15px;
+      transition:0.2s ease;
+    }
+
+    .btn:hover{
+      transform:translateY(-1px);
+    }
+
+    .btn-primary{
+      background:linear-gradient(135deg,var(--blue),#2d8cff);
+      color:#fff;
+      box-shadow:0 14px 30px rgba(13,110,253,0.18);
+    }
+
+    .btn-light{
+      background:#f8fbff;
+      border:1px solid var(--border);
+      color:var(--blue);
+    }
+
+    .footer-note{
+      text-align:center;
+      margin-top:24px;
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    @media (max-width: 860px){
+      .layout{
+        grid-template-columns:1fr;
+      }
+
+      .card{
+        padding:22px;
+      }
+
+      .top-success{
+        padding:26px 18px;
+      }
+
+      .cta-row{
+        flex-direction:column;
+      }
+
+      .btn{
+        width:100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <div class="top-success">
+      <h1>✅ Votre demande a bien été envoyée</h1>
+      <p>Nous avons bien reçu votre message. Il va maintenant être traité selon le niveau de priorité correspondant à votre achat.</p>
+    </div>
+
+    <div class="layout">
+
+      <div class="card">
+        <h2>Et maintenant ?</h2>
+        <p>
+          Votre demande est bien transmise. Vous n’avez plus rien à faire pour le moment.
+        </p>
+
+        <div class="info-strip">
+          Pensez à surveiller votre boîte email, y compris vos spams ou courriers indésirables.
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div>
+              <strong>Votre demande est en cours de traitement</strong>
+              Les informations envoyées vont être examinées avec vos éventuelles photos et vidéos.
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-num">2</div>
+            <div>
+              <strong>Vous recevrez un retour selon votre offre</strong>
+              Le délai dépend du niveau de priorité associé à votre achat.
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-num">3</div>
+            <div>
+              <strong>Gardez votre téléphone et votre email accessibles</strong>
+              Cela permet de vous répondre plus facilement si nécessaire.
+            </div>
+          </div>
+        </div>
+
+        <div class="status-box">
+          ✅ Demande enregistrée. Merci d’avoir utilisé Diag Plomberie France.
+        </div>
+
+        <div class="cta-row">
+          <a href="/" class="btn btn-primary">Retour à l’accueil</a>
+          <a href="mailto:contact@diagplomberiefrance.com" class="btn btn-light">Contacter par email</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Conseils pendant l’attente</h2>
+        <p>
+          En attendant le retour, voici quelques réflexes utiles selon la situation.
+        </p>
+
+        <div class="bullet-list">
+          <div class="bullet">
+            <strong>En cas de fuite</strong>
+            Si possible, réduisez ou coupez l’arrivée d’eau pour limiter les dégâts.
+          </div>
+
+          <div class="bullet">
+            <strong>En cas de chauffe-eau ou ballon</strong>
+            Évitez les manipulations hasardeuses si vous n’êtes pas certain de ce que vous faites.
+          </div>
+
+          <div class="bullet">
+            <strong>En cas de doute important</strong>
+            Gardez toutes les informations utiles à portée de main : photos, vidéos, heure d’apparition du problème, essais déjà réalisés.
+          </div>
+        </div>
+
+        <div class="warning-strip">
+          Ce service constitue un diagnostic et un avis à distance. Une intervention physique peut rester nécessaire selon la situation.
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-note">
+      Diag Plomberie France — Diagnostic plomberie à distance partout en France.
+    </div>
+
+  </div>
+
+</body>
+</html>
