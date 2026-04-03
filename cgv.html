@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CGV | Diag Plomberie France</title>
+  <meta name="description" content="Conditions générales de vente de Diag Plomberie France." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    :root{
+      --blue:#0d6efd;
+      --dark:#0f172a;
+      --text:#243041;
+      --muted:#667085;
+      --bg:#f5f7fb;
+      --white:#ffffff;
+      --border:#e6ebf2;
+      --shadow:0 12px 40px rgba(15,23,42,0.08);
+      --radius:22px;
+    }
+
+    *{box-sizing:border-box}
+
+    body{
+      margin:0;
+      font-family:'Poppins',sans-serif;
+      background:linear-gradient(180deg,#f4f8ff 0%, #f7f9fc 100%);
+      color:var(--text);
+      line-height:1.7;
+      padding:24px 16px 50px;
+    }
+
+    .container{
+      max-width:980px;
+      margin:0 auto;
+    }
+
+    .hero{
+      background:linear-gradient(135deg,#0d6efd,#2d8cff);
+      color:#fff;
+      border-radius:28px;
+      padding:34px 26px;
+      box-shadow:0 18px 40px rgba(13,110,253,0.20);
+      margin-bottom:22px;
+    }
+
+    .hero h1{
+      margin:0 0 8px;
+      font-size:clamp(28px,4vw,42px);
+      line-height:1.1;
+    }
+
+    .hero p{
+      margin:0;
+      color:rgba(255,255,255,0.94);
+      font-size:16px;
+    }
+
+    .card{
+      background:var(--white);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:28px;
+      margin-bottom:18px;
+      border:1px solid rgba(0,0,0,0.03);
+    }
+
+    h2{
+      margin:0 0 12px;
+      font-size:22px;
+      line-height:1.2;
+      color:var(--dark);
+    }
+
+    p{
+      margin:0 0 12px;
+      color:var(--text);
+      font-size:15px;
+    }
+
+    ul{
+      margin:10px 0 0 0;
+      padding-left:20px;
+    }
+
+    li{
+      margin-bottom:8px;
+      color:var(--text);
+      font-size:15px;
+    }
+
+    .footer-note{
+      text-align:center;
+      color:var(--muted);
+      font-size:13px;
+      margin-top:10px;
+    }
+
+    @media (max-width: 760px){
+      .hero, .card{
+        padding:22px 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <div class="hero">
+      <h1>Conditions générales de vente</h1>
+      <p>Conditions applicables aux prestations proposées par Diag Plomberie France.</p>
+    </div>
+
+    <div class="card">
+      <h2>1. Objet</h2>
+      <p>
+        Les présentes conditions générales de vente régissent les prestations de diagnostic plomberie à distance proposées par Diag Plomberie France.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>2. Nature des prestations</h2>
+      <p>
+        Les prestations consistent en une analyse à distance d’un problème de plomberie décrit par le client, sur la base des informations communiquées par celui-ci.
+      </p>
+      <p>
+        Selon l’offre choisie, la réponse peut être fournie par email, formulaire ou WhatsApp.
+      </p>
+      <p>
+        Le service proposé correspond à un avis, une orientation ou un diagnostic à distance. Il ne constitue pas une intervention physique sur place.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>3. Offres et tarifs</h2>
+      <ul>
+        <li>Diagnostic Standard : 9,99€</li>
+        <li>Diagnostic Express : 19,99€</li>
+        <li>Urgence : 29,99€</li>
+        <li>Urgence WhatsApp immédiate : 49,99€</li>
+      </ul>
+      <p>
+        Les prix sont indiqués en euros et correspondent au tarif affiché au moment de la commande.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>4. Commande et paiement</h2>
+      <p>
+        La commande est validée lors du paiement en ligne via Stripe.
+      </p>
+      <p>
+        Aucune prestation ne débute avant la confirmation du paiement.
+      </p>
+      <p>
+        Le client doit s’assurer de fournir des informations exactes lors de sa demande.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>5. Transmission des éléments par le client</h2>
+      <p>
+        Après paiement, le client transmet les informations nécessaires au traitement de sa demande, notamment la description du problème, et si utile, des photos ou vidéos.
+      </p>
+      <p>
+        Le client est seul responsable du contenu transmis et de l’exactitude des éléments communiqués.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>6. Délais de traitement</h2>
+      <p>
+        Les délais de réponse dépendent de l’offre choisie par le client.
+      </p>
+      <p>
+        Ces délais sont donnés à titre indicatif selon la nature du service proposé et les éléments transmis.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>7. Droit de rétractation</h2>
+      <p>
+        Conformément à l’article L221-28 du Code de la consommation, le client reconnaît que la prestation peut commencer immédiatement après paiement, à sa demande expresse.
+      </p>
+      <p>
+        En conséquence, lorsque l’exécution du service débute avant la fin du délai légal de rétractation, ce droit ne peut plus être exercé.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>8. Limitation de responsabilité</h2>
+      <p>
+        Le service fourni repose sur une analyse à distance, à partir des seules informations transmises par le client.
+      </p>
+      <p>
+        Diag Plomberie France ne peut être tenu responsable d’une mauvaise appréciation liée à des informations incomplètes, imprécises ou erronées.
+      </p>
+      <p>
+        Le service ne remplace pas une intervention physique lorsqu’elle est nécessaire, ni l’expertise complète d’un professionnel sur place.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>9. Litiges</h2>
+      <p>
+        En cas de difficulté, le client est invité à prendre contact en priorité afin de rechercher une solution amiable.
+      </p>
+      <p>
+        À défaut d’accord amiable, le litige relèvera des juridictions compétentes selon les règles de droit applicables.
+      </p>
+    </div>
+
+    <div class="footer-note">
+      Dernière mise à jour : avril 2026
+    </div>
+
+  </div>
+
+</body>
+</html>
