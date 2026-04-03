@@ -245,6 +245,12 @@
       background:linear-gradient(135deg,var(--blue-dark),#1976d2);
     }
 
+    .btn:disabled{
+      opacity:0.7;
+      cursor:not-allowed;
+      transform:none;
+    }
+
     .side-note{
       background:var(--green-soft);
       border:1px solid #c8f1d6;
@@ -316,6 +322,29 @@
       color:var(--blue);
     }
 
+    .status-message{
+      display:none;
+      margin-top:18px;
+      padding:14px 16px;
+      border-radius:14px;
+      font-size:14px;
+      font-weight:600;
+    }
+
+    .status-message.success{
+      display:block;
+      background:#ebfff3;
+      border:1px solid #b7ebc7;
+      color:#166534;
+    }
+
+    .status-message.error{
+      display:block;
+      background:#fff1f2;
+      border:1px solid #fecdd3;
+      color:#9f1239;
+    }
+
     @media (max-width: 860px){
       .layout{
         grid-template-columns:1fr;
@@ -363,7 +392,7 @@
           data-netlify="true"
           netlify-honeypot="bot-field"
           enctype="multipart/form-data"
-          action="/demande-envoyee.html"
+          onsubmit="handleSubmit(event)"
         >
           <input type="hidden" name="form-name" value="demande-payee" />
           <input type="hidden" name="offre" value="Diagnostic payé" />
@@ -424,8 +453,10 @@
             </div>
           </div>
 
-          <button type="submit" class="btn">Envoyer ma demande</button>
+          <button type="submit" class="btn" id="submitBtn">Envoyer ma demande</button>
         </form>
+
+        <div id="statusMessage" class="status-message"></div>
 
         <div class="footer-note">
           En validant, votre demande est transmise pour traitement.
@@ -505,6 +536,42 @@
     </div>
 
   </div>
+
+  <script>
+    async function handleSubmit(event) {
+      event.preventDefault();
+
+      const form = event.target;
+      const submitBtn = document.getElementById("submitBtn");
+      const statusMessage = document.getElementById("statusMessage");
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Envoi en cours...";
+      statusMessage.className = "status-message";
+      statusMessage.textContent = "";
+
+      try {
+        const formData = new FormData(form);
+
+        const response = await fetch("/", {
+          method: "POST",
+          body: formData
+        });
+
+        if (!response.ok) {
+          throw new Error("Échec de l'envoi");
+        }
+
+        window.location.href = "/demande-envoyee.html";
+      } catch (error) {
+        statusMessage.className = "status-message error";
+        statusMessage.textContent = "Erreur lors de l'envoi. Vérifiez les champs puis réessayez.";
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Envoyer ma demande";
+        console.error(error);
+      }
+    }
+  </script>
 
 </body>
 </html>
