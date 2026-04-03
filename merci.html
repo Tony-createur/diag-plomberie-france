@@ -144,6 +144,12 @@
       transform:translateY(-1px);
     }
 
+    .btn:disabled{
+      opacity:0.7;
+      cursor:not-allowed;
+      transform:none;
+    }
+
     .small{
       margin-top:16px;
       font-size:14px;
@@ -195,9 +201,9 @@
       </p>
 
       <form
+        id="demandeForm"
         name="demande-payee"
         method="POST"
-        action="/demande-envoyee.html"
         data-netlify="true"
         netlify-honeypot="bot-field"
         enctype="multipart/form-data"
@@ -256,18 +262,53 @@
             </div>
 
             <div class="upload-note">
-              Ajoutez seulement les fichiers utiles. Netlify limite la taille totale de la requête à 8 MB. :contentReference[oaicite:1]{index=1}
+              Ajoutez seulement les fichiers utiles et évitez les vidéos trop lourdes.
             </div>
           </div>
         </div>
 
-        <button type="submit" class="btn">Envoyer ma demande</button>
+        <button type="submit" class="btn" id="submitBtn">Envoyer ma demande</button>
 
-        <p class="small">
-          Après validation, votre demande sera transmise avec vos fichiers et vous serez redirigé vers une page de confirmation.
+        <p class="small" id="formMessage">
+          Après validation, votre demande sera transmise avec vos fichiers.
         </p>
       </form>
     </div>
   </div>
+
+  <script>
+    const form = document.getElementById("demandeForm");
+    const submitBtn = document.getElementById("submitBtn");
+    const formMessage = document.getElementById("formMessage");
+
+    form.addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Envoi en cours...";
+      formMessage.textContent = "Merci de patienter quelques secondes...";
+
+      try {
+        const formData = new FormData(form);
+
+        const response = await fetch("/", {
+          method: "POST",
+          body: formData
+        });
+
+        if (response.ok) {
+          window.location.href = "/demande-envoyee.html";
+        } else {
+          formMessage.textContent = "Une erreur est survenue. Merci de réessayer.";
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Envoyer ma demande";
+        }
+      } catch (error) {
+        formMessage.textContent = "Une erreur est survenue. Merci de réessayer.";
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Envoyer ma demande";
+      }
+    });
+  </script>
 </body>
 </html>
