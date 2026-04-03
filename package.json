@@ -1,0 +1,9 @@
+{
+  "name": "diag-plomberie-france",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "resend": "^4.0.0",
+    "stripe": "^18.0.0"
+  }
+}
