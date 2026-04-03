@@ -36,7 +36,7 @@ exports.handler = async (event) => {
       const session = stripeEvent.data.object;
 
       const fullSession = await stripe.checkout.sessions.retrieve(session.id, {
-        expand: ["line_items.data.price.product", "customer_details"],
+        expand: ["line_items.data.price.product"],
       });
 
       const customerEmail =
@@ -48,9 +48,10 @@ exports.handler = async (event) => {
       const productName = lineItem?.price?.product?.name || "";
 
       const baseUrl =
-        process.env.APP_BASE_URL || "https://diagplomberiefrance.com";
+        process.env.APP_BASE_URL || "https://diagplomberiefrance.fr";
 
       if (!customerEmail) {
+        console.log("Aucun email client trouvé pour la session :", session.id);
         return {
           statusCode: 200,
           body: JSON.stringify({ received: true, warning: "No customer email" }),
@@ -83,7 +84,7 @@ exports.handler = async (event) => {
             <li>Urgence : traitement prioritaire</li>
           </ul>
           <p>À très vite,</p>
-          <p><strong>Diag Plomberie France</strong><br/>contact@diagplomberiefrance.com</p>
+          <p><strong>Diag Plomberie France</strong><br/>contact@diagplomberiefrance.fr</p>
         </div>
       `;
 
@@ -107,17 +108,19 @@ exports.handler = async (event) => {
               <li>une photo ou une vidéo</li>
             </ul>
             <p>À tout de suite,</p>
-            <p><strong>Diag Plomberie France</strong><br/>contact@diagplomberiefrance.com</p>
+            <p><strong>Diag Plomberie France</strong><br/>contact@diagplomberiefrance.fr</p>
           </div>
         `;
       }
 
-      await resend.emails.send({
-        from: "Diag Plomberie France <contact@diagplomberiefrance.com>",
+      const emailResult = await resend.emails.send({
+        from: "Diag Plomberie France <contact@diagplomberiefrance.fr>",
         to: customerEmail,
         subject,
         html,
       });
+
+      console.log("Email envoyé :", emailResult);
     }
 
     return {
