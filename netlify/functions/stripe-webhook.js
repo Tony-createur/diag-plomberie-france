@@ -12,7 +12,8 @@ exports.handler = async (event) => {
     };
   }
 
-  const signature = event.headers["stripe-signature"] || event.headers["Stripe-Signature"];
+  const signature =
+    event.headers["stripe-signature"] || event.headers["Stripe-Signature"];
 
   let stripeEvent;
 
@@ -46,6 +47,9 @@ exports.handler = async (event) => {
       const lineItem = fullSession.line_items?.data?.[0];
       const productName = lineItem?.price?.product?.name || "";
 
+      const baseUrl =
+        process.env.APP_BASE_URL || "https://diagplomberiefrance.com";
+
       if (!customerEmail) {
         return {
           statusCode: 200,
@@ -59,12 +63,18 @@ exports.handler = async (event) => {
           <h2>Bonjour,</h2>
           <p>Votre paiement a bien été reçu ✅</p>
           <p>Merci pour votre confiance.</p>
-          <p>Pour que nous puissions traiter votre demande rapidement, merci d’envoyer maintenant les éléments suivants :</p>
+          <p>Dernière étape : cliquez sur le lien ci-dessous pour envoyer votre demande.</p>
+          <p>
+            <a href="${baseUrl}/merci.html" style="display:inline-block;padding:12px 18px;background:#0d6efd;color:#fff;text-decoration:none;border-radius:8px;font-weight:bold;">
+              Envoyer ma demande
+            </a>
+          </p>
+          <p>Préparez si possible :</p>
           <ul>
             <li>une description claire du problème</li>
             <li>depuis quand le problème a commencé</li>
             <li>ce que vous avez déjà constaté ou testé</li>
-            <li>si possible, des photos ou vidéos</li>
+            <li>des photos ou vidéos si possible</li>
           </ul>
           <p><strong>Rappel de votre niveau de traitement :</strong></p>
           <ul>
@@ -77,25 +87,25 @@ exports.handler = async (event) => {
         </div>
       `;
 
-      if (productName === "Urgence WhatsApp immédiate") {
-        subject = "Paiement reçu – accès WhatsApp immédiat activé";
+      if (productName.toLowerCase().includes("whatsapp")) {
+        subject = "Paiement reçu – accès WhatsApp prioritaire activé";
         html = `
           <div style="font-family:Arial,sans-serif;line-height:1.6;color:#222;">
             <h2>Bonjour,</h2>
             <p>Votre paiement a bien été validé ✅</p>
             <p>Votre accès prioritaire WhatsApp est maintenant activé.</p>
-            <p>Pour un traitement immédiat, envoyez dès maintenant votre message WhatsApp avec :</p>
+            <p>Pour aller au plus vite, cliquez ci-dessous :</p>
+            <p>
+              <a href="${baseUrl}/merci-urgence.html" style="display:inline-block;padding:12px 18px;background:#25d366;color:#fff;text-decoration:none;border-radius:8px;font-weight:bold;">
+                Accéder à mon urgence WhatsApp
+              </a>
+            </p>
+            <p>Préparez si possible :</p>
             <ul>
               <li>le problème rencontré</li>
               <li>depuis quand il a commencé</li>
-              <li>une photo ou une vidéo si possible</li>
+              <li>une photo ou une vidéo</li>
             </ul>
-            <p>
-              <strong>Lien WhatsApp direct :</strong><br/>
-              <a href="https://wa.me/33678532859?text=Bonjour%20je%20viens%20de%20payer%20une%20urgence">
-                Ouvrir WhatsApp maintenant
-              </a>
-            </p>
             <p>À tout de suite,</p>
             <p><strong>Diag Plomberie France</strong><br/>contact@diagplomberiefrance.com</p>
           </div>
