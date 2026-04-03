@@ -88,7 +88,7 @@ exports.handler = async (event) => {
             <li>Urgence : traitement prioritaire</li>
           </ul>
           <p>À très vite,</p>
-          <p><strong>Diag Plomberie France</strong><br/>contact@diagplomberiefrance.fr</p>
+          <p><strong>Diag Plomberie France</strong><br/>contact@diagplomberiefrance.com</p>
         </div>
       `;
 
@@ -112,19 +112,21 @@ exports.handler = async (event) => {
               <li>une photo ou une vidéo</li>
             </ul>
             <p>À tout de suite,</p>
-            <p><strong>Diag Plomberie France</strong><br/>contact@diagplomberiefrance.fr</p>
+            <p><strong>Diag Plomberie France</strong><br/>contact@diagplomberiefrance.com</p>
           </div>
         `;
       }
 
+      console.log("EMAIL EN COURS D'ENVOI À :", customerEmail);
+
       const emailResult = await resend.emails.send({
-        from: "Diag Plomberie France <contact@diagplomberiefrance.fr>",
+        from: "Diag Plomberie France <contact@diagplomberiefrance.com>",
         to: customerEmail,
         subject,
         html,
       });
 
-      console.log("Email envoyé :", emailResult);
+      console.log("RÉSULTAT RESEND :", emailResult);
     }
 
     return {
