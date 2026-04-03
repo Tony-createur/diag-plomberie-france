@@ -113,6 +113,18 @@
       resize:vertical;
     }
 
+    input[type="file"]{
+      padding:14px;
+      background:#f8fbff;
+    }
+
+    .upload-note{
+      margin-top:8px;
+      font-size:13px;
+      color:var(--muted);
+      line-height:1.5;
+    }
+
     .btn{
       width:100%;
       margin-top:10px;
@@ -167,7 +179,8 @@
       <h1>Merci pour votre paiement</h1>
       <p class="intro">
         Votre paiement a bien été reçu. Pour recevoir votre diagnostic plomberie,
-        merci de compléter le formulaire ci-dessous avec le plus de détails possible.
+        merci de compléter le formulaire ci-dessous avec le plus de détails possible
+        et d’ajouter vos photos ou vidéos si nécessaire.
       </p>
 
       <form
@@ -176,6 +189,7 @@
         action="/demande-envoyee.html"
         data-netlify="true"
         netlify-honeypot="bot-field"
+        enctype="multipart/form-data"
       >
         <input type="hidden" name="form-name" value="demande-payee" />
 
@@ -221,12 +235,26 @@
             <label for="probleme">Décrivez votre problème</label>
             <textarea id="probleme" name="probleme" required></textarea>
           </div>
+
+          <div>
+            <label for="photos_videos">Ajouter vos photos ou vidéos</label>
+            <input
+              type="file"
+              id="photos_videos"
+              name="photos_videos"
+              accept="image/*,video/*"
+              multiple
+            />
+            <div class="upload-note">
+              Vous pouvez ajouter plusieurs photos ou vidéos pour mieux expliquer le problème.
+            </div>
+          </div>
         </div>
 
         <button type="submit" class="btn">Envoyer ma demande</button>
 
         <p class="small">
-          Après validation, votre demande sera transmise et vous serez redirigé vers une page de confirmation.
+          Après validation, votre demande sera transmise avec vos fichiers et vous serez redirigé vers une page de confirmation.
         </p>
       </form>
     </div>
