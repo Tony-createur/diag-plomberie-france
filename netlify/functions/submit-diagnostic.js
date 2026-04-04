@@ -202,6 +202,30 @@ function uploadBufferToCloudinary(buffer, options = {}) {
   });
 }
 
+function buildMailtoLink(email, nom) {
+  const safeRawEmail = clean(email);
+  const safeRawNom = clean(nom, "Client");
+
+  if (!safeRawEmail) return "#";
+
+  const subject = encodeURIComponent(
+    "Réponse à votre demande Diag Plomberie France"
+  );
+
+  const body = encodeURIComponent(
+    `Bonjour ${safeRawNom},\n\nMerci pour votre demande.\n\nVoici mon retour :\n\n`
+  );
+
+  return `mailto:${safeRawEmail}?subject=${subject}&body=${body}`;
+}
+
+function buildTelLink(telephone) {
+  const raw = clean(telephone);
+  if (!raw) return "";
+
+  return raw.replace(/[^\d+]/g, "");
+}
+
 exports.handler = async (event) => {
   if (event.httpMethod !== "POST") {
     return json(405, { ok: false, message: "Méthode non autorisée." });
@@ -380,6 +404,9 @@ Session Upsell : ${upsellSessionId || "Aucune"}
     const safeUpsell = escapeHtml(upsell === "oui" ? "Oui" : "Non");
     const safeUpsellSession = escapeHtml(upsellSessionId || "Aucune");
 
+    const replyMailtoLink = buildMailtoLink(email, nom);
+    const telLink = buildTelLink(telephone);
+
     const photosHtml =
       uploadedPhotos.length > 0
         ? uploadedPhotos
@@ -399,6 +426,26 @@ Session Upsell : ${upsellSessionId || "Aucune"}
             )
             .join("")
         : `<p style="margin:0;">Aucune photo jointe.</p>`;
+
+    const telephoneHtml = telLink
+      ? `<p style="margin:8px 0;"><strong>Téléphone :</strong> <a href="tel:${telLink}" style="color:#0d6efd;text-decoration:none;">${safeTelephone}</a></p>`
+      : `<p style="margin:8px 0;"><strong>Téléphone :</strong> ${safeTelephone}</p>`;
+
+    const replyButtonHtml =
+      replyMailtoLink !== "#"
+        ? `
+          <div style="text-align:center;margin-top:28px;">
+            <a href="${replyMailtoLink}"
+               style="background:#0d6efd;color:#ffffff !important;padding:14px 24px;border-radius:12px;text-decoration:none;font-weight:800;display:inline-block;">
+               👉 Répondre au client
+            </a>
+          </div>
+        `
+        : `
+          <div style="text-align:center;margin-top:28px;color:#6b7280;font-size:14px;">
+            Email client non renseigné
+          </div>
+        `;
 
     const htmlAdmin = `
       <div style="margin:0;padding:0;background:#f4f7fb;font-family:Arial,sans-serif;">
@@ -433,8 +480,8 @@ Session Upsell : ${upsellSessionId || "Aucune"}
                 Coordonnées client
               </div>
               <p style="margin:8px 0;"><strong>Nom :</strong> ${safeNom}</p>
-              <p style="margin:8px 0;"><strong>Email :</strong> <a href="mailto:${safeEmail}" style="color:#0d6efd;text-decoration:none;">${safeEmail}</a></p>
-              <p style="margin:8px 0;"><strong>Téléphone :</strong> <a href="tel:${safeTelephone}" style="color:#0d6efd;text-decoration:none;">${safeTelephone}</a></p>
+              <p style="margin:8px 0;"><strong>Email :</strong> <a href="mailto:${email}" style="color:#0d6efd;text-decoration:none;">${safeEmail}</a></p>
+              ${telephoneHtml}
               <p style="margin:8px 0;"><strong>Ville :</strong> ${safeVille}</p>
               <p style="margin:8px 0;"><strong>Logement :</strong> ${safeLogement}</p>
             </div>
@@ -473,12 +520,7 @@ Session Upsell : ${upsellSessionId || "Aucune"}
               <p style="margin:8px 0;"><strong>Session Upsell :</strong> ${safeUpsellSession}</p>
             </div>
 
-            <div style="text-align:center;margin-top:28px;">
-              <a href="mailto:${safeEmail}"
-                 style="background:#0d6efd;color:#fff;padding:14px 24px;border-radius:12px;text-decoration:none;font-weight:800;display:inline-block;">
-                 👉 Répondre au client
-              </a>
-            </div>
+            ${replyButtonHtml}
           </div>
         </div>
       </div>
