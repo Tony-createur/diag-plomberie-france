@@ -30,8 +30,8 @@ function getBodyBuffer(event) {
 function parseMultipartFields(headers, bodyBuffer) {
   return new Promise((resolve, reject) => {
     const contentType = getContentType(headers);
-
     const fields = {};
+
     const busboy = Busboy({
       headers: { "content-type": contentType }
     });
@@ -72,6 +72,11 @@ function buildMultipartBody(fields) {
   };
 }
 
+function clean(value, fallback = "") {
+  if (value === undefined || value === null) return fallback;
+  return String(value).trim();
+}
+
 exports.handler = async (event) => {
   if (event.httpMethod !== "POST") {
     return json(405, { ok: false, message: "Méthode non autorisée." });
@@ -87,9 +92,9 @@ exports.handler = async (event) => {
     const bodyBuffer = getBodyBuffer(event);
     const fields = await parseMultipartFields(event.headers, bodyBuffer);
 
-    const sessionId = fields.session_id;
-    const upsell = fields.upsell === "oui" ? "oui" : "non";
-    const upsellSessionId = fields.upsell_session_id || "";
+    const sessionId = clean(fields.session_id);
+    const upsell = clean(fields.upsell) === "oui" ? "oui" : "non";
+    const upsellSessionId = clean(fields.upsell_session_id);
     const priorite = upsell === "oui" ? "PRIORITAIRE" : "STANDARD";
 
     if (!sessionId) {
@@ -115,17 +120,54 @@ exports.handler = async (event) => {
       });
     }
 
+    const nom = clean(fields.nom);
+    const email = clean(fields.email);
+    const telephone = clean(fields.telephone);
+    const ville = clean(fields.ville);
+    const logement = clean(fields.logement);
+    const urgence = clean(fields.urgence);
+    const probleme = clean(fields.probleme);
+    const service =
+      clean(fields.service) || "Diagnostic plomberie en ligne";
+
     const forwardedFields = {
       "form-name": "demande-payee",
+
+      // identification
+      objet: `[${priorite}] Nouvelle demande diagnostic - ${nom || "Client sans nom"}`,
+      priorite,
+      statut_paiement: "PAYÉ",
       session_id: sessionId,
       upsell,
       upsell_session_id: upsellSessionId,
-      priorite,
-      nom: fields.nom || "",
-      email: fields.email || "",
-      telephone: fields.telephone || "",
-      ville: fields.ville || "",
-      probleme: fields.probleme || ""
+
+      // client
+      nom,
+      email,
+      telephone,
+      ville,
+      logement,
+
+      // demande
+      service,
+      urgence,
+      probleme,
+
+      // champs de lecture plus propres dans Netlify
+      resume: `
+PRIORITÉ : ${priorite}
+STATUT : PAYÉ
+SERVICE : ${service}
+CLIENT : ${nom}
+EMAIL : ${email}
+TÉLÉPHONE : ${telephone}
+VILLE : ${ville}
+LOGEMENT : ${logement}
+URGENCE : ${urgence}
+
+PROBLÈME :
+${probleme}
+      `.trim()
     };
 
     const multipart = buildMultipartBody(forwardedFields);
@@ -152,7 +194,7 @@ exports.handler = async (event) => {
       redirect: "/demande-envoyee.html"
     });
   } catch (error) {
-    console.error(error);
+    console.error("Erreur submit-diagnostic :", error);
 
     return json(500, {
       ok: false,
