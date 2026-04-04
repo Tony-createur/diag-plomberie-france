@@ -1521,6 +1521,8 @@
     const submitBtn = document.getElementById("submit-btn");
     const formStatus = document.getElementById("form-status");
 
+    let isSubmitting = false;
+
     const offerDetails = {
       "Diagnostic plomberie Standard": {
         price: "9,99€",
@@ -1544,8 +1546,10 @@
       serviceInput.value = service;
       amountInput.value = amount;
 
+      const numericAmount = Number(amount) || 0;
+
       const detail = offerDetails[service] || {
-        price: (amount / 100).toFixed(2).replace(".", ",") + "€",
+        price: (numericAmount / 100).toFixed(2).replace(".", ",") + "€",
         delay: "Réponse rapide"
       };
 
@@ -1558,28 +1562,55 @@
       button.addEventListener("click", () => {
         const service = button.dataset.service;
         const amount = button.dataset.amount;
+
         updateSelectedOffer(service, amount);
+
+        setTimeout(() => {
+          const target = document.getElementById("checkout-form");
+          if (target) {
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        }, 80);
       });
     });
 
     form.addEventListener("submit", async function (e) {
       e.preventDefault();
 
+      if (isSubmitting) return;
+
       formStatus.textContent = "";
+
+      const nom = document.getElementById("nom").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const telephone = document.getElementById("telephone").value.trim();
+      const ville = document.getElementById("ville").value.trim();
+      const logement = document.getElementById("logement").value;
+      const urgence = document.getElementById("urgence").value;
+      const probleme = document.getElementById("probleme").value.trim();
+      const service = serviceInput.value;
+      const amount = amountInput.value;
+
+      if (!nom || !email || !telephone || !ville || !logement || !urgence || !probleme) {
+        formStatus.textContent = "Merci de remplir tous les champs avant de continuer.";
+        return;
+      }
+
       const originalText = submitBtn.textContent;
+      isSubmitting = true;
       submitBtn.disabled = true;
       submitBtn.textContent = "Redirection vers Stripe...";
 
       const formData = {
-        nom: document.getElementById("nom").value.trim(),
-        email: document.getElementById("email").value.trim(),
-        telephone: document.getElementById("telephone").value.trim(),
-        ville: document.getElementById("ville").value.trim(),
-        logement: document.getElementById("logement").value,
-        urgence: document.getElementById("urgence").value,
-        probleme: document.getElementById("probleme").value.trim(),
-        service: serviceInput.value,
-        amount: amountInput.value
+        nom,
+        email,
+        telephone,
+        ville,
+        logement,
+        urgence,
+        probleme,
+        service,
+        amount
       };
 
       try {
@@ -1601,10 +1632,11 @@
           throw new Error("Lien de paiement introuvable.");
         }
 
-        window.location.href = result.url;
+        window.location.assign(result.url);
       } catch (error) {
-        console.error(error);
+        console.error("Erreur paiement :", error);
         formStatus.textContent = error.message || "Une erreur est survenue. Merci de réessayer.";
+        isSubmitting = false;
         submitBtn.disabled = false;
         submitBtn.textContent = originalText;
       }
