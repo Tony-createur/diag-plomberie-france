@@ -17,21 +17,32 @@ exports.handler = async (event) => {
     if (!originalSessionId) {
       return {
         statusCode: 400,
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({ error: "originalSessionId manquant" }),
       };
     }
+
+    const siteUrl =
+      process.env.URL ||
+      process.env.DEPLOY_PRIME_URL ||
+      process.env.APP_BASE_URL ||
+      "https://diagplomberiefrance.com";
 
     const originalSession = await stripe.checkout.sessions.retrieve(originalSessionId);
 
     const customerEmail =
       originalSession.customer_details?.email ||
       originalSession.customer_email ||
+      originalSession.metadata?.email ||
       "";
 
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
       payment_method_types: ["card"],
       customer_email: customerEmail || undefined,
+
       line_items: [
         {
           price_data: {
@@ -41,23 +52,27 @@ exports.handler = async (event) => {
               description:
                 "Traitement prioritaire + conseils complémentaires + réponse enrichie",
             },
-            unit_amount: 1900, // 19,00 €
+            unit_amount: 1900,
           },
           quantity: 1,
         },
       ],
+
       metadata: {
         type: "upsell_diag_plomberie",
         original_session_id: originalSessionId,
         customer_email: customerEmail || "",
       },
-      success_url: `${process.env.APP_BASE_URL}/merci.html?session_id={CHECKOUT_SESSION_ID}&upsell=1`,
-      cancel_url: `${process.env.APP_BASE_URL}/merci.html?session_id=${originalSessionId}&upsell=0`,
+
+      success_url: `${siteUrl}/merci.html?session_id={CHECKOUT_SESSION_ID}&upsell=1`,
+      cancel_url: `${siteUrl}/merci.html?session_id=${originalSessionId}&upsell=0`,
     });
 
     return {
       statusCode: 200,
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({
         url: session.url,
       }),
@@ -67,6 +82,9 @@ exports.handler = async (event) => {
 
     return {
       statusCode: 500,
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({
         error: error.message || "Erreur serveur",
       }),
