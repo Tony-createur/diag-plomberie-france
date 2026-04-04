@@ -64,7 +64,7 @@ exports.handler = async (event) => {
         customer_email: customerEmail || "",
       },
 
-      success_url: `${siteUrl}/merci.html?session_id={CHECKOUT_SESSION_ID}&upsell=1`,
+      success_url: `${siteUrl}/merci.html?session_id=${originalSessionId}&upsell=1&upsell_session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${siteUrl}/merci.html?session_id=${originalSessionId}&upsell=0`,
     });
 
