@@ -1,9 +1,16 @@
 const Stripe = require("stripe");
 const Busboy = require("busboy");
 const { Resend } = require("resend");
+const cloudinary = require("cloudinary").v2;
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 const resend = new Resend(process.env.RESEND_API_KEY);
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
+});
 
 // stockage temporaire en mémoire
 const usedSessions = new Set();
@@ -33,6 +40,7 @@ function parseMultipartFields(headers, bodyBuffer) {
   return new Promise((resolve, reject) => {
     const contentType = getContentType(headers);
     const fields = {};
+    const files = [];
 
     const busboy = Busboy({
       headers: { "content-type": contentType }
@@ -42,11 +50,38 @@ function parseMultipartFields(headers, bodyBuffer) {
       fields[name] = value;
     });
 
-    busboy.on("file", (_name, file) => {
-      file.resume();
+    busboy.on("file", (name, file, info) => {
+      const chunks = [];
+      const filename =
+        typeof info === "object" && info && info.filename
+          ? info.filename
+          : "fichier";
+      const mimeType =
+        typeof info === "object" && info && info.mimeType
+          ? info.mimeType
+          : "application/octet-stream";
+
+      file.on("data", (chunk) => {
+        chunks.push(chunk);
+      });
+
+      file.on("end", () => {
+        const buffer = Buffer.concat(chunks);
+
+        if (buffer.length > 0) {
+          files.push({
+            fieldName: name,
+            filename,
+            mimeType,
+            buffer
+          });
+        }
+      });
+
+      file.on("error", reject);
     });
 
-    busboy.on("finish", () => resolve(fields));
+    busboy.on("finish", () => resolve({ fields, files }));
     busboy.on("error", reject);
 
     busboy.end(bodyBuffer);
@@ -150,6 +185,24 @@ function getPrioriteStyle(priorite) {
   };
 }
 
+function uploadBufferToCloudinary(buffer, options = {}) {
+  return new Promise((resolve, reject) => {
+    const upload = cloudinary.uploader.upload_stream(
+      {
+        folder: "diag-plomberie-demandes",
+        resource_type: "auto",
+        ...options
+      },
+      (error, result) => {
+        if (error) return reject(error);
+        resolve(result);
+      }
+    );
+
+    upload.end(buffer);
+  });
+}
+
 exports.handler = async (event) => {
   if (event.httpMethod !== "POST") {
     return json(405, { ok: false, message: "Méthode non autorisée." });
@@ -165,8 +218,19 @@ exports.handler = async (event) => {
     const fromEmail = process.env.RESEND_FROM_EMAIL;
     const adminEmail = process.env.ADMIN_EMAIL;
 
+    if (
+      !process.env.CLOUDINARY_CLOUD_NAME ||
+      !process.env.CLOUDINARY_API_KEY ||
+      !process.env.CLOUDINARY_API_SECRET
+    ) {
+      return json(500, {
+        ok: false,
+        message: "Variables Cloudinary manquantes."
+      });
+    }
+
     const bodyBuffer = getBodyBuffer(event);
-    const fields = await parseMultipartFields(event.headers, bodyBuffer);
+    const { fields, files } = await parseMultipartFields(event.headers, bodyBuffer);
 
     const sessionId = clean(fields.session_id);
     const upsell = clean(fields.upsell) === "oui" ? "oui" : "non";
@@ -207,6 +271,23 @@ exports.handler = async (event) => {
     const priorite = getPrioriteLabel(upsell, urgence);
     const prioriteStyle = getPrioriteStyle(priorite);
 
+    const uploadedPhotos = [];
+    for (const file of files.slice(0, 3)) {
+      const result = await uploadBufferToCloudinary(file.buffer, {
+        public_id: `${Date.now()}-${file.fieldName}`
+      });
+
+      uploadedPhotos.push({
+        fieldName: file.fieldName,
+        originalName: file.filename,
+        url: result.secure_url
+      });
+    }
+
+    const photo1 = uploadedPhotos[0]?.url || "";
+    const photo2 = uploadedPhotos[1]?.url || "";
+    const photo3 = uploadedPhotos[2]?.url || "";
+
     const forwardedFields = {
       "form-name": "demande-payee",
 
@@ -228,6 +309,10 @@ exports.handler = async (event) => {
       urgence,
       probleme,
 
+      photo_1_url: photo1,
+      photo_2_url: photo2,
+      photo_3_url: photo3,
+
       resume: `
 PRIORITÉ : ${priorite}
 STATUT PAIEMENT : PAYÉ
@@ -245,6 +330,11 @@ Urgence : ${urgence}
 
 PROBLÈME DÉCLARÉ
 ${probleme}
+
+PHOTOS
+Photo 1 : ${photo1 || "Aucune"}
+Photo 2 : ${photo2 || "Aucune"}
+Photo 3 : ${photo3 || "Aucune"}
 
 RÉFÉRENCES
 Session Stripe : ${sessionId}
@@ -290,6 +380,26 @@ Session Upsell : ${upsellSessionId || "Aucune"}
     const safeSessionId = escapeHtml(sessionId);
     const safeUpsell = escapeHtml(upsell === "oui" ? "Oui" : "Non");
     const safeUpsellSession = escapeHtml(upsellSessionId || "Aucune");
+
+    const photosHtml =
+      uploadedPhotos.length > 0
+        ? uploadedPhotos
+            .map(
+              (photo, index) => `
+                <div style="margin-bottom:18px;">
+                  <p style="margin:0 0 8px 0;"><strong>Photo ${index + 1} :</strong>
+                    <a href="${photo.url}" target="_blank" style="color:#0d6efd;text-decoration:none;">
+                      Ouvrir l’image
+                    </a>
+                  </p>
+                  <a href="${photo.url}" target="_blank">
+                    <img src="${photo.url}" alt="Photo client ${index + 1}" style="max-width:100%;border-radius:12px;border:1px solid #dbeafe;">
+                  </a>
+                </div>
+              `
+            )
+            .join("")
+        : `<p style="margin:0;">Aucune photo jointe.</p>`;
 
     const htmlAdmin = `
       <div style="margin:0;padding:0;background:#f4f7fb;font-family:Arial,sans-serif;">
@@ -347,6 +457,13 @@ Session Upsell : ${upsellSessionId || "Aucune"}
               <div style="font-size:15px;line-height:1.7;color:#111827;">
                 ${safeProbleme}
               </div>
+            </div>
+
+            <div style="background:#f8fafc;border:1px solid #e5e7eb;border-radius:12px;padding:18px;margin-bottom:18px;">
+              <div style="font-size:16px;font-weight:800;margin-bottom:14px;color:#111827;">
+                Photos jointes
+              </div>
+              ${photosHtml}
             </div>
 
             <div style="background:#f8fafc;border:1px solid #e5e7eb;border-radius:12px;padding:18px;margin-bottom:22px;">
