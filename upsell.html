@@ -19,6 +19,7 @@
       --blue-dark:#084298;
       --blue-soft:#eef5ff;
       --green:#198754;
+      --green-dark:#157347;
       --green-soft:#eafaf1;
       --orange:#b45309;
       --orange-soft:#fff7e6;
@@ -131,7 +132,7 @@
     }
 
     .price-box {
-      min-width: 150px;
+      min-width: 170px;
       background: #fff;
       border: 1px solid #dbeafe;
       border-radius: 20px;
@@ -179,6 +180,13 @@
       line-height: 1.65;
     }
 
+    .cta-inline {
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
     .reassure {
       margin: 22px auto 0;
       max-width: 760px;
@@ -203,15 +211,19 @@
       line-height: 1.7;
     }
 
-    .cta-wrap {
-      margin-top: 28px;
-      display: grid;
-      gap: 14px;
+    .small {
+      margin-top: 14px;
+      font-size: 13px;
+      color: #64748b;
+      line-height: 1.7;
     }
 
     .btn {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       width: 100%;
+      min-height: 62px;
       border: none;
       border-radius: 18px;
       padding: 18px 20px;
@@ -221,6 +233,7 @@
       text-decoration: none;
       transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease, background 0.15s ease;
       font-family: inherit;
+      text-align: center;
     }
 
     .btn:hover {
@@ -237,20 +250,14 @@
       background: linear-gradient(135deg, #0b5ed7, #004fc4);
     }
 
-    .btn-secondary {
-      background: #eef3fb;
-      color: #334155;
+    .btn-green {
+      background: linear-gradient(135deg, var(--green), var(--green-dark));
+      color: #fff;
+      box-shadow: 0 12px 30px rgba(25, 135, 84, 0.25);
     }
 
-    .btn-secondary:hover {
-      background: #e5edf8;
-    }
-
-    .small {
-      margin-top: 14px;
-      font-size: 13px;
-      color: #64748b;
-      line-height: 1.7;
+    .btn-green:hover {
+      background: linear-gradient(135deg, #157347, #12613b);
     }
 
     .loading {
@@ -277,6 +284,10 @@
 
       .price-box {
         width: 100%;
+      }
+
+      .cta-inline {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -311,7 +322,7 @@
 
           <div class="price-box">
             <div class="price-label">Tarif unique</div>
-            <div class="price">19€</div>
+            <div class="price">9,99€</div>
             <div class="price-note">Paiement complémentaire</div>
           </div>
         </div>
@@ -322,6 +333,16 @@
           <li>✅ Conseils concrets avant intervention d’un plombier</li>
           <li>✅ Meilleure aide pour éviter un devis inutile ou abusif</li>
         </ul>
+
+        <div class="cta-inline">
+          <button id="upsellBtn" class="btn btn-primary">
+            Oui, j’ajoute l’option prioritaire
+          </button>
+
+          <a id="skipBtn" class="btn btn-green" href="/merci.html">
+            Non merci, continuer sans cette option
+          </a>
+        </div>
       </div>
 
       <div class="reassure">
@@ -330,16 +351,6 @@
           Cette offre est totalement facultative. Si vous la refusez, votre demande principale
           reste bien enregistrée et sera traitée normalement.
         </p>
-      </div>
-
-      <div class="cta-wrap">
-        <button id="upsellBtn" class="btn btn-primary">
-          Oui, j’ajoute l’option prioritaire
-        </button>
-
-        <a id="skipBtn" class="btn btn-secondary" href="/merci.html">
-          Non merci, continuer sans cette option
-        </a>
       </div>
 
       <p class="small">
