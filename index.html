@@ -143,8 +143,20 @@
       padding:14px 16px;
       font-size:15px;
       line-height:1.7;
-      font-weight:600;
+      font-weight:700;
+      margin-bottom:16px;
+    }
+
+    .hero-danger{
+      background:var(--soft-red);
+      border:1px solid #fecdd3;
+      border-radius:18px;
+      padding:14px 16px;
+      font-size:15px;
+      line-height:1.7;
+      font-weight:700;
       margin-bottom:22px;
+      color:#991b1b;
     }
 
     .hero-points{
@@ -354,11 +366,6 @@
       color:var(--muted);
     }
 
-    .info-box ul{
-      margin:0;
-      padding-left:18px;
-    }
-
     .step-number{
       width:44px;
       height:44px;
@@ -390,6 +397,19 @@
       line-height:1.75;
       max-width:760px;
       margin:0 auto 18px;
+    }
+
+    .price-psych{
+      max-width:760px;
+      margin:0 auto 18px;
+      background:#edfdf3;
+      border:1px solid #bbf7d0;
+      color:#166534;
+      padding:14px 16px;
+      border-radius:18px;
+      font-size:15px;
+      font-weight:800;
+      line-height:1.7;
     }
 
     .compare{
@@ -553,7 +573,7 @@
 <body>
 
   <div class="topbar">
-    🚨 Évitez de payer un plombier pour rien — diagnostic plomberie fiable en ligne dès 19,99€
+    🚨 Un mauvais diagnostic peut vous coûter très cher — évitez de payer un plombier à l’aveugle
   </div>
 
   <main>
@@ -563,18 +583,22 @@
           <div class="card hero-main">
             <div class="badge">✅ Diagnostic avant intervention</div>
 
-            <h1>Comprenez votre problème de plomberie avant de payer trop cher</h1>
+            <h1>Ne payez pas un plombier avant d’avoir compris ce qui se passe réellement</h1>
 
             <p class="lead">
               Décrivez votre problème, ajoutez vos explications et vos photos,
-              puis obtenez un retour clair pour comprendre ce qui se passe,
-              savoir si la situation semble urgente, et éviter un devis abusif
-              ou une intervention inutile.
+              puis obtenez un retour clair pour mieux comprendre la situation,
+              savoir si elle semble urgente, et réduire le risque d’accepter
+              un devis abusif ou une intervention inutile.
             </p>
 
             <div class="hero-warning">
-              ⚠️ Une mauvaise décision dans l’urgence peut coûter très cher.
-              Un simple diagnostic avant intervention peut vous éviter une dépense inutile de plusieurs centaines d’euros.
+              ⚠️ Dans l’urgence, beaucoup de clients acceptent trop vite un déplacement, un remplacement ou un devis qu’ils ne comprennent pas vraiment.
+            </div>
+
+            <div class="hero-danger">
+              💸 Une seule mauvaise décision peut coûter 150€, 300€, 500€ ou plus.  
+              Pour 19,99€, vous prenez un minimum de recul avant d’engager des frais beaucoup plus lourds.
             </div>
 
             <div class="hero-points">
@@ -606,7 +630,7 @@
             <div class="price-card">
               <div class="price-old">Intervention classique : 150€ à 500€+</div>
               <div class="price-now">19,99€</div>
-              <div class="price-sub">pour savoir quoi faire avant de payer trop cher</div>
+              <div class="price-sub">pour prendre du recul avant de payer beaucoup plus cher</div>
             </div>
 
             <div class="checklist">
@@ -624,7 +648,7 @@
               </div>
               <div class="check-item">
                 <div class="check-icon">✓</div>
-                <div>Option prioritaire proposée après paiement pour aller plus vite.</div>
+                <div>Option prioritaire proposée ensuite pour aller plus vite.</div>
               </div>
             </div>
           </aside>
@@ -694,6 +718,50 @@
     <section class="section">
       <div class="wrap">
         <div class="card section-card">
+          <h2 class="section-title">Ce diagnostic est fait pour vous si vous ne voulez pas payer à l’aveugle</h2>
+          <p class="section-sub">
+            Avant de faire intervenir un plombier, vous voulez être sûr de ne pas vous tromper.
+            Ce diagnostic vous aide à prendre une décision plus éclairée.
+          </p>
+
+          <div class="grid-2">
+            <div class="info-box blue">
+              <h3>💸 Vous avez un doute sur un devis</h3>
+              <p>On vous annonce un prix élevé, mais vous ne savez pas s’il est justifié ou exagéré.</p>
+            </div>
+
+            <div class="info-box red">
+              <h3>⚠️ Vous avez peur de vous faire avoir</h3>
+              <p>Vous voulez un avis extérieur pour éviter une intervention inutile ou une facture trop lourde.</p>
+            </div>
+
+            <div class="info-box yellow">
+              <h3>🚿 Vous avez une fuite ou un problème d’eau</h3>
+              <p>Vous ne savez pas si c’est urgent, si cela peut attendre, ou si le problème est plus simple qu’il en a l’air.</p>
+            </div>
+
+            <div class="info-box blue">
+              <h3>🔥 Votre chauffe-eau ou installation pose problème</h3>
+              <p>On vous parle parfois directement de remplacement, alors que le problème peut être plus ciblé.</p>
+            </div>
+
+            <div class="info-box green">
+              <h3>📷 Vous pouvez montrer le problème</h3>
+              <p>Vous avez des photos ou vidéos, ce qui permet une analyse plus précise et plus fiable.</p>
+            </div>
+
+            <div class="info-box green">
+              <h3>🧠 Vous voulez comprendre avant d’agir</h3>
+              <p>Vous ne voulez pas décider dans le stress ou dans l’urgence sans un minimum de recul.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="card section-card">
           <h2 class="section-title">Ce que vous obtenez concrètement</h2>
           <p class="section-sub">
             Une réponse utile, claire et actionnable. Pas de jargon inutile, pas de blabla.
@@ -723,26 +791,13 @@
 
     <section class="section">
       <div class="wrap">
-        <div class="card section-card">
-          <h2 class="section-title">Exemples de cas où ce diagnostic aide vraiment</h2>
-          <p class="section-sub">
-            Quelques situations typiques où un avis préalable peut éviter une grosse dépense.
+        <div class="card section-card" style="background:#fff8e8;border-color:#f6d18a;">
+          <h2 class="section-title">L’erreur fréquente : payer dans l’urgence sans avoir compris le vrai problème</h2>
+          <p class="section-sub" style="margin-bottom:0;">
+            Quand on panique, on accepte plus facilement un devis élevé, un remplacement trop rapide,
+            ou une intervention qui n’est pas forcément la bonne.  
+            Un diagnostic préalable peut vous donner un minimum de recul avant de décider.
           </p>
-
-          <div class="grid-3">
-            <div class="info-box">
-              <h3>Exemple 1</h3>
-              <p>Une fuite annoncée comme “grosse intervention” peut parfois venir d’un élément bien plus simple et moins coûteux.</p>
-            </div>
-            <div class="info-box">
-              <h3>Exemple 2</h3>
-              <p>Un chauffe-eau présenté comme “à remplacer” peut relever d’une panne ciblée et moins lourde.</p>
-            </div>
-            <div class="info-box">
-              <h3>Exemple 3</h3>
-              <p>Un bruit, une baisse de pression ou un écoulement étrange n’imposent pas toujours une urgence immédiate.</p>
-            </div>
-          </div>
         </div>
       </div>
     </section>
@@ -751,18 +806,23 @@
       <div class="wrap">
         <div class="card pricing-elite">
           <div class="badge">💰 Offre simple et claire</div>
-          <h2 class="section-title" style="margin-bottom:8px;">Un petit montant pour éviter une grosse erreur</h2>
+          <h2 class="section-title" style="margin-bottom:8px;">19,99€ maintenant peuvent vous éviter une grosse erreur ensuite</h2>
           <p class="under">
             Pour 19,99€, vous obtenez un diagnostic avant intervention. Cela peut vous éviter une facture beaucoup plus lourde.
           </p>
 
           <div class="big">19,99€</div>
+
+          <div class="price-psych">
+            Soit un petit montant pour éviter une décision qui peut vous coûter 150€, 300€, 500€ ou plus.
+          </div>
+
           <p class="under">
             Paiement unique • Formulaire détaillé après paiement • Photos acceptées • Option prioritaire ensuite
           </p>
 
           <div class="btn-row" style="justify-content:center;">
-            <a class="btn btn-primary" href="https://buy.stripe.com/28E7sKeJf2jb6aF6zu2Ji01">🔥 Je veux éviter de payer trop cher</a>
+            <a class="btn btn-primary" href="https://buy.stripe.com/28E7sKeJf2jb6aF6zu2Ji01">🔥 Oui, je veux éviter de payer trop cher</a>
           </div>
 
           <div class="compare">
@@ -880,7 +940,7 @@
     <section class="section">
       <div class="wrap">
         <div class="card cta-final">
-          <h2>N’attendez pas que la facture explose</h2>
+          <h2>N’attendez pas d’avoir déjà accepté la mauvaise facture</h2>
           <p>
             Faites analyser votre problème maintenant, obtenez un retour clair,
             et avancez avec plus de certitude avant de payer un plombier.
