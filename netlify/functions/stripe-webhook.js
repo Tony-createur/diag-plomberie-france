@@ -154,7 +154,7 @@ exports.handler = async (event) => {
       const ville =
         session.metadata?.ville || "Non renseignée";
 
-      const formUrl = `${appBaseUrl}/merci.html?session_id=${session.id}`;
+      const formUrl = `${appBaseUrl}/upsell.html?session_id=${session.id}`;
 
       const htmlClient = `
         <div style="font-family:Arial,sans-serif;max-width:700px;margin:0 auto;color:#111;">
@@ -168,19 +168,19 @@ exports.handler = async (event) => {
           </p>
 
           <p>
-            Votre paiement est confirmé. Vous pouvez maintenant envoyer votre demande complète
-            (photos, vidéos, détails) en cliquant ci-dessous :
+            Votre paiement est confirmé. Vous pouvez maintenant continuer votre demande
+            en cliquant ci-dessous :
           </p>
 
           <p style="text-align:center;margin:25px 0;">
             <a href="${formUrl}"
                style="background:#0d6efd;color:#fff;padding:14px 22px;border-radius:10px;text-decoration:none;font-weight:700;display:inline-block;">
-               👉 Accéder à mon formulaire
+               👉 Continuer ma demande
             </a>
           </p>
 
           <p>
-            Ce formulaire vous permet de transmettre tous les éléments nécessaires pour votre diagnostic.
+            Vous serez redirigé vers l’étape suivante pour finaliser votre parcours.
           </p>
 
           <div style="background:#f6f8fb;padding:18px;border-radius:12px;margin:20px 0;">
@@ -192,10 +192,6 @@ exports.handler = async (event) => {
             <p><strong>Type de logement :</strong> ${logement}</p>
             <p><strong>Problème indiqué avant paiement :</strong><br>${probleme}</p>
           </div>
-
-          <p>
-            Plus votre demande finale sera précise, plus votre diagnostic pourra être rapide et fiable.
-          </p>
 
           <p>
             Merci pour votre confiance,<br>
