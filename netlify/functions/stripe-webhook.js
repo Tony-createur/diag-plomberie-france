@@ -50,9 +50,9 @@ exports.handler = async (event) => {
         fullSession.customer_details?.email || session.customer_details?.email;
 
       const customerName =
-  fullSession.customer_details?.name ||
-  session.metadata?.nom ||
-  "Client";
+        fullSession.customer_details?.name ||
+        session.metadata?.nom ||
+        "Client";
 
       if (!customerEmail) {
         console.log("Aucun email client trouvé.");
@@ -96,22 +96,33 @@ exports.handler = async (event) => {
           </p>
 
           <p>
-  Votre paiement est confirmé. Vous pouvez maintenant envoyer votre demande complète (photos, vidéos, détails) en cliquant ci-dessous :
-</p>
+            Votre paiement est confirmé. Vous pouvez maintenant envoyer votre demande complète
+            (photos, vidéos, détails) en cliquant ci-dessous :
+          </p>
 
-<p style="text-align:center;margin:25px 0;">
-  <a href="https://diagplomberiefrance.com/demande-envoyee.html"
-     style="background:#0d6efd;color:#fff;padding:14px 22px;border-radius:10px;text-decoration:none;font-weight:700;display:inline-block;">
-     👉 Accéder à mon formulaire
-  </a>
-</p>
-
-<p>
-  Ce formulaire vous permet de transmettre tous les éléments nécessaires pour votre diagnostic.
-</p>
+          <p style="text-align:center;margin:25px 0;">
+            <a href="https://diagplomberiefrance.com/merci.html"
+               style="background:#0d6efd;color:#fff;padding:14px 22px;border-radius:10px;text-decoration:none;font-weight:700;display:inline-block;">
+               👉 Accéder à mon formulaire
+            </a>
+          </p>
 
           <p>
-            Vous serez recontacté rapidement si nécessaire, ou votre analyse sera traitée selon la formule choisie.
+            Ce formulaire vous permet de transmettre tous les éléments nécessaires pour votre diagnostic.
+          </p>
+
+          <div style="background:#f6f8fb;padding:18px;border-radius:12px;margin:20px 0;">
+            <h3 style="margin-top:0;">Récapitulatif</h3>
+            <p><strong>Montant payé :</strong> ${montant}</p>
+            <p><strong>Niveau d’urgence sélectionné :</strong> ${urgence}</p>
+            <p><strong>Téléphone saisi avant paiement :</strong> ${telephone}</p>
+            <p><strong>Ville :</strong> ${ville}</p>
+            <p><strong>Type de logement :</strong> ${logement}</p>
+            <p><strong>Problème indiqué avant paiement :</strong><br>${probleme}</p>
+          </div>
+
+          <p>
+            Plus votre demande finale sera précise, plus votre diagnostic pourra être rapide et fiable.
           </p>
 
           <p>
@@ -135,7 +146,7 @@ exports.handler = async (event) => {
           <p><strong>Montant :</strong> ${montant}</p>
 
           <div style="background:#f6f8fb;padding:18px;border-radius:12px;margin-top:20px;">
-            <strong>Problème déclaré :</strong><br><br>
+            <strong>Problème déclaré avant paiement :</strong><br><br>
             ${probleme}
           </div>
         </div>
