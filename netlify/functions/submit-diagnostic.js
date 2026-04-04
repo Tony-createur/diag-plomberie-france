@@ -222,8 +222,14 @@ function buildMailtoLink(email, nom) {
 function buildTelLink(telephone) {
   const raw = clean(telephone);
   if (!raw) return "";
-
   return raw.replace(/[^\d+]/g, "");
+}
+
+function parseAdminEmails(value) {
+  return String(value || "")
+    .split(",")
+    .map((email) => email.trim())
+    .filter(Boolean);
 }
 
 exports.handler = async (event) => {
@@ -240,6 +246,7 @@ exports.handler = async (event) => {
 
     const fromEmail = process.env.RESEND_FROM_EMAIL;
     const adminEmail = process.env.ADMIN_EMAIL;
+    const adminRecipients = parseAdminEmails(adminEmail);
 
     if (
       !process.env.CLOUDINARY_CLOUD_NAME ||
@@ -383,8 +390,12 @@ Session Upsell : ${upsellSessionId || "Aucune"}
       });
     }
 
-    if (!fromEmail || !adminEmail) {
-      console.error("Variables email manquantes dans submit-diagnostic.");
+    if (!fromEmail || adminRecipients.length === 0) {
+      console.error("Variables email manquantes dans submit-diagnostic.", {
+        hasFromEmail: Boolean(fromEmail),
+        adminRecipientsCount: adminRecipients.length
+      });
+
       return json(500, {
         ok: false,
         message: "Variables email manquantes."
@@ -552,7 +563,7 @@ Session Upsell : ${upsellSessionId || "Aucune"}
 
     await resend.emails.send({
       from: fromEmail,
-      to: adminEmail,
+      to: adminRecipients,
       subject: `🚨 ${priorite} - DEMANDE CLIENT COMPLÈTE - ${nom || "Client"} - ${urgence}`,
       html: htmlAdmin,
       replyTo: email || undefined
