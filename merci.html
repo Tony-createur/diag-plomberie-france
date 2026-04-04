@@ -7,8 +7,10 @@
   <meta name="robots" content="noindex, nofollow" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
-
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
   <style>
     :root{
       --blue:#0d6efd;
@@ -85,6 +87,7 @@
 
     .grid{
       display:grid;
+      grid-template-columns:1fr;
       gap:18px;
     }
 
@@ -93,15 +96,26 @@
       margin-bottom:8px;
       font-size:15px;
       font-weight:700;
+      color:#111827;
     }
 
-    input, textarea{
+    input,
+    textarea{
       width:100%;
-      padding:16px;
+      padding:16px 16px;
       border:1px solid var(--border);
       border-radius:16px;
       font-size:16px;
       font-family:inherit;
+      background:#fff;
+      transition:0.2s ease;
+      outline:none;
+    }
+
+    input:focus,
+    textarea:focus{
+      border-color:var(--blue);
+      box-shadow:0 0 0 4px rgba(13,110,253,0.10);
     }
 
     textarea{
@@ -109,86 +123,173 @@
       resize:vertical;
     }
 
+    input[type="file"]{
+      padding:14px;
+      background:#f8fbff;
+    }
+
+    .upload-note{
+      margin-top:8px;
+      font-size:13px;
+      color:var(--muted);
+      line-height:1.5;
+    }
+
     .btn{
       width:100%;
       margin-top:10px;
       border:none;
       border-radius:16px;
-      padding:18px;
+      padding:18px 20px;
       font-size:20px;
       font-weight:800;
+      font-family:inherit;
       cursor:pointer;
       color:#fff;
       background:var(--teal);
+      transition:0.2s ease;
+      box-shadow:0 14px 24px rgba(21,127,121,0.18);
+    }
+
+    .btn:hover{
+      background:var(--teal-dark);
+      transform:translateY(-1px);
     }
 
     .btn:disabled{
-      opacity:0.6;
+      opacity:0.7;
+      cursor:not-allowed;
+      transform:none;
     }
 
     .small{
       margin-top:16px;
       font-size:14px;
       color:var(--muted);
+      line-height:1.6;
     }
 
-    .hidden{display:none}
+    .hidden{
+      display:none;
+    }
+
+    .files-box{
+      background:#f8fbff;
+      border:1px solid #dfeaf7;
+      border-radius:18px;
+      padding:16px;
+    }
+
+    .files-box h3{
+      margin:0 0 12px;
+      font-size:16px;
+      color:#0f172a;
+    }
+
+    @media (max-width:640px){
+      .wrap{
+        padding:28px 14px;
+      }
+
+      .card{
+        padding:24px 18px;
+      }
+
+      .btn{
+        font-size:18px;
+      }
+    }
   </style>
 </head>
-
 <body>
   <div class="wrap">
     <div class="card">
-
       <div class="top-badge">✅ Paiement confirmé</div>
       <h1>Merci pour votre paiement</h1>
-
       <p class="intro">
-        Complétez votre demande pour recevoir votre diagnostic plomberie.
+        Votre paiement a bien été reçu. Pour recevoir votre diagnostic plomberie,
+        merci de compléter le formulaire ci-dessous avec le plus de détails possible
+        et d’ajouter vos photos ou vidéos si nécessaire.
       </p>
 
       <div class="alert-box">
         ⏱ Plus votre demande est précise, plus votre diagnostic sera rapide et fiable.
       </div>
 
-      <form id="demandeForm" name="demande-payee" method="POST" data-netlify="true" enctype="multipart/form-data">
+      <form
+        id="demandeForm"
+        name="demande-payee"
+        method="POST"
+        data-netlify="true"
+        netlify-honeypot="bot-field"
+        enctype="multipart/form-data"
+      >
         <input type="hidden" name="form-name" value="demande-payee" />
         <input type="hidden" name="session_id" id="session_id" />
 
+        <p class="hidden">
+          <label>
+            Ne pas remplir :
+            <input name="bot-field" />
+          </label>
+        </p>
+
         <div class="grid">
           <div>
-            <label>Nom / Prénom</label>
-            <input type="text" name="nom" required />
+            <label for="nom">Nom / Prénom</label>
+            <input type="text" id="nom" name="nom" required />
           </div>
 
           <div>
-            <label>Email</label>
-            <input type="email" name="email" required />
+            <label for="email">Adresse email</label>
+            <input type="email" id="email" name="email" required />
           </div>
 
           <div>
-            <label>Téléphone</label>
-            <input type="tel" name="telephone" required />
+            <label for="telephone">Téléphone</label>
+            <input type="tel" id="telephone" name="telephone" required />
           </div>
 
           <div>
-            <label>Ville</label>
-            <input type="text" name="ville" required />
+            <label for="ville">Ville</label>
+            <input type="text" id="ville" name="ville" required />
           </div>
 
           <div>
-            <label>Problème</label>
-            <textarea name="probleme" required></textarea>
+            <label for="probleme">Décrivez votre problème</label>
+            <textarea id="probleme" name="probleme" required></textarea>
+          </div>
+
+          <div class="files-box">
+            <h3>Ajoutez vos photos / vidéos</h3>
+
+            <div style="margin-bottom:14px;">
+              <label for="photo_video_1">Fichier 1</label>
+              <input type="file" id="photo_video_1" name="photo_video_1" accept="image/*,video/*" />
+            </div>
+
+            <div style="margin-bottom:14px;">
+              <label for="photo_video_2">Fichier 2</label>
+              <input type="file" id="photo_video_2" name="photo_video_2" accept="image/*,video/*" />
+            </div>
+
+            <div>
+              <label for="photo_video_3">Fichier 3</label>
+              <input type="file" id="photo_video_3" name="photo_video_3" accept="image/*,video/*" />
+            </div>
+
+            <div class="upload-note">
+              Ajoutez seulement les fichiers utiles et évitez les vidéos trop lourdes.
+            </div>
           </div>
         </div>
 
-        <button class="btn" id="submitBtn">Envoyer ma demande</button>
+        <button type="submit" class="btn" id="submitBtn">Envoyer ma demande</button>
 
         <p class="small" id="formMessage">
-          Après validation, votre demande sera envoyée.
+          Après validation, votre demande sera transmise avec vos fichiers.
         </p>
       </form>
-
     </div>
   </div>
 
@@ -204,15 +305,22 @@
     if (sessionId) {
       sessionInput.value = sessionId;
     } else {
+      formMessage.textContent = "Lien invalide : session de paiement introuvable.";
       submitBtn.disabled = true;
-      formMessage.textContent = "Lien invalide.";
+      submitBtn.textContent = "Lien invalide";
     }
 
     form.addEventListener("submit", async function (e) {
       e.preventDefault();
 
+      if (!sessionInput.value) {
+        formMessage.textContent = "Lien invalide : session de paiement introuvable.";
+        return;
+      }
+
       submitBtn.disabled = true;
-      submitBtn.textContent = "Envoi...";
+      submitBtn.textContent = "Envoi en cours...";
+      formMessage.textContent = "Merci de patienter quelques secondes...";
 
       try {
         const formData = new FormData(form);
@@ -222,23 +330,23 @@
           body: formData
         });
 
-        const data = await response.json();
+        const data = await response.json().catch(() => null);
 
-        if (response.ok) {
+        if (response.ok && data?.redirect) {
           window.location.href = data.redirect;
-        } else {
-          formMessage.textContent = data.message;
-          submitBtn.disabled = false;
-          submitBtn.textContent = "Envoyer ma demande";
+          return;
         }
 
-      } catch (err) {
-        formMessage.textContent = "Erreur serveur.";
+        formMessage.textContent =
+          data?.message || "Une erreur est survenue. Merci de réessayer.";
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Envoyer ma demande";
+      } catch (error) {
+        formMessage.textContent = "Une erreur est survenue. Merci de réessayer.";
         submitBtn.disabled = false;
         submitBtn.textContent = "Envoyer ma demande";
       }
     });
   </script>
-
 </body>
 </html>
