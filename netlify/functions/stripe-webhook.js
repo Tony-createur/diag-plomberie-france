@@ -22,6 +22,13 @@ function normalizeText(value, fallback = "Non renseigné") {
   return String(value).trim();
 }
 
+function parseAdminEmails(value) {
+  return String(value || "")
+    .split(",")
+    .map((email) => email.trim())
+    .filter(Boolean);
+}
+
 function getPrioriteLabel(upsell, urgence) {
   if (upsell === "oui") return "PRIORITAIRE";
 
@@ -124,6 +131,7 @@ exports.handler = async (event) => {
 
       const fromEmail = process.env.RESEND_FROM_EMAIL;
       const adminEmail = process.env.ADMIN_EMAIL;
+      const adminRecipients = parseAdminEmails(adminEmail);
 
       const appBaseUrl =
         process.env.URL ||
@@ -131,8 +139,12 @@ exports.handler = async (event) => {
         process.env.APP_BASE_URL ||
         "https://diagplomberiefrance.com";
 
-      if (!fromEmail || !adminEmail) {
-        console.error("Variables email manquantes.");
+      if (!fromEmail || adminRecipients.length === 0) {
+        console.error("Variables email manquantes.", {
+          hasFromEmail: Boolean(fromEmail),
+          adminRecipientsCount: adminRecipients.length
+        });
+
         return {
           statusCode: 500,
           body: "Variables email manquantes"
@@ -242,7 +254,7 @@ exports.handler = async (event) => {
                     Coordonnées client
                   </div>
                   <p style="margin:8px 0;"><strong>Nom :</strong> ${safeNom}</p>
-                  <p style="margin:8px 0;"><strong>Email :</strong> <a href="mailto:${safeEmail}" style="color:#0d6efd;text-decoration:none;">${safeEmail}</a></p>
+                  <p style="margin:8px 0;"><strong>Email :</strong> <a href="mailto:${email}" style="color:#0d6efd;text-decoration:none;">${safeEmail}</a></p>
                 </div>
 
                 <div style="background:#fff3cd;border:1px solid #fcd34d;border-radius:12px;padding:18px;margin-bottom:18px;">
@@ -262,7 +274,7 @@ exports.handler = async (event) => {
                 </div>
 
                 <div style="text-align:center;margin-top:28px;">
-                  <a href="mailto:${safeEmail}"
+                  <a href="mailto:${email}"
                      style="background:#0d6efd;color:#fff;padding:14px 24px;border-radius:12px;text-decoration:none;font-weight:800;display:inline-block;">
                      👉 Répondre au client
                   </a>
@@ -274,7 +286,7 @@ exports.handler = async (event) => {
 
         await resend.emails.send({
           from: fromEmail,
-          to: adminEmail,
+          to: adminRecipients,
           subject: `💳 UPSELL PAYÉ - ${nom} - ${montant}`,
           html: htmlAdminUpsell,
           replyTo: customerEmail
@@ -362,7 +374,7 @@ exports.handler = async (event) => {
                   Coordonnées connues au moment du paiement
                 </div>
                 <p style="margin:8px 0;"><strong>Nom :</strong> ${safeNom}</p>
-                <p style="margin:8px 0;"><strong>Email :</strong> <a href="mailto:${safeEmail}" style="color:#0d6efd;text-decoration:none;">${safeEmail}</a></p>
+                <p style="margin:8px 0;"><strong>Email :</strong> <a href="mailto:${email}" style="color:#0d6efd;text-decoration:none;">${safeEmail}</a></p>
                 <p style="margin:8px 0;"><strong>Téléphone :</strong> ${safeTelephone}</p>
                 <p style="margin:8px 0;"><strong>Ville :</strong> ${safeVille}</p>
                 <p style="margin:8px 0;"><strong>Logement :</strong> ${safeLogement}</p>
@@ -412,7 +424,7 @@ exports.handler = async (event) => {
 
       await resend.emails.send({
         from: fromEmail,
-        to: adminEmail,
+        to: adminRecipients,
         subject: `💳 PAIEMENT REÇU - ${nom} - ${montant}`,
         html: htmlAdmin,
         replyTo: customerEmail
