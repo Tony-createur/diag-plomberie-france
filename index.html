@@ -241,6 +241,69 @@
       color:rgba(255,255,255,0.95);
     }
 
+    .hero-conversion-box{
+      background:#fff3cd;
+      color:#6b5300;
+      border:1px solid rgba(255,255,255,0.25);
+      border-radius:18px;
+      padding:16px 18px;
+      margin:22px 0 18px;
+      font-weight:700;
+      box-shadow:0 10px 24px rgba(0,0,0,0.08);
+      max-width:760px;
+    }
+
+    .hero-benefits{
+      list-style:none;
+      margin:18px 0 18px;
+      padding:0;
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:10px 14px;
+      max-width:760px;
+    }
+
+    .hero-benefits li{
+      background:rgba(255,255,255,0.12);
+      border:1px solid rgba(255,255,255,0.16);
+      border-radius:14px;
+      padding:12px 14px;
+      font-size:14px;
+      font-weight:700;
+      color:#fff;
+    }
+
+    .hero-proof{
+      background:#e8f4ff;
+      color:#0f325c;
+      border-radius:18px;
+      padding:16px 18px;
+      margin:20px 0 18px;
+      max-width:760px;
+      box-shadow:0 10px 24px rgba(0,0,0,0.08);
+    }
+
+    .hero-proof strong{
+      display:block;
+      margin-bottom:8px;
+      font-size:15px;
+    }
+
+    .hero-proof p{
+      margin:6px 0;
+      color:#0f325c;
+      font-size:14px;
+      font-weight:600;
+    }
+
+    .hero-warning{
+      margin:18px 0 22px;
+      font-size:15px;
+      font-weight:800;
+      color:#fff7cc;
+      max-width:760px;
+    }
+
     .hero-points{
       display:grid;
       grid-template-columns:repeat(2,minmax(0,1fr));
@@ -879,6 +942,7 @@
         font-size:16px;
       }
 
+      .hero-benefits,
       .hero-points,
       .social-proof,
       .grid-4,
@@ -971,6 +1035,11 @@
           Ne payez pas un plombier <span>avant d’avoir compris votre problème</span>
         </h1>
 
+        <div class="hero-conversion-box">
+          🚨 Évitez une facture inutile de 200 à 800€<br />
+          Faites diagnostiquer votre problème AVANT de faire intervenir un plombier.
+        </div>
+
         <p>
           Fuite d’eau, chauffe-eau, pression, canalisation bouchée, panne ou doute sur un devis :
           obtenez un avis professionnel clair, rapide et à distance.
@@ -979,6 +1048,23 @@
         <p>
           Le but est simple : <strong>vous éviter une intervention inutile, un devis gonflé ou une mauvaise décision dans l’urgence.</strong>
         </p>
+
+        <ul class="hero-benefits">
+          <li>✔ Comprenez votre problème en quelques minutes</li>
+          <li>✔ Évitez les devis abusifs</li>
+          <li>✔ Sachez si c’est urgent ou non</li>
+          <li>✔ Recevez des conseils concrets à appliquer</li>
+        </ul>
+
+        <div class="hero-proof">
+          <strong>⭐ Déjà des dizaines de diagnostics réalisés</strong>
+          <p>💬 “Ça m’a évité une intervention inutile à 350€”</p>
+          <p>💬 “Diagnostic rapide et clair, super utile”</p>
+        </div>
+
+        <div class="hero-warning">
+          ⚠️ Plus vous attendez, plus le problème peut empirer : fuite, dégâts, surcoût.
+        </div>
 
         <div class="hero-points">
           <div class="hero-point">✔ Diagnostic clair avant intervention</div>
@@ -991,6 +1077,9 @@
           <a href="#tarifs" class="btn btn-light">Voir les offres</a>
           <a href="#checkout-form" class="btn btn-danger choose-offer" data-service="Urgence WhatsApp immédiate" data-amount="4999">
             🚨 Urgence WhatsApp immédiate
+          </a>
+          <a href="#checkout-form" class="btn btn-primary">
+            👉 Obtenir mon diagnostic maintenant
           </a>
         </div>
 
