@@ -406,6 +406,8 @@ Session Upsell : ${upsellSessionId || "Aucune"}
 
     const replyMailtoLink = buildMailtoLink(email, nom);
     const telLink = buildTelLink(telephone);
+    const rawEmail = clean(email);
+    const emailLink = rawEmail ? `mailto:${rawEmail}` : "#";
 
     const photosHtml =
       uploadedPhotos.length > 0
@@ -414,7 +416,7 @@ Session Upsell : ${upsellSessionId || "Aucune"}
               (photo, index) => `
                 <div style="margin-bottom:18px;">
                   <p style="margin:0 0 8px 0;"><strong>Photo ${index + 1} :</strong>
-                    <a href="${photo.url}" target="_blank" style="color:#0d6efd;text-decoration:none;">
+                    <a href="${photo.url}" target="_blank" style="color:#0d6efd;text-decoration:underline;">
                       Ouvrir l’image
                     </a>
                   </p>
@@ -428,17 +430,39 @@ Session Upsell : ${upsellSessionId || "Aucune"}
         : `<p style="margin:0;">Aucune photo jointe.</p>`;
 
     const telephoneHtml = telLink
-      ? `<p style="margin:8px 0;"><strong>Téléphone :</strong> <a href="tel:${telLink}" style="color:#0d6efd;text-decoration:none;">${safeTelephone}</a></p>`
+      ? `<p style="margin:8px 0;"><strong>Téléphone :</strong> <a href="tel:${telLink}" style="color:#0d6efd;text-decoration:underline;">${safeTelephone}</a></p>`
       : `<p style="margin:8px 0;"><strong>Téléphone :</strong> ${safeTelephone}</p>`;
 
     const replyButtonHtml =
-      replyMailtoLink !== "#"
+      rawEmail
         ? `
-          <div style="text-align:center;margin-top:28px;">
+          <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:12px;padding:18px;margin-top:28px;text-align:center;">
+            <div style="font-size:16px;font-weight:800;color:#0b3b75;margin-bottom:12px;">
+              Actions rapides
+            </div>
+
+            <p style="margin:0 0 14px 0;font-size:15px;line-height:1.6;">
+              <strong>Email direct :</strong>
+              <a href="${emailLink}" style="color:#0d6efd;text-decoration:underline;word-break:break-all;">
+                ${safeEmail}
+              </a>
+            </p>
+
+            <p style="margin:0 0 16px 0;">
+              <a href="${replyMailtoLink}" style="color:#0d6efd;text-decoration:underline;font-weight:700;">
+                Répondre maintenant
+              </a>
+            </p>
+
             <a href="${replyMailtoLink}"
                style="background:#0d6efd;color:#ffffff !important;padding:14px 24px;border-radius:12px;text-decoration:none;font-weight:800;display:inline-block;">
                👉 Répondre au client
             </a>
+
+            <p style="margin:14px 0 0 0;font-size:13px;color:#6b7280;">
+              Si le bouton ne fonctionne pas dans votre messagerie, cliquez sur l’adresse email ci-dessus
+              ou utilisez le bouton “Répondre” de votre boîte mail.
+            </p>
           </div>
         `
         : `
@@ -480,7 +504,7 @@ Session Upsell : ${upsellSessionId || "Aucune"}
                 Coordonnées client
               </div>
               <p style="margin:8px 0;"><strong>Nom :</strong> ${safeNom}</p>
-              <p style="margin:8px 0;"><strong>Email :</strong> <a href="mailto:${email}" style="color:#0d6efd;text-decoration:none;">${safeEmail}</a></p>
+              <p style="margin:8px 0;"><strong>Email :</strong> <a href="${emailLink}" style="color:#0d6efd;text-decoration:underline;word-break:break-all;">${safeEmail}</a></p>
               ${telephoneHtml}
               <p style="margin:8px 0;"><strong>Ville :</strong> ${safeVille}</p>
               <p style="margin:8px 0;"><strong>Logement :</strong> ${safeLogement}</p>
