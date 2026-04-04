@@ -8,10 +8,6 @@
     name="description"
     content="Diagnostic plomberie en ligne avant intervention. Évitez les devis abusifs, comprenez votre panne et sachez quoi faire avant de payer un plombier."
   />
-  <meta
-    name="keywords"
-    content="diagnostic plomberie, fuite eau, chauffe-eau panne, devis plombier abusif, plomberie en ligne, éviter arnaque plombier"
-  />
   <meta name="robots" content="index, follow" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -25,18 +21,20 @@
       --bg:#eef4fb;
       --card:#ffffff;
       --text:#0f172a;
-      --muted:#5b6475;
+      --muted:#5f6b7a;
       --line:#dbe7f4;
       --blue:#1463ff;
       --blue-dark:#0d47b5;
       --green:#16a34a;
       --green-dark:#15803d;
       --red:#dc2626;
+      --red-dark:#b91c1c;
       --orange:#f59e0b;
-      --soft-blue:#e8f1ff;
+      --soft-blue:#eaf2ff;
       --soft-red:#fff1f2;
       --soft-green:#edfdf3;
       --soft-yellow:#fff8e8;
+      --navy:#0b1730;
       --shadow:0 20px 60px rgba(15, 23, 42, 0.10);
       --radius:24px;
     }
@@ -47,128 +45,149 @@
 
     body{
       margin:0;
-      font-family:"Poppins", sans-serif;
-      background:linear-gradient(180deg,#edf4fb 0%, #f8fbff 100%);
+      font-family:"Poppins",sans-serif;
       color:var(--text);
+      background:
+        radial-gradient(circle at top left, #f7fbff 0%, #eef4fb 45%, #edf3fa 100%);
     }
 
     a{
-      color:inherit;
       text-decoration:none;
+      color:inherit;
     }
 
-    .top-alert{
-      background:linear-gradient(90deg,#c81e1e,#ef4444);
+    .topbar{
+      background:linear-gradient(90deg,var(--red-dark),var(--red));
       color:#fff;
       text-align:center;
-      padding:12px 18px;
+      padding:12px 16px;
       font-size:14px;
-      font-weight:700;
+      font-weight:800;
       letter-spacing:.2px;
     }
 
     .wrap{
-      width:min(1160px, calc(100% - 32px));
+      width:min(1160px, calc(100% - 30px));
       margin:0 auto;
     }
 
     .hero{
-      padding:34px 0 28px;
+      padding:26px 0 34px;
     }
 
     .hero-grid{
       display:grid;
-      grid-template-columns:1.1fr .9fr;
-      gap:26px;
-      align-items:center;
+      grid-template-columns:1.15fr .85fr;
+      gap:24px;
+      align-items:stretch;
     }
 
-    .hero-card,
-    .side-card,
-    .section-card,
-    .pricing-card,
-    .testimonial,
-    .faq-item,
-    .cta-box{
+    .card{
       background:var(--card);
       border:1px solid var(--line);
       border-radius:var(--radius);
       box-shadow:var(--shadow);
     }
 
-    .hero-card{
+    .hero-main{
       padding:34px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .hero-main::after{
+      content:"";
+      position:absolute;
+      right:-80px;
+      top:-80px;
+      width:240px;
+      height:240px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(20,99,255,.10) 0%, rgba(20,99,255,0) 70%);
+      pointer-events:none;
     }
 
     .badge{
       display:inline-flex;
       align-items:center;
-      gap:8px;
-      background:var(--soft-blue);
-      color:var(--blue);
-      font-weight:700;
-      font-size:13px;
+      gap:10px;
       padding:10px 14px;
       border-radius:999px;
+      background:var(--soft-blue);
+      color:var(--blue);
+      font-size:13px;
+      font-weight:800;
       margin-bottom:18px;
     }
 
     h1{
-      margin:0 0 14px;
-      font-size:52px;
-      line-height:1.05;
-      letter-spacing:-1.4px;
+      margin:0 0 16px;
+      font-size:54px;
+      line-height:1.04;
+      letter-spacing:-1.6px;
+      max-width:760px;
     }
 
     .lead{
       margin:0 0 24px;
       font-size:18px;
-      line-height:1.75;
+      line-height:1.8;
       color:var(--muted);
-      max-width:680px;
+      max-width:760px;
+    }
+
+    .hero-warning{
+      background:var(--soft-yellow);
+      border:1px solid #f6d18a;
+      border-radius:18px;
+      padding:14px 16px;
+      font-size:15px;
+      line-height:1.7;
+      font-weight:600;
+      margin-bottom:22px;
     }
 
     .hero-points{
       display:grid;
       grid-template-columns:repeat(2,minmax(0,1fr));
       gap:12px;
-      margin:22px 0 28px;
+      margin-bottom:28px;
     }
 
     .mini-point{
       background:#f8fbff;
       border:1px solid var(--line);
       border-radius:18px;
-      padding:14px 16px;
+      padding:14px 15px;
       font-size:14px;
-      font-weight:600;
+      font-weight:700;
+      line-height:1.5;
     }
 
     .btn-row{
       display:flex;
       gap:14px;
       flex-wrap:wrap;
-      margin-top:10px;
+      align-items:center;
     }
 
     .btn{
+      min-height:58px;
+      padding:0 24px;
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      gap:10px;
-      min-height:58px;
-      padding:0 24px;
       border-radius:16px;
       font-weight:800;
-      transition:.18s ease;
       border:none;
       cursor:pointer;
+      transition:.18s ease;
     }
 
     .btn-primary{
       background:linear-gradient(180deg,var(--green),var(--green-dark));
       color:#fff;
-      box-shadow:0 12px 30px rgba(22,163,74,.25);
+      box-shadow:0 14px 32px rgba(22,163,74,.24);
     }
 
     .btn-primary:hover{
@@ -182,18 +201,18 @@
       color:var(--text);
     }
 
-    .proof-line{
+    .small-proof{
       margin-top:18px;
-      font-size:14px;
       color:var(--muted);
+      font-size:14px;
       font-weight:500;
     }
 
-    .side-card{
+    .hero-side{
       padding:22px;
     }
 
-    .side-header{
+    .side-head{
       background:linear-gradient(180deg,#0f172a,#172554);
       color:#fff;
       border-radius:20px;
@@ -201,84 +220,81 @@
       margin-bottom:18px;
     }
 
-    .side-header h3{
+    .side-head h2{
       margin:0 0 8px;
       font-size:24px;
       line-height:1.2;
     }
 
-    .side-header p{
+    .side-head p{
       margin:0;
-      color:rgba(255,255,255,.86);
-      line-height:1.7;
+      color:rgba(255,255,255,.88);
       font-size:14px;
+      line-height:1.75;
     }
 
-    .price-box{
+    .price-card{
       background:var(--soft-yellow);
-      border:1px solid #f7d58c;
-      border-radius:18px;
-      padding:18px;
-      margin-bottom:16px;
+      border:1px solid #f6d18a;
+      border-radius:20px;
+      padding:20px;
+      margin-bottom:18px;
+      text-align:center;
     }
 
     .price-old{
-      color:#8b8b8b;
-      text-decoration:line-through;
       font-size:15px;
-      font-weight:600;
+      color:#8a8a8a;
+      text-decoration:line-through;
+      font-weight:700;
     }
 
     .price-now{
-      font-size:40px;
+      font-size:46px;
+      line-height:1;
       font-weight:800;
-      line-height:1.1;
-      margin-top:4px;
-      color:var(--text);
+      margin:8px 0 6px;
     }
 
-    .price-note{
-      margin-top:6px;
-      color:#7a5a00;
+    .price-sub{
       font-size:13px;
-      font-weight:600;
+      color:#7a5a00;
+      font-weight:700;
     }
 
     .checklist{
       display:grid;
       gap:12px;
-      margin:18px 0 0;
     }
 
     .check-item{
       display:flex;
       gap:12px;
       align-items:flex-start;
-      padding:12px 14px;
-      border-radius:16px;
       background:#f8fbff;
       border:1px solid var(--line);
+      border-radius:18px;
+      padding:14px;
       font-size:14px;
-      line-height:1.6;
+      line-height:1.65;
       font-weight:600;
     }
 
-    .check-dot{
-      width:26px;
-      height:26px;
+    .check-icon{
+      width:28px;
+      height:28px;
       border-radius:50%;
-      background:var(--soft-green);
-      color:var(--green);
+      flex:0 0 auto;
       display:flex;
       align-items:center;
       justify-content:center;
+      background:var(--soft-green);
+      color:var(--green);
       font-weight:800;
-      flex:0 0 auto;
-      margin-top:1px;
     }
 
     .section{
-      padding:18px 0;
+      padding:16px 0;
     }
 
     .section-card{
@@ -287,9 +303,9 @@
 
     .section-title{
       margin:0 0 10px;
-      font-size:34px;
-      line-height:1.15;
-      letter-spacing:-.8px;
+      font-size:36px;
+      line-height:1.12;
+      letter-spacing:-.9px;
     }
 
     .section-sub{
@@ -299,22 +315,16 @@
       font-size:16px;
     }
 
-    .pain-grid,
-    .solution-grid,
-    .steps-grid,
-    .proof-grid,
-    .testimonials-grid,
-    .reassurance-grid{
+    .grid-2,
+    .grid-3,
+    .grid-4{
       display:grid;
       gap:18px;
     }
 
-    .pain-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-    .solution-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-    .steps-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
-    .proof-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
-    .testimonials-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
-    .reassurance-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+    .grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .grid-4{grid-template-columns:repeat(4,minmax(0,1fr))}
 
     .info-box{
       border:1px solid var(--line);
@@ -336,10 +346,10 @@
 
     .info-box p,
     .info-box li{
-      color:var(--muted);
-      line-height:1.75;
-      font-size:15px;
       margin:0;
+      font-size:15px;
+      line-height:1.8;
+      color:var(--muted);
     }
 
     .info-box ul{
@@ -348,8 +358,8 @@
     }
 
     .step-number{
-      width:42px;
-      height:42px;
+      width:44px;
+      height:44px;
       border-radius:14px;
       display:flex;
       align-items:center;
@@ -360,76 +370,79 @@
       margin-bottom:14px;
     }
 
-    .pricing-card{
-      padding:32px;
+    .pricing-elite{
+      padding:34px;
       text-align:center;
     }
 
-    .pricing-card .big{
-      font-size:52px;
+    .pricing-elite .big{
+      font-size:56px;
       line-height:1;
       font-weight:800;
-      margin:8px 0;
+      margin:10px 0;
     }
 
-    .pricing-card .small-muted{
+    .pricing-elite .under{
       color:var(--muted);
       font-size:15px;
-      line-height:1.7;
-      max-width:720px;
-      margin:0 auto 20px;
+      line-height:1.75;
+      max-width:760px;
+      margin:0 auto 18px;
     }
 
     .compare{
-      margin-top:18px;
       display:grid;
       grid-template-columns:repeat(3,minmax(0,1fr));
       gap:16px;
+      margin-top:22px;
     }
 
     .compare-item{
+      background:#fbfdff;
+      border:1px solid var(--line);
       border-radius:18px;
       padding:18px;
-      border:1px solid var(--line);
-      background:#fbfdff;
     }
 
     .compare-item strong{
       display:block;
-      font-size:20px;
+      font-size:22px;
       margin-bottom:8px;
     }
 
     .testimonial{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:22px;
       padding:22px;
+      box-shadow:var(--shadow);
     }
 
     .stars{
       color:#f59e0b;
-      font-size:18px;
       letter-spacing:2px;
+      font-size:18px;
       margin-bottom:12px;
     }
 
     .testimonial p{
       margin:0 0 14px;
-      line-height:1.8;
       color:var(--muted);
+      line-height:1.8;
       font-size:15px;
     }
 
     .testimonial .name{
-      font-weight:700;
       font-size:14px;
-    }
-
-    .faq-list{
-      display:grid;
-      gap:14px;
+      font-weight:700;
     }
 
     .faq-item{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:20px;
       padding:20px 22px;
+      box-shadow:var(--shadow);
     }
 
     .faq-item h3{
@@ -444,46 +457,43 @@
       font-size:15px;
     }
 
-    .cta-box{
-      padding:34px;
-      text-align:center;
+    .cta-final{
       background:linear-gradient(180deg,#ffffff,#f7fbff);
+      text-align:center;
+      padding:36px;
     }
 
-    .cta-box h2{
+    .cta-final h2{
       margin:0 0 10px;
-      font-size:36px;
-      line-height:1.15;
+      font-size:38px;
+      line-height:1.12;
     }
 
-    .cta-box p{
+    .cta-final p{
       margin:0 auto 24px;
+      max-width:760px;
       color:var(--muted);
       line-height:1.8;
       font-size:16px;
-      max-width:760px;
     }
 
     .footer{
-      padding:26px 0 36px;
+      padding:24px 0 36px;
+      text-align:center;
       color:var(--muted);
       font-size:14px;
-      text-align:center;
     }
 
     .footer a{
       color:var(--blue);
-      font-weight:600;
+      font-weight:700;
     }
 
     @media (max-width: 980px){
       .hero-grid,
-      .pain-grid,
-      .solution-grid,
-      .steps-grid,
-      .proof-grid,
-      .testimonials-grid,
-      .reassurance-grid,
+      .grid-2,
+      .grid-3,
+      .grid-4,
       .compare{
         grid-template-columns:1fr;
       }
@@ -496,11 +506,11 @@
         grid-template-columns:1fr;
       }
 
-      .hero-card,
-      .side-card,
+      .hero-main,
+      .hero-side,
       .section-card,
-      .pricing-card,
-      .cta-box{
+      .pricing-elite,
+      .cta-final{
         padding:24px;
       }
     }
@@ -510,7 +520,7 @@
         width:min(100% - 20px, 1160px);
       }
 
-      .top-alert{
+      .topbar{
         font-size:13px;
         padding:10px 12px;
       }
@@ -532,7 +542,7 @@
       }
 
       .price-now,
-      .pricing-card .big{
+      .pricing-elite .big{
         font-size:42px;
       }
     }
@@ -540,7 +550,7 @@
 </head>
 <body>
 
-  <div class="top-alert">
+  <div class="topbar">
     🚨 Évitez de payer un plombier pour rien — diagnostic plomberie fiable en ligne dès 19,99€
   </div>
 
@@ -548,65 +558,70 @@
     <section class="hero">
       <div class="wrap">
         <div class="hero-grid">
-          <div class="hero-card">
+          <div class="card hero-main">
             <div class="badge">✅ Diagnostic avant intervention</div>
 
             <h1>Votre problème de plomberie analysé avant de payer un plombier</h1>
 
             <p class="lead">
               Envoyez votre problème, vos explications et vos photos.
-              Vous recevez un retour clair pour comprendre la panne, éviter les devis abusifs
-              et savoir quoi faire avant de dépenser plusieurs centaines d’euros.
+              Recevez une réponse claire pour comprendre ce qui se passe,
+              savoir si c’est urgent, et éviter les devis abusifs ou les interventions inutiles.
             </p>
+
+            <div class="hero-warning">
+              ⚠️ Un mauvais diagnostic peut vous coûter très cher.
+              Un simple avis avant intervention peut vous faire économiser plusieurs centaines d’euros.
+            </div>
 
             <div class="hero-points">
               <div class="mini-point">💸 Évitez un devis gonflé ou inutile</div>
               <div class="mini-point">🔍 Comprenez le vrai problème</div>
               <div class="mini-point">🔥 Savoir si c’est urgent ou non</div>
-              <div class="mini-point">🛠️ Conseils concrets avant intervention</div>
+              <div class="mini-point">📷 Ajoutez vos photos pour une analyse plus fiable</div>
             </div>
 
             <div class="btn-row">
-              <a class="btn btn-primary" href="TON_LIEN_STRIPE_ICI">👉 Obtenir mon diagnostic maintenant</a>
+              <a class="btn btn-primary" href="https://buy.stripe.com/28E7sKeJf2jb6aF6zu2Ji01">👉 Obtenir mon diagnostic maintenant</a>
               <a class="btn btn-secondary" href="#comment-ca-marche">Voir comment ça marche</a>
             </div>
 
-            <div class="proof-line">
-              Paiement sécurisé via Stripe • Réponse claire • Photos acceptées
+            <div class="small-proof">
+              Paiement sécurisé Stripe • Formulaire après paiement • Photos acceptées • Option prioritaire disponible
             </div>
           </div>
 
-          <aside class="side-card">
-            <div class="side-header">
-              <h3>Ce que vous évitez</h3>
+          <aside class="card hero-side">
+            <div class="side-head">
+              <h2>Ce que vous évitez vraiment</h2>
               <p>
-                Une fuite mal comprise, un chauffe-eau mal diagnostiqué ou un simple problème surestimé
-                peut vite se transformer en facture énorme.
+                Une fuite surestimée, un chauffe-eau déclaré “mort” trop vite,
+                ou une urgence exagérée peut transformer une simple panne en grosse facture.
               </p>
             </div>
 
-            <div class="price-box">
-              <div class="price-old">Intervention classique : 150€ à 500€</div>
+            <div class="price-card">
+              <div class="price-old">Intervention classique : 150€ à 500€+</div>
               <div class="price-now">19,99€</div>
-              <div class="price-note">pour savoir quoi faire avant de payer trop cher</div>
+              <div class="price-sub">pour savoir quoi faire avant de payer trop cher</div>
             </div>
 
             <div class="checklist">
               <div class="check-item">
-                <div class="check-dot">✓</div>
+                <div class="check-icon">✓</div>
                 <div>Diagnostic simple et compréhensible, même si vous n’y connaissez rien.</div>
               </div>
               <div class="check-item">
-                <div class="check-dot">✓</div>
+                <div class="check-icon">✓</div>
                 <div>Évaluation du niveau d’urgence pour éviter la panique inutile.</div>
               </div>
               <div class="check-item">
-                <div class="check-dot">✓</div>
+                <div class="check-icon">✓</div>
                 <div>Analyse à partir de votre description et de vos photos.</div>
               </div>
               <div class="check-item">
-                <div class="check-dot">✓</div>
-                <div>Option prioritaire disponible pour traitement plus rapide.</div>
+                <div class="check-icon">✓</div>
+                <div>Option prioritaire proposée après paiement pour traitement plus rapide.</div>
               </div>
             </div>
           </aside>
@@ -616,28 +631,28 @@
 
     <section class="section">
       <div class="wrap">
-        <div class="section-card">
+        <div class="card section-card">
           <h2 class="section-title">Vous êtes probablement dans une de ces situations</h2>
           <p class="section-sub">
-            C’est exactement là que cette offre vous fait gagner de l’argent, du temps et évite les mauvaises décisions.
+            C’est précisément dans ces cas-là qu’un diagnostic préalable peut éviter une erreur coûteuse.
           </p>
 
-          <div class="pain-grid">
+          <div class="grid-2">
             <div class="info-box red">
               <h3>💸 Devis trop élevé</h3>
-              <p>On vous annonce un tarif énorme, mais vous ne savez pas si le diagnostic est sérieux.</p>
+              <p>On vous annonce une somme énorme sans explication claire, et vous ne savez pas si c’est justifié.</p>
             </div>
             <div class="info-box yellow">
               <h3>🚿 Fuite ou problème d’eau</h3>
-              <p>Vous voulez savoir si c’est grave, si ça peut attendre, ou s’il faut agir immédiatement.</p>
+              <p>Vous voulez savoir si c’est grave, si cela peut attendre ou s’il faut agir rapidement.</p>
             </div>
             <div class="info-box blue">
               <h3>🔥 Chauffe-eau en panne</h3>
-              <p>Vous entendez tout et son contraire, mais vous voulez comprendre avant de payer un remplacement complet.</p>
+              <p>On vous parle parfois directement de remplacement complet, alors que le vrai problème peut être plus ciblé.</p>
             </div>
             <div class="info-box green">
               <h3>⚠️ Peur de vous faire avoir</h3>
-              <p>Vous cherchez un avis clair avant de faire venir quelqu’un et signer un devis.</p>
+              <p>Vous cherchez un avis clair avant de faire intervenir quelqu’un ou accepter un devis.</p>
             </div>
           </div>
         </div>
@@ -646,13 +661,13 @@
 
     <section class="section" id="comment-ca-marche">
       <div class="wrap">
-        <div class="section-card">
+        <div class="card section-card">
           <h2 class="section-title">Comment ça marche</h2>
           <p class="section-sub">
             Le parcours est simple, rapide et pensé pour obtenir les bonnes informations dès le départ.
           </p>
 
-          <div class="steps-grid">
+          <div class="grid-3">
             <div class="info-box">
               <div class="step-number">1</div>
               <h3>Vous réglez le diagnostic</h3>
@@ -661,12 +676,12 @@
             <div class="info-box">
               <div class="step-number">2</div>
               <h3>Vous expliquez votre problème</h3>
-              <p>Vous remplissez le formulaire avec le plus de détails possible et vous ajoutez vos photos.</p>
+              <p>Vous décrivez la situation et vous ajoutez vos photos pour rendre l’analyse plus précise.</p>
             </div>
             <div class="info-box">
               <div class="step-number">3</div>
               <h3>Vous recevez une réponse exploitable</h3>
-              <p>Vous savez ce qui est probable, ce qui est urgent et comment éviter de payer pour rien.</p>
+              <p>Vous savez quoi faire, ce qui est urgent, et comment éviter de payer pour rien.</p>
             </div>
           </div>
         </div>
@@ -675,28 +690,28 @@
 
     <section class="section">
       <div class="wrap">
-        <div class="section-card">
+        <div class="card section-card">
           <h2 class="section-title">Ce que vous obtenez concrètement</h2>
           <p class="section-sub">
-            Pas de blabla technique inutile. Le but est de vous donner une réponse utile et actionnable.
+            Une réponse utile, claire et actionnable. Pas du jargon inutile, pas de blabla.
           </p>
 
-          <div class="solution-grid">
+          <div class="grid-2">
             <div class="info-box blue">
               <h3>✔️ Diagnostic clair</h3>
-              <p>Vous comprenez le problème dans un langage simple.</p>
+              <p>Vous comprenez le problème avec des mots simples.</p>
             </div>
             <div class="info-box green">
               <h3>✔️ Niveau d’urgence</h3>
-              <p>Vous savez s’il faut agir tout de suite ou si ça peut attendre.</p>
+              <p>Vous savez s’il faut agir tout de suite ou si cela peut attendre un peu.</p>
             </div>
             <div class="info-box yellow">
               <h3>✔️ Conseils avant intervention</h3>
-              <p>Vous recevez des recommandations concrètes avant de faire venir un artisan.</p>
+              <p>Vous recevez des recommandations concrètes avant de faire venir un plombier.</p>
             </div>
             <div class="info-box red">
               <h3>✔️ Protection contre les abus</h3>
-              <p>Vous limitez le risque de payer une intervention inutile ou surévaluée.</p>
+              <p>Vous réduisez le risque de payer une intervention inutile ou surévaluée.</p>
             </div>
           </div>
         </div>
@@ -705,24 +720,24 @@
 
     <section class="section">
       <div class="wrap">
-        <div class="section-card">
+        <div class="card section-card">
           <h2 class="section-title">Exemples de situations où ce diagnostic aide vraiment</h2>
           <p class="section-sub">
             Quelques cas typiques où un avis préalable peut éviter une grosse dépense.
           </p>
 
-          <div class="proof-grid">
+          <div class="grid-3">
             <div class="info-box">
               <h3>Exemple 1</h3>
-              <p>Une fuite annoncée comme “grosse intervention” peut parfois venir d’un élément simple et peu coûteux.</p>
+              <p>Une fuite annoncée comme “grosse intervention” peut parfois venir d’un élément bien plus simple et moins coûteux.</p>
             </div>
             <div class="info-box">
               <h3>Exemple 2</h3>
-              <p>Un chauffe-eau considéré comme “à remplacer” peut relever d’une panne bien plus ciblée.</p>
+              <p>Un chauffe-eau présenté comme “à remplacer” peut relever d’une panne ciblée et moins lourde.</p>
             </div>
             <div class="info-box">
               <h3>Exemple 3</h3>
-              <p>Un bruit, une pression anormale ou un écoulement étrange n’imposent pas toujours une urgence immédiate.</p>
+              <p>Un bruit, une baisse de pression ou un écoulement étrange n’imposent pas toujours une urgence immédiate.</p>
             </div>
           </div>
         </div>
@@ -731,20 +746,20 @@
 
     <section class="section">
       <div class="wrap">
-        <div class="pricing-card">
+        <div class="card pricing-elite">
           <div class="badge">💰 Offre simple et claire</div>
           <h2 class="section-title" style="margin-bottom:8px;">Un petit montant pour éviter une grosse erreur</h2>
-          <p class="small-muted">
-            Pour quelques dizaines d’euros, vous pouvez éviter une facture de plusieurs centaines d’euros.
+          <p class="under">
+            Pour 19,99€, vous obtenez un diagnostic avant intervention. Cela peut vous éviter une facture beaucoup plus lourde.
           </p>
 
           <div class="big">19,99€</div>
-          <div class="small-muted">
-            Paiement unique • Formulaire détaillé après paiement • Option prioritaire proposée ensuite
-          </div>
+          <p class="under">
+            Paiement unique • Formulaire détaillé après paiement • Photos acceptées • Option prioritaire ensuite
+          </p>
 
           <div class="btn-row" style="justify-content:center;">
-            <a class="btn btn-primary" href="TON_LIEN_STRIPE_ICI">🔥 Je veux éviter de payer trop cher</a>
+            <a class="btn btn-primary" href="https://buy.stripe.com/28E7sKeJf2jb6aF6zu2Ji01">🔥 Je veux éviter de payer trop cher</a>
           </div>
 
           <div class="compare">
@@ -767,16 +782,16 @@
 
     <section class="section">
       <div class="wrap">
-        <div class="section-card">
-          <h2 class="section-title">Réassurance</h2>
+        <div class="card section-card">
+          <h2 class="section-title">Pourquoi cette offre rassure</h2>
           <p class="section-sub">
-            Tout est pensé pour que le parcours soit simple et rassurant.
+            Le parcours a été pensé pour être simple, clair et rassurant.
           </p>
 
-          <div class="reassurance-grid">
+          <div class="grid-4">
             <div class="info-box">
               <h3>🔒 Paiement sécurisé</h3>
-              <p>Encaissement sécurisé avec Stripe.</p>
+              <p>Encaissement sécurisé via Stripe.</p>
             </div>
             <div class="info-box">
               <h3>📷 Photos acceptées</h3>
@@ -788,7 +803,7 @@
             </div>
             <div class="info-box">
               <h3>⚡ Option prioritaire</h3>
-              <p>Disponible après paiement pour traitement plus rapide.</p>
+              <p>Disponible après paiement pour un traitement plus rapide.</p>
             </div>
           </div>
         </div>
@@ -797,32 +812,28 @@
 
     <section class="section">
       <div class="wrap">
-        <div class="section-card">
+        <div class="card section-card">
           <h2 class="section-title">Avis clients</h2>
           <p class="section-sub">
-            Exemples de retours que cette offre vise à provoquer.
+            Exemples de retours attendus avec ce type de service.
           </p>
 
-          <div class="testimonials-grid">
+          <div class="grid-3">
             <div class="testimonial">
               <div class="stars">★★★★★</div>
-              <p>
-                “J’ai compris que ce n’était pas aussi grave qu’annoncé. J’ai évité une intervention bien trop chère.”
-              </p>
+              <p>“J’ai compris que ce n’était pas aussi grave qu’annoncé. J’ai évité une intervention bien trop chère.”</p>
               <div class="name">Client diagnostic fuite</div>
             </div>
+
             <div class="testimonial">
               <div class="stars">★★★★★</div>
-              <p>
-                “Très clair, très rapide, et surtout rassurant avant de faire venir quelqu’un à la maison.”
-              </p>
+              <p>“Très clair, très rapide, et surtout rassurant avant de faire venir quelqu’un à la maison.”</p>
               <div class="name">Client chauffe-eau</div>
             </div>
+
             <div class="testimonial">
               <div class="stars">★★★★★</div>
-              <p>
-                “Le diagnostic m’a permis de savoir quoi demander exactement avant de payer.”
-              </p>
+              <p>“Le diagnostic m’a permis de savoir quoi demander exactement avant de payer.”</p>
               <div class="name">Client plomberie générale</div>
             </div>
           </div>
@@ -832,39 +843,31 @@
 
     <section class="section">
       <div class="wrap">
-        <div class="section-card">
+        <div class="card section-card">
           <h2 class="section-title">Questions fréquentes</h2>
           <p class="section-sub">
             Les réponses aux objections les plus importantes avant paiement.
           </p>
 
-          <div class="faq-list">
+          <div class="grid-2">
             <div class="faq-item">
               <h3>Est-ce un vrai diagnostic ?</h3>
-              <p>
-                C’est un diagnostic à distance basé sur vos explications et vos photos. L’objectif est de vous éclairer avant intervention.
-              </p>
+              <p>C’est un diagnostic à distance basé sur vos explications et vos photos. Le but est de vous éclairer avant intervention.</p>
             </div>
 
             <div class="faq-item">
               <h3>Et si mon problème est urgent ?</h3>
-              <p>
-                Vous pouvez déjà détailler la situation, et l’option prioritaire peut être proposée après paiement pour traitement plus rapide.
-              </p>
+              <p>Vous pouvez déjà détailler la situation, et une option prioritaire peut être proposée après paiement.</p>
             </div>
 
             <div class="faq-item">
               <h3>Puis-je joindre des photos ?</h3>
-              <p>
-                Oui. Après paiement, vous accédez au formulaire et vous pouvez ajouter des photos utiles du problème.
-              </p>
+              <p>Oui. Après paiement, vous accédez au formulaire et vous pouvez ajouter des photos utiles du problème.</p>
             </div>
 
             <div class="faq-item">
               <h3>Pourquoi payer avant ?</h3>
-              <p>
-                Le paiement débloque le traitement de votre demande et évite les demandes incomplètes ou non sérieuses.
-              </p>
+              <p>Le paiement débloque le traitement de votre demande et évite les demandes incomplètes ou non sérieuses.</p>
             </div>
           </div>
         </div>
@@ -873,17 +876,18 @@
 
     <section class="section">
       <div class="wrap">
-        <div class="cta-box">
+        <div class="card cta-final">
           <h2>N’attendez pas que la facture explose</h2>
           <p>
-            Faites analyser votre problème maintenant, obtenez une réponse claire, et avancez avec plus de certitude avant de payer un plombier.
+            Faites analyser votre problème maintenant, obtenez une réponse claire,
+            et avancez avec plus de certitude avant de payer un plombier.
           </p>
 
           <div class="btn-row" style="justify-content:center;">
-            <a class="btn btn-primary" href="TON_LIEN_STRIPE_ICI">👉 Obtenir mon diagnostic pour 19,99€</a>
+            <a class="btn btn-primary" href="https://buy.stripe.com/28E7sKeJf2jb6aF6zu2Ji01">👉 Obtenir mon diagnostic pour 19,99€</a>
           </div>
 
-          <div class="proof-line" style="margin-top:20px;">
+          <div class="small-proof" style="margin-top:20px;">
             ⚠️ Plus vous attendez, plus le risque de mauvaise décision ou de facture inutile augmente.
           </div>
         </div>
@@ -893,7 +897,8 @@
 
   <footer class="footer wrap">
     <p>
-      Diag Plomberie France • Contact : <a href="mailto:contact@diagplomberiefrance.com">contact@diagplomberiefrance.com</a>
+      Diag Plomberie France • Contact :
+      <a href="mailto:contact@diagplomberiefrance.com">contact@diagplomberiefrance.com</a>
     </p>
   </footer>
 
