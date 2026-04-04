@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Offre Prioritaire | Diag Plomberie France</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(180deg, #f8fbff 0%, #eef5ff 100%);
+      color: #1f2937;
+    }
+
+    .wrap {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 760px;
+      background: #fff;
+      border-radius: 24px;
+      box-shadow: 0 20px 60px rgba(13, 110, 253, 0.10);
+      padding: 34px 28px;
+      text-align: center;
+      border: 1px solid #e5edff;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #e8f1ff;
+      color: #0d6efd;
+      font-weight: 700;
+      font-size: 13px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      margin: 0 0 14px;
+      font-size: 32px;
+      line-height: 1.2;
+      color: #0f172a;
+    }
+
+    .sub {
+      font-size: 17px;
+      line-height: 1.7;
+      color: #475569;
+      max-width: 620px;
+      margin: 0 auto 24px;
+    }
+
+    .offer {
+      background: #f8fbff;
+      border: 2px solid #d9e7ff;
+      border-radius: 22px;
+      padding: 24px;
+      text-align: left;
+      margin: 26px 0;
+    }
+
+    .offer h2 {
+      margin: 0 0 10px;
+      font-size: 24px;
+      color: #0f172a;
+    }
+
+    .price {
+      font-size: 42px;
+      font-weight: 800;
+      color: #0d6efd;
+      margin: 8px 0 18px;
+      text-align: center;
+    }
+
+    .list {
+      display: grid;
+      gap: 12px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .list li {
+      background: #fff;
+      border: 1px solid #e6eefc;
+      border-radius: 14px;
+      padding: 14px 16px;
+      font-size: 15px;
+      color: #334155;
+    }
+
+    .cta-wrap {
+      margin-top: 26px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .btn {
+      display: inline-block;
+      width: 100%;
+      border: none;
+      border-radius: 16px;
+      padding: 18px 20px;
+      font-size: 17px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #0d6efd, #0057d8);
+      color: #fff;
+      box-shadow: 0 12px 30px rgba(13, 110, 253, 0.25);
+    }
+
+    .btn-secondary {
+      background: #eef3fb;
+      color: #334155;
+    }
+
+    .small {
+      margin-top: 14px;
+      font-size: 13px;
+      color: #64748b;
+      line-height: 1.6;
+    }
+
+    .loading {
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    @media (max-width: 640px) {
+      h1 {
+        font-size: 26px;
+      }
+
+      .price {
+        font-size: 34px;
+      }
+
+      .card {
+        padding: 24px 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <div class="badge">OFFRE COMPLÉMENTAIRE IMMÉDIATE</div>
+
+      <h1>Ajoutez l’option prioritaire à votre diagnostic</h1>
+
+      <p class="sub">
+        Votre demande a bien été enregistrée.<br>
+        Vous pouvez maintenant choisir une option complémentaire pour obtenir un traitement plus rapide et plus complet.
+      </p>
+
+      <div class="offer">
+        <h2>Option Prioritaire Diag Plomberie</h2>
+        <div class="price">19€</div>
+
+        <ul class="list">
+          <li>✅ Traitement prioritaire de votre demande</li>
+          <li>✅ Réponse plus détaillée et plus exploitable</li>
+          <li>✅ Conseils concrets avant intervention d’un plombier</li>
+          <li>✅ Aide pour éviter un devis inutile ou abusif</li>
+        </ul>
+      </div>
+
+      <div class="cta-wrap">
+        <button id="upsellBtn" class="btn btn-primary">
+          Oui, j’ajoute l’option prioritaire
+        </button>
+
+        <a id="skipBtn" class="btn btn-secondary" href="/merci.html">
+          Non merci, continuer
+        </a>
+      </div>
+
+      <p class="small">
+        Cette offre est facultative.<br>
+        Si vous refusez, votre demande principale reste bien validée.
+      </p>
+    </div>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const originalSessionId = params.get("session_id");
+
+    const upsellBtn = document.getElementById("upsellBtn");
+    const skipBtn = document.getElementById("skipBtn");
+
+    if (originalSessionId) {
+      skipBtn.href = `/merci.html?session_id=${encodeURIComponent(originalSessionId)}&upsell=0`;
+    }
+
+    upsellBtn.addEventListener("click", async () => {
+      if (!originalSessionId) {
+        alert("Session introuvable.");
+        return;
+      }
+
+      upsellBtn.classList.add("loading");
+      upsellBtn.textContent = "Redirection en cours...";
+
+      try {
+        const response = await fetch("/.netlify/functions/create-upsell-session", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            originalSessionId: originalSessionId
+          })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok || !data.url) {
+          throw new Error(data.error || "Impossible de créer la session upsell.");
+        }
+
+        window.location.href = data.url;
+      } catch (error) {
+        alert(error.message || "Erreur lors de la création du paiement.");
+        upsellBtn.classList.remove("loading");
+        upsellBtn.textContent = "Oui, j’ajoute l’option prioritaire";
+      }
+    });
+  </script>
+</body>
+</html>
