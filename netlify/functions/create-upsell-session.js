@@ -2,26 +2,32 @@ const Stripe = require("stripe");
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
+function json(statusCode, payload) {
+  return {
+    statusCode,
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(payload)
+  };
+}
+
+function clean(value, fallback = "") {
+  if (value === undefined || value === null) return fallback;
+  return String(value).trim();
+}
+
 exports.handler = async (event) => {
   if (event.httpMethod !== "POST") {
-    return {
-      statusCode: 405,
-      body: "Method Not Allowed",
-    };
+    return json(405, { error: "Méthode non autorisée." });
   }
 
   try {
     const body = JSON.parse(event.body || "{}");
-    const originalSessionId = body.originalSessionId;
+    const originalSessionId = clean(body.originalSessionId);
 
     if (!originalSessionId) {
-      return {
-        statusCode: 400,
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ error: "originalSessionId manquant" }),
-      };
+      return json(400, { error: "originalSessionId manquant" });
     }
 
     const siteUrl =
@@ -32,13 +38,18 @@ exports.handler = async (event) => {
 
     const originalSession = await stripe.checkout.sessions.retrieve(originalSessionId);
 
-    const customerEmail =
+    if (!originalSession) {
+      return json(404, { error: "Session d’origine introuvable." });
+    }
+
+    const customerEmail = clean(
       originalSession.customer_details?.email ||
       originalSession.customer_email ||
       originalSession.metadata?.email ||
-      "";
+      ""
+    );
 
-    const session = await stripe.checkout.sessions.create({
+    const upsellSession = await stripe.checkout.sessions.create({
       mode: "payment",
       payment_method_types: ["card"],
       customer_email: customerEmail || undefined,
@@ -50,44 +61,36 @@ exports.handler = async (event) => {
             product_data: {
               name: "Option Prioritaire Diag Plomberie",
               description:
-                "Traitement prioritaire + conseils complémentaires + réponse enrichie",
+                "Traitement prioritaire + conseils complémentaires + réponse enrichie"
             },
-            unit_amount: 1900,
+            unit_amount: 1900
           },
-          quantity: 1,
-        },
+          quantity: 1
+        }
       ],
 
       metadata: {
         type: "upsell_diag_plomberie",
         original_session_id: originalSessionId,
-        customer_email: customerEmail || "",
+        customer_email: customerEmail || ""
       },
 
-      success_url: `${siteUrl}/merci.html?session_id=${originalSessionId}&upsell=1&upsell_session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${siteUrl}/merci.html?session_id=${originalSessionId}&upsell=0`,
+      success_url: `${siteUrl}/merci.html?session_id=${encodeURIComponent(originalSessionId)}&upsell=1&upsell_session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${siteUrl}/merci.html?session_id=${encodeURIComponent(originalSessionId)}&upsell=0`
     });
 
-    return {
-      statusCode: 200,
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        url: session.url,
-      }),
-    };
-  } catch (error) {
-    console.error("Erreur create-upsell-session:", error);
+    if (!upsellSession || !upsellSession.url) {
+      return json(500, { error: "Impossible de créer le lien de paiement upsell." });
+    }
 
-    return {
-      statusCode: 500,
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        error: error.message || "Erreur serveur",
-      }),
-    };
+    return json(200, {
+      url: upsellSession.url
+    });
+  } catch (error) {
+    console.error("Erreur create-upsell-session :", error);
+
+    return json(500, {
+      error: error.message || "Erreur serveur"
+    });
   }
 };
