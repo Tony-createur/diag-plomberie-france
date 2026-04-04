@@ -77,6 +77,32 @@ function clean(value, fallback = "") {
   return String(value).trim();
 }
 
+function getPrioriteLabel(upsell, urgence) {
+  if (upsell === "oui") return "PRIORITAIRE";
+
+  const u = String(urgence || "").toLowerCase();
+
+  if (
+    u.includes("urgence absolue") ||
+    u.includes("très urgent") ||
+    u.includes("tres urgent") ||
+    u.includes("immédiat") ||
+    u.includes("immediat")
+  ) {
+    return "URGENT";
+  }
+
+  if (
+    u.includes("urgent") ||
+    u.includes("rapide") ||
+    u.includes("prioritaire")
+  ) {
+    return "À TRAITER RAPIDEMENT";
+  }
+
+  return "STANDARD";
+}
+
 exports.handler = async (event) => {
   if (event.httpMethod !== "POST") {
     return json(405, { ok: false, message: "Méthode non autorisée." });
@@ -95,7 +121,6 @@ exports.handler = async (event) => {
     const sessionId = clean(fields.session_id);
     const upsell = clean(fields.upsell) === "oui" ? "oui" : "non";
     const upsellSessionId = clean(fields.upsell_session_id);
-    const priorite = upsell === "oui" ? "PRIORITAIRE" : "STANDARD";
 
     if (!sessionId) {
       return json(400, {
@@ -125,48 +150,55 @@ exports.handler = async (event) => {
     const telephone = clean(fields.telephone);
     const ville = clean(fields.ville);
     const logement = clean(fields.logement);
+    const service = clean(fields.service) || "Diagnostic plomberie en ligne";
     const urgence = clean(fields.urgence);
     const probleme = clean(fields.probleme);
-    const service =
-      clean(fields.service) || "Diagnostic plomberie en ligne";
+
+    const priorite = getPrioriteLabel(upsell, urgence);
 
     const forwardedFields = {
       "form-name": "demande-payee",
 
-      // identification
       objet: `[${priorite}] Nouvelle demande diagnostic - ${nom || "Client sans nom"}`,
       priorite,
       statut_paiement: "PAYÉ",
+
       session_id: sessionId,
       upsell,
       upsell_session_id: upsellSessionId,
 
-      // client
       nom,
       email,
       telephone,
       ville,
       logement,
 
-      // demande
       service,
       urgence,
       probleme,
 
-      // champs de lecture plus propres dans Netlify
       resume: `
 PRIORITÉ : ${priorite}
-STATUT : PAYÉ
-SERVICE : ${service}
-CLIENT : ${nom}
-EMAIL : ${email}
-TÉLÉPHONE : ${telephone}
-VILLE : ${ville}
-LOGEMENT : ${logement}
-URGENCE : ${urgence}
+STATUT PAIEMENT : PAYÉ
 
-PROBLÈME :
+COORDONNÉES CLIENT
+Nom : ${nom}
+Email : ${email}
+Téléphone : ${telephone}
+Ville : ${ville}
+Logement : ${logement}
+
+DÉTAILS DE LA DEMANDE
+Service : ${service}
+Urgence : ${urgence}
+
+PROBLÈME DÉCLARÉ
 ${probleme}
+
+RÉFÉRENCES
+Session Stripe : ${sessionId}
+Upsell : ${upsell}
+Session Upsell : ${upsellSessionId || "Aucune"}
       `.trim()
     };
 
