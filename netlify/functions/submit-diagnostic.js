@@ -113,6 +113,11 @@ function clean(value, fallback = "") {
   return String(value).trim();
 }
 
+function isValidEmail(value) {
+  const email = clean(value);
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
 function escapeHtml(value) {
   return String(value || "")
     .replace(/&/g, "&amp;")
@@ -291,6 +296,7 @@ exports.handler = async (event) => {
 
     const nom = clean(fields.nom);
     const email = clean(fields.email);
+    const safeReplyTo = isValidEmail(email) ? email : undefined;
     const telephone = clean(fields.telephone, "Non renseigné");
     const ville = clean(fields.ville, "Non renseignée");
     const logement = clean(fields.logement, "Non renseigné");
@@ -303,15 +309,19 @@ exports.handler = async (event) => {
 
     const uploadedPhotos = [];
     for (const file of files.slice(0, 3)) {
-      const result = await uploadBufferToCloudinary(file.buffer, {
-        public_id: `${Date.now()}-${file.fieldName}`
-      });
+      try {
+        const result = await uploadBufferToCloudinary(file.buffer, {
+          public_id: `${Date.now()}-${file.fieldName}`
+        });
 
-      uploadedPhotos.push({
-        fieldName: file.fieldName,
-        originalName: file.filename,
-        url: result.secure_url
-      });
+        uploadedPhotos.push({
+          fieldName: file.fieldName,
+          originalName: file.filename,
+          url: result.secure_url
+        });
+      } catch (err) {
+        console.error("Erreur upload photo Cloudinary :", file.filename, err);
+      }
     }
 
     const photo1 = uploadedPhotos[0]?.url || "";
@@ -419,6 +429,9 @@ Session Upsell : ${upsellSessionId || "Aucune"}
     const telLink = buildTelLink(telephone);
     const rawEmail = clean(email);
     const emailLink = rawEmail ? `mailto:${rawEmail}` : "#";
+    const subjectAdmin = `🚨 ${priorite} - DEMANDE CLIENT COMPLÈTE - ${nom || "Client"}${
+      urgence ? ` - ${urgence}` : ""
+    }`;
 
     const photosHtml =
       uploadedPhotos.length > 0
@@ -564,9 +577,9 @@ Session Upsell : ${upsellSessionId || "Aucune"}
     await resend.emails.send({
       from: fromEmail,
       to: adminRecipients,
-      subject: `🚨 ${priorite} - DEMANDE CLIENT COMPLÈTE - ${nom || "Client"} - ${urgence}`,
+      subject: subjectAdmin,
       html: htmlAdmin,
-      replyTo: email || undefined
+      replyTo: safeReplyTo
     });
 
     usedSessions.add(sessionId);
