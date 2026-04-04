@@ -1,7 +1,9 @@
 const Stripe = require("stripe");
 const Busboy = require("busboy");
+const { Resend } = require("resend");
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 // stockage temporaire en mémoire
 const usedSessions = new Set();
@@ -77,6 +79,19 @@ function clean(value, fallback = "") {
   return String(value).trim();
 }
 
+function escapeHtml(value) {
+  return String(value || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+function nl2br(value) {
+  return escapeHtml(value).replace(/\n/g, "<br>");
+}
+
 function getPrioriteLabel(upsell, urgence) {
   if (upsell === "oui") return "PRIORITAIRE";
 
@@ -103,6 +118,38 @@ function getPrioriteLabel(upsell, urgence) {
   return "STANDARD";
 }
 
+function getPrioriteStyle(priorite) {
+  if (priorite === "PRIORITAIRE") {
+    return {
+      bg: "#ffe5e5",
+      border: "#dc2626",
+      text: "#991b1b"
+    };
+  }
+
+  if (priorite === "URGENT") {
+    return {
+      bg: "#fff4e5",
+      border: "#f59e0b",
+      text: "#92400e"
+    };
+  }
+
+  if (priorite === "À TRAITER RAPIDEMENT") {
+    return {
+      bg: "#fff7ed",
+      border: "#fb923c",
+      text: "#9a3412"
+    };
+  }
+
+  return {
+    bg: "#e8f4ff",
+    border: "#0d6efd",
+    text: "#084298"
+  };
+}
+
 exports.handler = async (event) => {
   if (event.httpMethod !== "POST") {
     return json(405, { ok: false, message: "Méthode non autorisée." });
@@ -114,6 +161,9 @@ exports.handler = async (event) => {
       process.env.DEPLOY_PRIME_URL ||
       process.env.APP_BASE_URL ||
       "https://diagplomberiefrance.com";
+
+    const fromEmail = process.env.RESEND_FROM_EMAIL;
+    const adminEmail = process.env.ADMIN_EMAIL;
 
     const bodyBuffer = getBodyBuffer(event);
     const fields = await parseMultipartFields(event.headers, bodyBuffer);
@@ -147,14 +197,15 @@ exports.handler = async (event) => {
 
     const nom = clean(fields.nom);
     const email = clean(fields.email);
-    const telephone = clean(fields.telephone);
-    const ville = clean(fields.ville);
-    const logement = clean(fields.logement);
+    const telephone = clean(fields.telephone, "Non renseigné");
+    const ville = clean(fields.ville, "Non renseignée");
+    const logement = clean(fields.logement, "Non renseigné");
     const service = clean(fields.service) || "Diagnostic plomberie en ligne";
-    const urgence = clean(fields.urgence);
-    const probleme = clean(fields.probleme);
+    const urgence = clean(fields.urgence, "Non précisée");
+    const probleme = clean(fields.probleme, "Non renseigné");
 
     const priorite = getPrioriteLabel(upsell, urgence);
+    const prioriteStyle = getPrioriteStyle(priorite);
 
     const forwardedFields = {
       "form-name": "demande-payee",
@@ -218,6 +269,112 @@ Session Upsell : ${upsellSessionId || "Aucune"}
         message: "Erreur envoi formulaire."
       });
     }
+
+    if (!fromEmail || !adminEmail) {
+      console.error("Variables email manquantes dans submit-diagnostic.");
+      return json(500, {
+        ok: false,
+        message: "Variables email manquantes."
+      });
+    }
+
+    const safeNom = escapeHtml(nom || "Client");
+    const safeEmail = escapeHtml(email || "Non renseigné");
+    const safeTelephone = escapeHtml(telephone);
+    const safeVille = escapeHtml(ville);
+    const safeLogement = escapeHtml(logement);
+    const safeService = escapeHtml(service);
+    const safeUrgence = escapeHtml(urgence);
+    const safeProbleme = nl2br(probleme);
+    const safePriorite = escapeHtml(priorite);
+    const safeSessionId = escapeHtml(sessionId);
+    const safeUpsell = escapeHtml(upsell === "oui" ? "Oui" : "Non");
+    const safeUpsellSession = escapeHtml(upsellSessionId || "Aucune");
+
+    const htmlAdmin = `
+      <div style="margin:0;padding:0;background:#f4f7fb;font-family:Arial,sans-serif;">
+        <div style="max-width:760px;margin:0 auto;padding:24px;">
+
+          <div style="background:#b91c1c;color:#fff;padding:16px 20px;border-radius:16px 16px 0 0;">
+            <div style="font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;">
+              DEMANDE CLIENT COMPLÈTE
+            </div>
+            <div style="font-size:30px;font-weight:800;line-height:1.15;margin-top:6px;">
+              🚨 Nouvelle demande diagnostic
+            </div>
+          </div>
+
+          <div style="background:#ffffff;border:1px solid #e5e7eb;border-top:none;border-radius:0 0 16px 16px;padding:22px;">
+
+            <div style="background:${prioriteStyle.bg};border-left:7px solid ${prioriteStyle.border};padding:18px;border-radius:12px;margin-bottom:18px;">
+              <div style="font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:${prioriteStyle.text};">
+                PRIORITÉ
+              </div>
+              <div style="font-size:22px;font-weight:800;color:${prioriteStyle.text};margin-top:6px;">
+                ${safePriorite}
+              </div>
+            </div>
+
+            <div style="background:#111827;color:#fff;padding:14px;border-radius:10px;margin-bottom:18px;text-align:center;font-weight:800;">
+              ⚡ DEMANDE FINALE REÇUE APRÈS FORMULAIRE
+            </div>
+
+            <div style="background:#f8fafc;border:1px solid #e5e7eb;border-radius:12px;padding:18px;margin-bottom:18px;">
+              <div style="font-size:16px;font-weight:800;margin-bottom:14px;color:#111827;">
+                Coordonnées client
+              </div>
+              <p style="margin:8px 0;"><strong>Nom :</strong> ${safeNom}</p>
+              <p style="margin:8px 0;"><strong>Email :</strong> <a href="mailto:${safeEmail}" style="color:#0d6efd;text-decoration:none;">${safeEmail}</a></p>
+              <p style="margin:8px 0;"><strong>Téléphone :</strong> <a href="tel:${safeTelephone}" style="color:#0d6efd;text-decoration:none;">${safeTelephone}</a></p>
+              <p style="margin:8px 0;"><strong>Ville :</strong> ${safeVille}</p>
+              <p style="margin:8px 0;"><strong>Logement :</strong> ${safeLogement}</p>
+            </div>
+
+            <div style="background:#f8fafc;border:1px solid #e5e7eb;border-radius:12px;padding:18px;margin-bottom:18px;">
+              <div style="font-size:16px;font-weight:800;margin-bottom:14px;color:#111827;">
+                Détails de la demande
+              </div>
+              <p style="margin:8px 0;"><strong>Service :</strong> ${safeService}</p>
+              <p style="margin:8px 0;"><strong>Urgence :</strong> ${safeUrgence}</p>
+              <p style="margin:8px 0;"><strong>Statut paiement :</strong> PAYÉ</p>
+              <p style="margin:8px 0;"><strong>Upsell :</strong> ${safeUpsell}</p>
+            </div>
+
+            <div style="background:#e8f4ff;border:1px solid #bfdbfe;border-radius:12px;padding:18px;margin-bottom:18px;">
+              <div style="font-size:16px;font-weight:800;margin-bottom:14px;color:#0b3b75;">
+                Problème déclaré
+              </div>
+              <div style="font-size:15px;line-height:1.7;color:#111827;">
+                ${safeProbleme}
+              </div>
+            </div>
+
+            <div style="background:#f8fafc;border:1px solid #e5e7eb;border-radius:12px;padding:18px;margin-bottom:22px;">
+              <div style="font-size:16px;font-weight:800;margin-bottom:14px;color:#111827;">
+                Références
+              </div>
+              <p style="margin:8px 0;"><strong>Session Stripe :</strong> ${safeSessionId}</p>
+              <p style="margin:8px 0;"><strong>Session Upsell :</strong> ${safeUpsellSession}</p>
+            </div>
+
+            <div style="text-align:center;margin-top:28px;">
+              <a href="mailto:${safeEmail}"
+                 style="background:#0d6efd;color:#fff;padding:14px 24px;border-radius:12px;text-decoration:none;font-weight:800;display:inline-block;">
+                 👉 Répondre au client
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+
+    await resend.emails.send({
+      from: fromEmail,
+      to: adminEmail,
+      subject: `🚨 ${priorite} - DEMANDE CLIENT COMPLÈTE - ${nom || "Client"} - ${urgence}`,
+      html: htmlAdmin,
+      replyTo: email || undefined
+    });
 
     usedSessions.add(sessionId);
 
