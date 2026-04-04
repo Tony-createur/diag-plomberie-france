@@ -59,6 +59,18 @@
       font-weight:700;
     }
 
+    .priority-badge{
+      margin:0 0 18px;
+      background:#e6fffa;
+      color:#065f46;
+      padding:12px 16px;
+      border-radius:14px;
+      font-size:15px;
+      font-weight:800;
+      text-align:center;
+      border:1px solid #b7f0df;
+    }
+
     h1{
       margin:0 0 10px;
       font-size:clamp(30px,4vw,44px);
@@ -203,7 +215,7 @@
 </head>
 <body>
   <div class="wrap">
-    <div class="card">
+    <div class="card" id="mainCard">
       <div class="top-badge">✅ Paiement confirmé</div>
       <h1>Merci pour votre paiement</h1>
       <p class="intro">
@@ -226,6 +238,8 @@
       >
         <input type="hidden" name="form-name" value="demande-payee" />
         <input type="hidden" name="session_id" id="session_id" />
+        <input type="hidden" name="upsell" id="upsell_hidden" value="" />
+        <input type="hidden" name="upsell_session_id" id="upsell_session_id_hidden" value="" />
 
         <p class="hidden">
           <label>
@@ -308,9 +322,14 @@
     const submitBtn = document.getElementById("submitBtn");
     const formMessage = document.getElementById("formMessage");
     const sessionInput = document.getElementById("session_id");
+    const upsellHidden = document.getElementById("upsell_hidden");
+    const upsellSessionHidden = document.getElementById("upsell_session_id_hidden");
+    const mainCard = document.getElementById("mainCard");
 
     const params = new URLSearchParams(window.location.search);
     const sessionId = params.get("session_id");
+    const upsell = params.get("upsell");
+    const upsellSessionId = params.get("upsell_session_id");
 
     if (sessionId) {
       sessionInput.value = sessionId;
@@ -318,6 +337,21 @@
       formMessage.textContent = "Lien invalide : session de paiement introuvable.";
       submitBtn.disabled = true;
       submitBtn.textContent = "Lien invalide";
+    }
+
+    if (upsell === "1") {
+      upsellHidden.value = "oui";
+
+      const badge = document.createElement("div");
+      badge.className = "priority-badge";
+      badge.textContent = "🚀 Traitement PRIORITAIRE activé";
+      mainCard.insertBefore(badge, mainCard.firstChild);
+    } else {
+      upsellHidden.value = "non";
+    }
+
+    if (upsellSessionId) {
+      upsellSessionHidden.value = upsellSessionId;
     }
 
     form.addEventListener("submit", async function (e) {
