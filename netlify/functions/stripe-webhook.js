@@ -136,21 +136,44 @@ exports.handler = async (event) => {
 
       const htmlAdmin = `
         <div style="font-family:Arial,sans-serif;max-width:700px;margin:0 auto;color:#111;">
-          <h2>Nouvelle commande payée 💸</h2>
+          <h2 style="margin-bottom:10px;">🚨 Nouvelle demande diagnostic</h2>
 
-          <p><strong>Client :</strong> ${customerName}</p>
-          <p><strong>Email :</strong> ${customerEmail}</p>
-          <p><strong>Téléphone :</strong> ${telephone}</p>
-          <p><strong>Ville :</strong> ${ville}</p>
-          <p><strong>Logement :</strong> ${logement}</p>
-          <p><strong>Service :</strong> ${service}</p>
-          <p><strong>Urgence :</strong> ${urgence}</p>
-          <p><strong>Montant :</strong> ${montant}</p>
-          <p><strong>Session Stripe :</strong> ${session.id}</p>
+          <div style="background:#f6f8fb;padding:16px;border-radius:12px;margin-bottom:20px;">
+            <p style="margin:5px 0;"><strong>👤 Client :</strong> ${customerName}</p>
+            <p style="margin:5px 0;">
+              <strong>✉️ Email :</strong>
+              <a href="mailto:${customerEmail}" style="color:#0d6efd;text-decoration:none;">${customerEmail}</a>
+            </p>
+            <p style="margin:5px 0;">
+              <strong>📞 Téléphone :</strong>
+              <a href="tel:${telephone}" style="color:#0d6efd;text-decoration:none;">${telephone}</a>
+            </p>
+            <p style="margin:5px 0;"><strong>📍 Ville :</strong> ${ville}</p>
+            <p style="margin:5px 0;"><strong>🏠 Logement :</strong> ${logement}</p>
+            <p style="margin:5px 0;"><strong>🧰 Service :</strong> ${service}</p>
+          </div>
 
-          <div style="background:#f6f8fb;padding:18px;border-radius:12px;margin-top:20px;">
-            <strong>Problème déclaré avant paiement :</strong><br><br>
-            ${probleme}
+          <div style="background:#fff3cd;padding:16px;border-radius:12px;margin-bottom:20px;">
+            <strong>⚠️ URGENCE :</strong> ${urgence}
+          </div>
+
+          <div style="background:#e8f4ff;padding:18px;border-radius:12px;margin-bottom:20px;">
+            <strong>🛠️ PROBLÈME :</strong>
+            <div style="margin-top:10px;line-height:1.6;white-space:pre-line;">
+              ${probleme}
+            </div>
+          </div>
+
+          <div style="background:#f6f8fb;padding:16px;border-radius:12px;margin-bottom:20px;">
+            <p style="margin:5px 0;"><strong>💰 Montant :</strong> ${montant}</p>
+            <p style="margin:5px 0;"><strong>🧾 Session Stripe :</strong> ${session.id}</p>
+          </div>
+
+          <div style="text-align:center;margin-top:30px;">
+            <a href="mailto:${customerEmail}"
+               style="background:#0d6efd;color:#fff;padding:14px 22px;border-radius:10px;text-decoration:none;font-weight:700;display:inline-block;">
+               👉 Répondre au client
+            </a>
           </div>
         </div>
       `;
