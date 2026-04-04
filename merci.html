@@ -225,6 +225,7 @@
         enctype="multipart/form-data"
       >
         <input type="hidden" name="form-name" value="demande-payee" />
+        <input type="hidden" name="session_id" id="session_id" />
 
         <p class="hidden">
           <label>
@@ -296,9 +297,26 @@
     const form = document.getElementById("demandeForm");
     const submitBtn = document.getElementById("submitBtn");
     const formMessage = document.getElementById("formMessage");
+    const sessionInput = document.getElementById("session_id");
+
+    const params = new URLSearchParams(window.location.search);
+    const sessionId = params.get("session_id");
+
+    if (sessionId) {
+      sessionInput.value = sessionId;
+    } else {
+      formMessage.textContent = "Lien invalide : session de paiement introuvable.";
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Lien invalide";
+    }
 
     form.addEventListener("submit", async function (e) {
       e.preventDefault();
+
+      if (!sessionInput.value) {
+        formMessage.textContent = "Lien invalide : session de paiement introuvable.";
+        return;
+      }
 
       submitBtn.disabled = true;
       submitBtn.textContent = "Envoi en cours...";
