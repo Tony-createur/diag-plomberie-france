@@ -16,12 +16,18 @@
       --blue:#0d6efd;
       --blue-dark:#084298;
       --green:#198754;
+      --green-dark:#157347;
       --green-soft:#eafaf1;
+      --blue-soft:#eef5ff;
+      --orange-soft:#fff7e6;
+      --orange-border:#ffe0b2;
       --text:#1f2937;
       --muted:#6b7280;
       --bg:#f4f7fb;
       --white:#ffffff;
+      --border:#e5e7eb;
       --shadow:0 18px 50px rgba(15,23,42,0.08);
+      --shadow-soft:0 10px 30px rgba(15,23,42,0.06);
       --radius:24px;
     }
 
@@ -41,7 +47,7 @@
 
     .card{
       width:100%;
-      max-width:760px;
+      max-width:820px;
       background:var(--white);
       border-radius:var(--radius);
       box-shadow:var(--shadow);
@@ -49,16 +55,28 @@
       text-align:center;
     }
 
+    .top-badge{
+      display:inline-block;
+      margin:0 0 16px;
+      background:var(--blue-soft);
+      color:var(--blue-dark);
+      padding:8px 14px;
+      border-radius:999px;
+      font-size:13px;
+      font-weight:700;
+    }
+
     .icon{
       width:82px;
       height:82px;
-      margin:0 auto 22px;
+      margin:0 auto 20px;
       border-radius:999px;
       background:var(--green-soft);
       display:flex;
       align-items:center;
       justify-content:center;
       font-size:38px;
+      box-shadow:var(--shadow-soft);
     }
 
     h1{
@@ -70,60 +88,108 @@
 
     p{
       margin:0 auto 12px;
-      max-width:600px;
+      max-width:650px;
       color:var(--muted);
       font-size:17px;
-      line-height:1.7;
+      line-height:1.75;
     }
 
     .highlight{
-      margin-top:10px;
-      font-weight:600;
-      color:var(--blue);
-    }
-
-    .info-box{
-      margin:28px auto 0;
-      background:#f8fafc;
-      border:1px solid #e5e7eb;
+      margin:0 auto 24px;
+      max-width:680px;
+      background:var(--orange-soft);
+      border:1px solid var(--orange-border);
       border-radius:18px;
-      padding:18px;
-      text-align:left;
-      max-width:560px;
-    }
-
-    .info-box strong{
-      display:block;
-      margin-bottom:10px;
-      color:#111827;
-      font-size:16px;
-    }
-
-    .info-box ul{
-      margin:0;
-      padding-left:18px;
-      color:#4b5563;
-    }
-
-    .info-box li{
-      margin:8px 0;
+      padding:16px 18px;
+      color:#7a4e00;
+      font-size:15px;
+      line-height:1.65;
+      font-weight:600;
     }
 
     .value-box{
-      margin:20px auto 0;
-      background:#fff7e6;
-      border:1px solid #ffe0b2;
-      border-radius:18px;
-      padding:18px;
+      margin:24px auto 0;
+      background:#f8fbff;
+      border:1px solid #dbeafe;
+      border-radius:20px;
+      padding:22px;
       text-align:left;
-      max-width:560px;
-      font-size:15px;
-      color:#7a4e00;
+      max-width:620px;
     }
 
     .value-box strong{
       display:block;
+      margin-bottom:10px;
+      color:#0f172a;
+      font-size:18px;
+    }
+
+    .value-list{
+      margin:0;
+      padding:0;
+      list-style:none;
+    }
+
+    .value-list li{
+      margin:10px 0;
+      color:#334155;
+      font-size:15px;
+      line-height:1.6;
+    }
+
+    .steps-box{
+      margin:22px auto 0;
+      background:#fcfdfd;
+      border:1px solid var(--border);
+      border-radius:20px;
+      padding:22px;
+      text-align:left;
+      max-width:620px;
+    }
+
+    .steps-box strong{
+      display:block;
+      margin-bottom:12px;
+      color:#111827;
+      font-size:17px;
+    }
+
+    .steps{
+      margin:0;
+      padding:0;
+      list-style:none;
+    }
+
+    .steps li{
+      margin:12px 0;
+      color:#4b5563;
+      line-height:1.65;
+      font-size:15px;
+    }
+
+    .reassure-box{
+      margin:22px auto 0;
+      background:var(--green-soft);
+      border:1px solid #bbf7d0;
+      border-radius:20px;
+      padding:20px;
+      max-width:620px;
+      text-align:left;
+    }
+
+    .reassure-box strong{
+      display:block;
       margin-bottom:8px;
+      color:#166534;
+      font-size:16px;
+    }
+
+    .reassure-box p{
+      margin:0;
+      max-width:none;
+      color:#166534;
+      font-size:15px;
+      line-height:1.7;
     }
 
     .actions{
@@ -131,7 +197,7 @@
       justify-content:center;
       gap:12px;
       flex-wrap:wrap;
-      margin-top:30px;
+      margin-top:32px;
     }
 
     .btn{
@@ -165,6 +231,10 @@
       border:1px solid rgba(13,110,253,0.15);
     }
 
+    .btn-light:hover{
+      background:#f8fbff;
+    }
+
     @media (max-width:640px){
       .card{
         padding:34px 20px;
@@ -186,39 +256,52 @@
 </head>
 <body>
   <div class="card">
+    <div class="top-badge">✅ Demande transmise</div>
+
     <div class="icon">✅</div>
 
     <h1>Votre demande a bien été envoyée</h1>
 
     <p>
-      Merci. Nous avons bien reçu votre demande de diagnostic plomberie.
-      Votre situation va pouvoir être traitée rapidement.
-    </p>
-
-    <!-- 🔥 AJOUT PRESSION -->
-    <p class="highlight">
-      ⏱ Plus votre demande est précise, plus votre diagnostic sera rapide et fiable.
+      Merci. Votre demande de diagnostic plomberie a bien été reçue avec les informations
+      que vous avez transmises.
     </p>
 
     <p>
-      Si vous avez joint des photos ou vidéos, elles ont bien été transmises avec votre demande.
+      Elle va maintenant pouvoir être analysée dans de bonnes conditions afin de vous apporter
+      un retour clair, utile et fiable.
     </p>
 
-    <!-- 🔥 AJOUT VALEUR -->
-    <div class="value-box">
-      <strong>🎯 Ce que vous allez obtenir :</strong>
-      ✔ Comprendre votre vrai problème<br>
-      ✔ Éviter une intervention inutile<br>
-      ✔ Éviter un devis abusif
+    <div class="highlight">
+      ⏱ Plus les informations et visuels envoyés sont précis, plus le diagnostic peut être rapide,
+      pertinent, et vous aider à éviter une mauvaise intervention ou un devis abusif.
     </div>
 
-    <div class="info-box">
-      <strong>Et maintenant ?</strong>
-      <ul>
-        <li>Votre demande est bien enregistrée</li>
-        <li>Les informations envoyées vont être étudiées</li>
-        <li>Vous recevrez votre retour selon l’offre achetée</li>
+    <div class="value-box">
+      <strong>🎯 Ce que ce diagnostic peut vous apporter</strong>
+      <ul class="value-list">
+        <li>✔ Mieux comprendre l’origine réelle de votre problème</li>
+        <li>✔ Savoir si la situation semble urgente ou non</li>
+        <li>✔ Éviter une intervention inutile ou mal ciblée</li>
+        <li>✔ Réduire le risque de devis exagéré ou injustifié</li>
       </ul>
+    </div>
+
+    <div class="steps-box">
+      <strong>Et maintenant ?</strong>
+      <ul class="steps">
+        <li><strong>1.</strong> Votre demande est bien enregistrée.</li>
+        <li><strong>2.</strong> Les éléments envoyés vont être étudiés attentivement.</li>
+        <li><strong>3.</strong> Vous recevrez votre retour selon l’offre que vous avez achetée.</li>
+      </ul>
+    </div>
+
+    <div class="reassure-box">
+      <strong>Bon à savoir</strong>
+      <p>
+        Si vous avez ajouté des photos ou vidéos utiles, elles ont bien été transmises avec votre demande.
+        Elles peuvent fortement améliorer la précision du diagnostic.
+      </p>
     </div>
 
     <div class="actions">
