@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
+    "@netlify/blobs": "^8.1.0",
+    "busboy": "^1.6.0",
     "resend": "^4.0.0",
     "stripe": "^18.0.0"
   }
