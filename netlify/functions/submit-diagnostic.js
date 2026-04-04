@@ -67,7 +67,6 @@ function parseMultipartFields(headers, bodyBuffer) {
 
       file.on("end", () => {
         const buffer = Buffer.concat(chunks);
-
         if (buffer.length > 0) {
           files.push({
             fieldName: name,
