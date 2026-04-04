@@ -63,7 +63,7 @@ exports.handler = async (event) => {
               description:
                 "Traitement prioritaire + conseils complémentaires + réponse enrichie"
             },
-            unit_amount: 1900
+            unit_amount: 999
           },
           quantity: 1
         }
