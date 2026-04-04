@@ -294,6 +294,16 @@
   </div>
 
   <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const sessionIdGuard = urlParams.get("session_id");
+    const upsellStatus = urlParams.get("upsell");
+
+    if (sessionIdGuard && upsellStatus !== "0" && upsellStatus !== "1") {
+      window.location.replace(`/upsell.html?session_id=${encodeURIComponent(sessionIdGuard)}`);
+    }
+  </script>
+
+  <script>
     const form = document.getElementById("demandeForm");
     const submitBtn = document.getElementById("submitBtn");
     const formMessage = document.getElementById("formMessage");
