@@ -58,10 +58,11 @@ exports.handler = async (event) => {
         },
       ],
 
-      success_url: `${siteUrl}/merci.html?session_id={CHECKOUT_SESSION_ID}`,
+      success_url: `${siteUrl}/upsell.html?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${siteUrl}/`,
 
       metadata: {
+        type: "main_diag_plomberie",
         email: email || "",
         nom: nom || "",
         telephone: telephone || "",
