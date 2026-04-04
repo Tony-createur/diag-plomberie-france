@@ -216,7 +216,7 @@ exports.handler = async (event) => {
             <div style="max-width:760px;margin:0 auto;padding:24px;">
               <div style="background:#b91c1c;color:#fff;padding:16px 20px;border-radius:16px 16px 0 0;">
                 <div style="font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;">
-                  PRIORITAIRE • UPSELL ACHETÉ
+                  PAIEMENT UPSSELL REÇU
                 </div>
                 <div style="font-size:28px;font-weight:800;line-height:1.2;margin-top:6px;">
                   🔥 Option prioritaire achetée
@@ -231,6 +231,10 @@ exports.handler = async (event) => {
                   <div style="font-size:22px;font-weight:800;color:#991b1b;margin-top:6px;">
                     ${safePriorite}
                   </div>
+                </div>
+
+                <div style="background:#111827;color:#fff;padding:14px;border-radius:10px;margin-bottom:18px;text-align:center;font-weight:800;">
+                  Paiement upsell confirmé
                 </div>
 
                 <div style="background:#f8fafc;border:1px solid #e5e7eb;border-radius:12px;padding:18px;margin-bottom:18px;">
@@ -271,7 +275,7 @@ exports.handler = async (event) => {
         await resend.emails.send({
           from: fromEmail,
           to: adminEmail,
-          subject: `🚨 PRIORITAIRE - UPSELL ACHETÉ - ${nom} - ${montant}`,
+          subject: `💳 UPSELL PAYÉ - ${nom} - ${montant}`,
           html: htmlAdminUpsell,
           replyTo: customerEmail
         });
@@ -308,14 +312,14 @@ exports.handler = async (event) => {
           </p>
 
           <div style="background:#f6f8fb;padding:18px;border-radius:12px;margin:20px 0;">
-            <h3 style="margin-top:0;">Récapitulatif</h3>
+            <h3 style="margin-top:0;">Récapitulatif du paiement</h3>
             <p><strong>Montant payé :</strong> ${safeMontant}</p>
             <p><strong>Service :</strong> ${safeService}</p>
-            <p><strong>Urgence :</strong> ${safeUrgence}</p>
-            <p><strong>Téléphone :</strong> ${safeTelephone}</p>
-            <p><strong>Ville :</strong> ${safeVille}</p>
-            <p><strong>Logement :</strong> ${safeLogement}</p>
-            <p><strong>Problème :</strong><br>${safeProbleme}</p>
+          </div>
+
+          <div style="background:#e8f4ff;padding:12px;border-radius:8px;margin:20px 0;">
+            💡 <strong>Astuce :</strong> plus votre demande sera détaillée dans le formulaire suivant,
+            plus votre diagnostic sera précis et fiable.
           </div>
 
           <p>
@@ -329,12 +333,12 @@ exports.handler = async (event) => {
         <div style="margin:0;padding:0;background:#f4f7fb;font-family:Arial,sans-serif;">
           <div style="max-width:760px;margin:0 auto;padding:24px;">
 
-            <div style="background:#b91c1c;color:#fff;padding:16px 20px;border-radius:16px 16px 0 0;">
+            <div style="background:#0f172a;color:#fff;padding:16px 20px;border-radius:16px 16px 0 0;">
               <div style="font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;">
-                PRIORITAIRE • NOUVELLE DEMANDE PAYÉE
+                PAIEMENT REÇU
               </div>
               <div style="font-size:30px;font-weight:800;line-height:1.15;margin-top:6px;">
-                🚨 Nouvelle demande diagnostic
+                💳 Nouveau paiement diagnostic
               </div>
             </div>
 
@@ -342,41 +346,43 @@ exports.handler = async (event) => {
 
               <div style="background:${prioriteStyle.bg};border-left:7px solid ${prioriteStyle.border};padding:18px;border-radius:12px;margin-bottom:18px;">
                 <div style="font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:${prioriteStyle.text};">
-                  PRIORITÉ
+                  PRIORITÉ ESTIMÉE
                 </div>
                 <div style="font-size:22px;font-weight:800;color:${prioriteStyle.text};margin-top:6px;">
                   ${safePriorite}
                 </div>
               </div>
 
+              <div style="background:#111827;color:#fff;padding:14px;border-radius:10px;margin-bottom:18px;text-align:center;font-weight:800;">
+                Le paiement est confirmé. La demande complète arrivera après le formulaire client.
+              </div>
+
               <div style="background:#f8fafc;border:1px solid #e5e7eb;border-radius:12px;padding:18px;margin-bottom:18px;">
                 <div style="font-size:16px;font-weight:800;margin-bottom:14px;color:#111827;">
-                  Coordonnées client
+                  Coordonnées connues au moment du paiement
                 </div>
                 <p style="margin:8px 0;"><strong>Nom :</strong> ${safeNom}</p>
                 <p style="margin:8px 0;"><strong>Email :</strong> <a href="mailto:${safeEmail}" style="color:#0d6efd;text-decoration:none;">${safeEmail}</a></p>
-                <p style="margin:8px 0;"><strong>Téléphone :</strong> <a href="tel:${safeTelephone}" style="color:#0d6efd;text-decoration:none;">${safeTelephone}</a></p>
+                <p style="margin:8px 0;"><strong>Téléphone :</strong> ${safeTelephone}</p>
                 <p style="margin:8px 0;"><strong>Ville :</strong> ${safeVille}</p>
                 <p style="margin:8px 0;"><strong>Logement :</strong> ${safeLogement}</p>
               </div>
 
               <div style="background:#f8fafc;border:1px solid #e5e7eb;border-radius:12px;padding:18px;margin-bottom:18px;">
                 <div style="font-size:16px;font-weight:800;margin-bottom:14px;color:#111827;">
-                  Détails de la demande
+                  Paiement
                 </div>
                 <p style="margin:8px 0;"><strong>Service :</strong> ${safeService}</p>
-                <p style="margin:8px 0;"><strong>Urgence :</strong> ${safeUrgence}</p>
                 <p style="margin:8px 0;"><strong>Montant payé :</strong> ${safeMontant}</p>
                 <p style="margin:8px 0;"><strong>Type :</strong> ${safeType}</p>
               </div>
 
-              <div style="background:#e8f4ff;border:1px solid #bfdbfe;border-radius:12px;padding:18px;margin-bottom:18px;">
-                <div style="font-size:16px;font-weight:800;margin-bottom:14px;color:#0b3b75;">
-                  Problème déclaré
+              <div style="background:#fff7ed;border:1px solid #fdba74;border-radius:12px;padding:18px;margin-bottom:18px;">
+                <div style="font-size:16px;font-weight:800;margin-bottom:14px;color:#9a3412;">
+                  Informations encore provisoires
                 </div>
-                <div style="font-size:15px;line-height:1.7;color:#111827;">
-                  ${safeProbleme}
-                </div>
+                <p style="margin:8px 0;"><strong>Urgence :</strong> ${safeUrgence}</p>
+                <p style="margin:8px 0;"><strong>Problème :</strong><br>${safeProbleme}</p>
               </div>
 
               <div style="background:#f8fafc;border:1px solid #e5e7eb;border-radius:12px;padding:18px;margin-bottom:22px;">
@@ -387,9 +393,9 @@ exports.handler = async (event) => {
               </div>
 
               <div style="text-align:center;margin-top:28px;">
-                <a href="mailto:${safeEmail}"
+                <a href="${formUrl}"
                    style="background:#0d6efd;color:#fff;padding:14px 24px;border-radius:12px;text-decoration:none;font-weight:800;display:inline-block;">
-                   👉 Répondre au client
+                   👉 Ouvrir le formulaire client
                 </a>
               </div>
             </div>
@@ -407,7 +413,7 @@ exports.handler = async (event) => {
       await resend.emails.send({
         from: fromEmail,
         to: adminEmail,
-        subject: `🚨 ${priorite} - NOUVELLE DEMANDE PAYÉE - ${nom} - ${urgence} - ${montant}`,
+        subject: `💳 PAIEMENT REÇU - ${nom} - ${montant}`,
         html: htmlAdmin,
         replyTo: customerEmail
       });
