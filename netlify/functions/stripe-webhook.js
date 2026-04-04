@@ -46,19 +46,93 @@ exports.handler = async (event) => {
         expand: ["customer_details", "line_items"],
       });
 
+      const type = session.metadata?.type || "main_diag_plomberie";
+
       const customerEmail =
-        fullSession.customer_details?.email || session.customer_details?.email;
+        fullSession.customer_details?.email ||
+        session.customer_details?.email ||
+        session.metadata?.email ||
+        session.metadata?.customer_email ||
+        "";
 
       const customerName =
         fullSession.customer_details?.name ||
         session.metadata?.nom ||
         "Client";
 
+      const montant = session.amount_total
+        ? `${(session.amount_total / 100).toFixed(2)} €`
+        : "Montant non disponible";
+
+      const fromEmail = process.env.RESEND_FROM_EMAIL;
+      const adminEmail = process.env.ADMIN_EMAIL;
+
+      const appBaseUrl =
+        process.env.URL ||
+        process.env.DEPLOY_PRIME_URL ||
+        process.env.APP_BASE_URL ||
+        "https://diagplomberiefrance.com";
+
+      if (!fromEmail || !adminEmail) {
+        console.error("Variables email manquantes.");
+        return {
+          statusCode: 500,
+          body: "Variables email manquantes",
+        };
+      }
+
       if (!customerEmail) {
         console.log("Aucun email client trouvé.");
         return {
           statusCode: 200,
           body: "Pas d'email client",
+        };
+      }
+
+      if (type === "upsell_diag_plomberie") {
+        const originalSessionId = session.metadata?.original_session_id || "Non renseignée";
+
+        const htmlAdminUpsell = `
+          <div style="font-family:Arial,sans-serif;max-width:700px;margin:0 auto;color:#111;">
+            <h2 style="margin-bottom:10px;">🔥 Upsell acheté</h2>
+
+            <div style="background:#f6f8fb;padding:16px;border-radius:12px;margin-bottom:20px;">
+              <p style="margin:5px 0;"><strong>👤 Client :</strong> ${customerName}</p>
+              <p style="margin:5px 0;">
+                <strong>✉️ Email :</strong>
+                <a href="mailto:${customerEmail}" style="color:#0d6efd;text-decoration:none;">${customerEmail}</a>
+              </p>
+              <p style="margin:5px 0;"><strong>💰 Montant upsell :</strong> ${montant}</p>
+              <p style="margin:5px 0;"><strong>🧾 Session Stripe upsell :</strong> ${session.id}</p>
+              <p style="margin:5px 0;"><strong>🔗 Session principale :</strong> ${originalSessionId}</p>
+            </div>
+
+            <div style="background:#fff3cd;padding:16px;border-radius:12px;margin-bottom:20px;">
+              <strong>Option achetée :</strong> Traitement prioritaire + conseils complémentaires + réponse enrichie
+            </div>
+
+            <div style="text-align:center;margin-top:30px;">
+              <a href="mailto:${customerEmail}"
+                 style="background:#0d6efd;color:#fff;padding:14px 22px;border-radius:10px;text-decoration:none;font-weight:700;display:inline-block;">
+                 👉 Répondre au client
+              </a>
+            </div>
+          </div>
+        `;
+
+        const adminSend = await resend.emails.send({
+          from: fromEmail,
+          to: adminEmail,
+          subject: `🔥 Upsell acheté - ${customerName}`,
+          html: htmlAdminUpsell,
+          replyTo: customerEmail,
+        });
+
+        console.log("Email admin upsell :", adminSend);
+
+        return {
+          statusCode: 200,
+          body: "Webhook upsell reçu",
         };
       }
 
@@ -80,11 +154,7 @@ exports.handler = async (event) => {
       const ville =
         session.metadata?.ville || "Non renseignée";
 
-      const montant = session.amount_total
-        ? `${(session.amount_total / 100).toFixed(2)} €`
-        : "Montant non disponible";
-
-      const formUrl = `${process.env.APP_BASE_URL}/merci.html?session_id=${session.id}`;
+      const formUrl = `${appBaseUrl}/merci.html?session_id=${session.id}`;
 
       const htmlClient = `
         <div style="font-family:Arial,sans-serif;max-width:700px;margin:0 auto;color:#111;">
@@ -167,6 +237,7 @@ exports.handler = async (event) => {
           <div style="background:#f6f8fb;padding:16px;border-radius:12px;margin-bottom:20px;">
             <p style="margin:5px 0;"><strong>💰 Montant :</strong> ${montant}</p>
             <p style="margin:5px 0;"><strong>🧾 Session Stripe :</strong> ${session.id}</p>
+            <p style="margin:5px 0;"><strong>🏷️ Type :</strong> ${type}</p>
           </div>
 
           <div style="text-align:center;margin-top:30px;">
@@ -177,18 +248,6 @@ exports.handler = async (event) => {
           </div>
         </div>
       `;
-
-      const fromEmail = process.env.RESEND_FROM_EMAIL;
-      const adminEmail = process.env.ADMIN_EMAIL;
-      const appBaseUrl = process.env.APP_BASE_URL;
-
-      if (!fromEmail || !adminEmail || !appBaseUrl) {
-        console.error("Variables email ou APP_BASE_URL manquantes.");
-        return {
-          statusCode: 500,
-          body: "Variables email ou APP_BASE_URL manquantes",
-        };
-      }
 
       const clientSend = await resend.emails.send({
         from: fromEmail,
