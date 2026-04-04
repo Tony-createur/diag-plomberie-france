@@ -84,6 +84,8 @@ exports.handler = async (event) => {
         ? `${(session.amount_total / 100).toFixed(2)} €`
         : "Montant non disponible";
 
+      const formUrl = `${process.env.APP_BASE_URL}/merci.html?session_id=${session.id}`;
+
       const htmlClient = `
         <div style="font-family:Arial,sans-serif;max-width:700px;margin:0 auto;color:#111;">
           <h2 style="margin-bottom:20px;">Paiement confirmé ✅</h2>
@@ -101,7 +103,7 @@ exports.handler = async (event) => {
           </p>
 
           <p style="text-align:center;margin:25px 0;">
-            <a href="https://diagplomberiefrance.com/merci.html"
+            <a href="${formUrl}"
                style="background:#0d6efd;color:#fff;padding:14px 22px;border-radius:10px;text-decoration:none;font-weight:700;display:inline-block;">
                👉 Accéder à mon formulaire
             </a>
@@ -144,6 +146,7 @@ exports.handler = async (event) => {
           <p><strong>Service :</strong> ${service}</p>
           <p><strong>Urgence :</strong> ${urgence}</p>
           <p><strong>Montant :</strong> ${montant}</p>
+          <p><strong>Session Stripe :</strong> ${session.id}</p>
 
           <div style="background:#f6f8fb;padding:18px;border-radius:12px;margin-top:20px;">
             <strong>Problème déclaré avant paiement :</strong><br><br>
@@ -154,12 +157,13 @@ exports.handler = async (event) => {
 
       const fromEmail = process.env.RESEND_FROM_EMAIL;
       const adminEmail = process.env.ADMIN_EMAIL;
+      const appBaseUrl = process.env.APP_BASE_URL;
 
-      if (!fromEmail || !adminEmail) {
-        console.error("Variables email manquantes.");
+      if (!fromEmail || !adminEmail || !appBaseUrl) {
+        console.error("Variables email ou APP_BASE_URL manquantes.");
         return {
           statusCode: 500,
-          body: "Variables email manquantes",
+          body: "Variables email ou APP_BASE_URL manquantes",
         };
       }
 
