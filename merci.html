@@ -17,6 +17,11 @@
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
+    function safeTrack(eventName, payload) {
+      try {
+        gtag('event', eventName, payload || {});
+      } catch (e) {}
+    }
     gtag('js', new Date());
     gtag('config', 'G-HE46NJ79YF');
   </script>
@@ -445,9 +450,7 @@
 
         <div class="grid">
           <div class="field-card">
-            <label for="nom">
-              Nom / Prénom
-            </label>
+            <label for="nom">Nom / Prénom</label>
             <input type="text" id="nom" name="nom" required autocomplete="name" />
           </div>
 
@@ -468,9 +471,7 @@
           </div>
 
           <div class="field-card">
-            <label for="ville">
-              Ville
-            </label>
+            <label for="ville">Ville</label>
             <input type="text" id="ville" name="ville" required autocomplete="address-level2" />
           </div>
 
@@ -548,13 +549,13 @@
     const purchaseUpsell = paramsForTracking.get("upsell");
     const purchaseTrackedKey = purchaseSessionId
       ? `diag_purchase_tracked_${purchaseSessionId}`
-      : "diag_purchase_tracked_default";
+      : null;
 
-    if (!sessionStorage.getItem(purchaseTrackedKey)) {
+    if (purchaseSessionId && !sessionStorage.getItem(purchaseTrackedKey)) {
       const purchaseValue = purchaseUpsell === "1" ? 28.99 : 19.99;
 
-      gtag('event', 'purchase', {
-        transaction_id: purchaseSessionId || ('diagplomberie-' + Date.now()),
+      safeTrack('purchase', {
+        transaction_id: purchaseSessionId,
         value: purchaseValue,
         currency: 'EUR',
         items: [
@@ -633,7 +634,7 @@
         const data = await response.json().catch(() => null);
 
         if (response.ok && data?.redirect) {
-          gtag('event', 'generate_lead', {
+          safeTrack('generate_lead', {
             currency: 'EUR',
             value: upsell === "1" ? 28.99 : 19.99,
             lead_type: 'diagnostic_plomberie_submit',
