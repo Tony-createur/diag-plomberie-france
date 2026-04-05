@@ -10,423 +10,380 @@
   />
   <meta name="robots" content="index, follow" />
   <meta name="google-site-verification" content="xqmsLqcdw_N6r5-QaJ4ZYuJCeThYkOz4lVM3Y5ztF6o" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
-    rel="stylesheet"
-  />
+  <meta name="theme-color" content="#ffffff" />
 
   <style>
     :root{
-      --bg:#eef4fb;
+      --bg:#eff5fb;
       --card:#ffffff;
       --text:#0f172a;
-      --muted:#5f6b7a;
-      --line:#dbe7f4;
-      --blue:#1463ff;
-      --blue-dark:#0d47b5;
-      --green:#16a34a;
-      --green-dark:#15803d;
-      --red:#dc2626;
-      --red-dark:#b91c1c;
-      --orange:#f59e0b;
-      --soft-blue:#eaf2ff;
-      --soft-red:#fff1f2;
-      --soft-green:#edfdf3;
-      --soft-yellow:#fff8e8;
-      --navy:#0b1730;
-      --shadow:0 20px 60px rgba(15, 23, 42, 0.10);
-      --radius:24px;
+      --muted:#5b6472;
+      --line:#dbe5f0;
+      --blue:#145df5;
+      --blue-dark:#0f4cc9;
+      --green:#17803d;
+      --green-dark:#11632f;
+      --red:#c62828;
+      --yellow-bg:#fff7df;
+      --yellow-line:#efd08a;
+      --red-bg:#fff1f2;
+      --red-line:#fecdd3;
+      --blue-bg:#eef5ff;
+      --green-bg:#edf9f0;
+      --radius:20px;
+      --max:1100px;
     }
 
     *{box-sizing:border-box}
 
-    html{scroll-behavior:smooth}
+    html{
+      -webkit-text-size-adjust:100%;
+      scroll-behavior:smooth;
+    }
 
     body{
       margin:0;
-      font-family:"Poppins",sans-serif;
+      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
       color:var(--text);
-      background:
-        radial-gradient(circle at top left, #f7fbff 0%, #eef4fb 45%, #edf3fa 100%);
+      background:var(--bg);
+      line-height:1.5;
+      text-rendering:optimizeLegibility;
     }
 
     a{
-      text-decoration:none;
       color:inherit;
-    }
-
-    .topbar{
-      background:linear-gradient(90deg,var(--red-dark),var(--red));
-      color:#fff;
-      text-align:center;
-      padding:12px 16px;
-      font-size:14px;
-      font-weight:800;
-      letter-spacing:.2px;
+      text-decoration:none;
     }
 
     .wrap{
-      width:min(1160px, calc(100% - 30px));
+      width:min(var(--max), calc(100% - 24px));
       margin:0 auto;
     }
 
+    .topbar{
+      background:var(--red);
+      color:#fff;
+      text-align:center;
+      padding:10px 12px;
+      font-size:13px;
+      font-weight:700;
+    }
+
     .hero{
-      padding:26px 0 34px;
+      padding:16px 0 14px;
     }
 
     .hero-grid{
       display:grid;
-      grid-template-columns:1.12fr .88fr;
-      gap:24px;
-      align-items:stretch;
+      grid-template-columns:1.1fr .9fr;
+      gap:18px;
+      align-items:start;
     }
 
     .card{
       background:var(--card);
       border:1px solid var(--line);
       border-radius:var(--radius);
-      box-shadow:var(--shadow);
     }
 
-    .hero-main{
-      padding:36px;
-      position:relative;
-      overflow:hidden;
-    }
-
-    .hero-main::after{
-      content:"";
-      position:absolute;
-      right:-80px;
-      top:-80px;
-      width:240px;
-      height:240px;
-      border-radius:50%;
-      background:radial-gradient(circle, rgba(20,99,255,.10) 0%, rgba(20,99,255,0) 70%);
-      pointer-events:none;
+    .hero-main,
+    .hero-side,
+    .section-card,
+    .cta-final{
+      padding:24px;
     }
 
     .badge{
       display:inline-flex;
       align-items:center;
-      gap:10px;
-      padding:10px 14px;
+      gap:8px;
+      padding:8px 12px;
       border-radius:999px;
-      background:#dbeafe;
-      color:#0b3ea8;
+      background:var(--blue-bg);
+      color:var(--blue-dark);
       font-size:13px;
-      font-weight:800;
-      margin-bottom:18px;
-      border:1px solid #bfdbfe;
+      font-weight:700;
+      margin-bottom:14px;
+      border:1px solid #cfe0ff;
+    }
+
+    h1,h2,h3{
+      margin:0;
+      line-height:1.12;
     }
 
     h1{
-      margin:0 0 16px;
-      font-size:56px;
-      line-height:1.02;
-      letter-spacing:-1.6px;
+      font-size:clamp(2rem, 4vw, 3.3rem);
+      letter-spacing:-0.03em;
       max-width:760px;
+      margin-bottom:14px;
     }
 
-    .lead{
-      margin:0 0 24px;
-      font-size:18px;
-      line-height:1.85;
+    h2{
+      font-size:clamp(1.7rem, 3vw, 2.4rem);
+      letter-spacing:-0.02em;
+      margin-bottom:10px;
+    }
+
+    h3{
+      font-size:1.1rem;
+      margin-bottom:8px;
+    }
+
+    p{
+      margin:0;
+    }
+
+    .lead,
+    .section-sub,
+    .muted{
       color:var(--muted);
-      max-width:760px;
+      line-height:1.72;
+      font-size:1rem;
     }
 
-    .hero-warning{
-      background:var(--soft-yellow);
-      border:1px solid #f6d18a;
-      border-radius:18px;
-      padding:14px 16px;
+    .lead{margin-bottom:18px}
+    .section-sub{margin-bottom:20px}
+
+    .alert,
+    .proof,
+    .price-psych,
+    .note-box{
+      border-radius:16px;
+      padding:14px 15px;
       font-size:15px;
-      line-height:1.7;
       font-weight:700;
-      margin-bottom:16px;
+      line-height:1.65;
     }
 
-    .hero-danger{
-      background:var(--soft-red);
-      border:1px solid #fecdd3;
-      border-radius:18px;
-      padding:14px 16px;
-      font-size:15px;
-      line-height:1.7;
-      font-weight:700;
-      margin-bottom:22px;
+    .alert-warning{
+      background:var(--yellow-bg);
+      border:1px solid var(--yellow-line);
+      margin-bottom:12px;
+    }
+
+    .alert-danger{
+      background:var(--red-bg);
+      border:1px solid var(--red-line);
       color:#991b1b;
+      margin-bottom:18px;
     }
 
-    .hero-points{
+    .hero-points,
+    .grid-2,
+    .grid-3,
+    .grid-4,
+    .compare,
+    .checklist{
       display:grid;
+      gap:14px;
+    }
+
+    .hero-points,
+    .grid-2{
       grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:12px;
-      margin-bottom:28px;
+    }
+
+    .grid-3{
+      grid-template-columns:repeat(3,minmax(0,1fr));
+    }
+
+    .grid-4{
+      grid-template-columns:repeat(4,minmax(0,1fr));
+    }
+
+    .mini-point,
+    .info-box,
+    .check-item,
+    .compare-item,
+    .faq-item,
+    .testimonial{
+      border:1px solid var(--line);
+      border-radius:16px;
+      background:#fff;
+    }
+
+    .mini-point,
+    .check-item,
+    .info-box,
+    .compare-item,
+    .testimonial{
+      padding:16px;
     }
 
     .mini-point{
-      background:#f8fbff;
-      border:1px solid var(--line);
-      border-radius:18px;
-      padding:14px 15px;
       font-size:14px;
       font-weight:700;
-      line-height:1.5;
+      background:#f9fbfd;
     }
 
     .btn-row{
       display:flex;
-      gap:14px;
       flex-wrap:wrap;
+      gap:12px;
       align-items:center;
+      margin-top:20px;
     }
 
     .btn{
-      min-height:58px;
-      padding:0 24px;
+      min-height:54px;
+      padding:0 22px;
+      border-radius:14px;
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      border-radius:16px;
       font-weight:800;
-      border:none;
-      cursor:pointer;
-      transition:.18s ease;
+      font-size:15px;
+      border:1px solid transparent;
     }
 
     .btn-primary{
-      background:linear-gradient(180deg,var(--green),var(--green-dark));
       color:#fff;
-      box-shadow:0 14px 32px rgba(22,163,74,.24);
-    }
-
-    .btn-primary:hover{
-      transform:translateY(-1px);
-      filter:brightness(1.02);
+      background:linear-gradient(180deg,var(--green),var(--green-dark));
     }
 
     .btn-secondary{
       background:#fff;
-      border:1px solid var(--line);
+      border-color:var(--line);
       color:var(--text);
     }
 
     .small-proof{
-      margin-top:18px;
-      color:#475569;
+      margin-top:14px;
+      color:var(--muted);
       font-size:14px;
-      font-weight:600;
       line-height:1.7;
-    }
-
-    .hero-side{
-      padding:22px;
+      font-weight:600;
     }
 
     .side-head{
-      background:linear-gradient(180deg,#0f172a,#172554);
+      background:#0f172a;
       color:#fff;
-      border-radius:20px;
-      padding:22px;
-      margin-bottom:18px;
-    }
-
-    .side-head h2{
-      margin:0 0 8px;
-      font-size:24px;
-      line-height:1.2;
+      border-radius:16px;
+      padding:18px;
+      margin-bottom:14px;
     }
 
     .side-head p{
-      margin:0;
       color:rgba(255,255,255,.88);
       font-size:14px;
-      line-height:1.75;
+      line-height:1.65;
     }
 
     .price-card{
-      background:#fff7db;
-      border:1px solid #e9c46a;
-      border-radius:20px;
-      padding:20px;
-      margin-bottom:18px;
+      background:var(--yellow-bg);
+      border:1px solid var(--yellow-line);
+      border-radius:16px;
+      padding:18px;
       text-align:center;
+      margin-bottom:14px;
     }
 
     .price-old{
-      font-size:15px;
-      color:#4b5563;
+      font-size:14px;
       text-decoration:line-through;
-      font-weight:800;
+      color:#5f6368;
+      font-weight:700;
     }
 
-    .price-now{
-      font-size:56px;
+    .price-now,
+    .big{
+      font-size:clamp(2.2rem, 5vw, 3.6rem);
       line-height:1;
       font-weight:800;
-      margin:10px 0 8px;
-      color:#111827;
+      margin:8px 0;
     }
 
     .price-sub{
       font-size:13px;
-      color:#6b4f00;
-      font-weight:800;
-      line-height:1.6;
-    }
-
-    .checklist{
-      display:grid;
-      gap:12px;
+      line-height:1.55;
+      font-weight:700;
+      color:#6e5400;
     }
 
     .check-item{
       display:flex;
-      gap:12px;
+      gap:10px;
       align-items:flex-start;
-      background:#f8fbff;
-      border:1px solid var(--line);
-      border-radius:18px;
-      padding:14px;
       font-size:14px;
       line-height:1.65;
       font-weight:600;
+      background:#f9fbfd;
     }
 
-    .check-icon{
-      width:28px;
-      height:28px;
-      border-radius:50%;
+    .check-icon,
+    .step-number{
       flex:0 0 auto;
       display:flex;
       align-items:center;
       justify-content:center;
-      background:var(--soft-green);
-      color:var(--green);
       font-weight:800;
+    }
+
+    .check-icon{
+      width:26px;
+      height:26px;
+      border-radius:50%;
+      background:var(--green-bg);
+      color:var(--green);
+      margin-top:1px;
     }
 
     .section{
-      padding:16px 0;
+      padding:10px 0;
     }
 
-    .section-card{
-      padding:30px;
-    }
-
-    .section-title{
-      margin:0 0 10px;
-      font-size:36px;
-      line-height:1.12;
-      letter-spacing:-.9px;
-    }
-
-    .section-sub{
-      margin:0 0 24px;
-      color:#475569;
-      line-height:1.8;
-      font-size:16px;
-    }
-
-    .grid-2,
-    .grid-3,
-    .grid-4{
-      display:grid;
-      gap:18px;
-    }
-
-    .grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
-    .grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
-    .grid-4{grid-template-columns:repeat(4,minmax(0,1fr))}
-
-    .info-box{
-      border:1px solid var(--line);
-      border-radius:20px;
-      padding:20px;
-      background:#fbfdff;
-    }
-
-    .info-box.red{background:var(--soft-red); border-color:#fecdd3}
-    .info-box.blue{background:#f5f9ff}
-    .info-box.green{background:#eefcf4}
-    .info-box.yellow{background:#fff9eb}
-
-    .info-box h3{
-      margin:0 0 10px;
-      font-size:20px;
-      line-height:1.3;
+    .lazy-section{
+      content-visibility:auto;
+      contain-intrinsic-size:900px;
     }
 
     .info-box p,
-    .info-box li{
-      margin:0;
+    .compare-item div,
+    .testimonial p{
+      color:var(--muted);
+      line-height:1.72;
       font-size:15px;
-      line-height:1.8;
-      color:#475569;
     }
 
+    .blue{background:var(--blue-bg)}
+    .green{background:var(--green-bg)}
+    .yellow{background:var(--yellow-bg)}
+    .red{background:var(--red-bg)}
+
     .step-number{
-      width:44px;
-      height:44px;
-      border-radius:14px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      background:var(--soft-blue);
+      width:40px;
+      height:40px;
+      border-radius:12px;
+      background:var(--blue-bg);
       color:var(--blue);
-      font-weight:800;
-      margin-bottom:14px;
+      margin-bottom:12px;
     }
 
     .pricing-elite{
-      padding:36px;
       text-align:center;
+      padding:28px 24px;
     }
 
-    .pricing-elite .big{
-      font-size:60px;
-      line-height:1;
-      font-weight:800;
-      margin:10px 0;
-    }
-
-    .pricing-elite .under{
+    .under{
       color:var(--muted);
-      font-size:15px;
-      line-height:1.75;
+      line-height:1.72;
       max-width:760px;
-      margin:0 auto 18px;
+      margin:0 auto 16px;
+      font-size:15px;
     }
 
     .price-psych{
       max-width:760px;
-      margin:0 auto 18px;
-      background:#edfdf3;
-      border:1px solid #bbf7d0;
-      color:#166534;
-      padding:14px 16px;
-      border-radius:18px;
-      font-size:15px;
-      font-weight:800;
-      line-height:1.7;
+      margin:0 auto 16px;
+      background:var(--green-bg);
+      border:1px solid #bfe5c9;
+      color:#186338;
     }
 
     .compare{
-      display:grid;
       grid-template-columns:repeat(3,minmax(0,1fr));
-      gap:16px;
-      margin-top:22px;
-    }
-
-    .compare-item{
-      background:#fbfdff;
-      border:1px solid var(--line);
-      border-radius:18px;
-      padding:18px;
+      margin-top:18px;
     }
 
     .compare-item strong{
@@ -435,75 +392,97 @@
       margin-bottom:8px;
     }
 
-    .testimonial{
-      background:#fff;
-      border:1px solid var(--line);
-      border-radius:22px;
-      padding:22px;
-      box-shadow:var(--shadow);
-    }
-
     .stars{
-      color:#f59e0b;
-      letter-spacing:2px;
       font-size:18px;
-      margin-bottom:12px;
+      margin-bottom:10px;
     }
 
-    .testimonial p{
-      margin:0 0 14px;
-      color:#475569;
-      line-height:1.8;
-      font-size:15px;
-    }
-
-    .testimonial .name{
+    .name{
+      margin-top:12px;
       font-size:14px;
       font-weight:700;
     }
 
-    .faq-item{
-      background:#fff;
+    .faq-list{
+      display:grid;
+      gap:14px;
+    }
+
+    details{
       border:1px solid var(--line);
-      border-radius:20px;
-      padding:20px 22px;
-      box-shadow:var(--shadow);
+      border-radius:16px;
+      background:#fff;
+      padding:0;
     }
 
-    .faq-item h3{
-      margin:0 0 8px;
-      font-size:18px;
+    summary{
+      list-style:none;
+      cursor:pointer;
+      padding:18px 18px;
+      font-weight:700;
+      position:relative;
     }
 
-    .faq-item p{
-      margin:0;
-      color:#475569;
-      line-height:1.8;
+    summary::-webkit-details-marker{
+      display:none;
+    }
+
+    summary::after{
+      content:"+";
+      position:absolute;
+      right:18px;
+      top:50%;
+      transform:translateY(-50%);
+      font-size:20px;
+      font-weight:700;
+      color:var(--blue);
+    }
+
+    details[open] summary::after{
+      content:"–";
+    }
+
+    .faq-content{
+      padding:0 18px 18px;
+      color:var(--muted);
       font-size:15px;
+      line-height:1.72;
     }
 
     .cta-final{
-      background:linear-gradient(180deg,#ffffff,#f7fbff);
       text-align:center;
-      padding:38px;
     }
 
-    .cta-final h2{
-      margin:0 0 10px;
-      font-size:40px;
-      line-height:1.12;
+    .guides{
+      padding:14px 0 8px;
     }
 
-    .cta-final p{
-      margin:0 auto 24px;
-      max-width:760px;
-      color:var(--muted);
-      line-height:1.8;
-      font-size:16px;
+    .guides-box{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:20px;
+    }
+
+    .guide-links{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:10px;
+      margin-top:14px;
+    }
+
+    .guide-links a{
+      display:block;
+      padding:12px 14px;
+      border-radius:12px;
+      border:1px solid var(--line);
+      background:#f9fbfd;
+      font-size:14px;
+      font-weight:600;
     }
 
     .footer{
-      padding:24px 0 36px;
+      padding:20px 0 34px;
       text-align:center;
       color:var(--muted);
       font-size:14px;
@@ -519,56 +498,44 @@
       .grid-2,
       .grid-3,
       .grid-4,
-      .compare{
-        grid-template-columns:1fr;
-      }
-
-      h1{
-        font-size:40px;
-      }
-
-      .hero-points{
+      .compare,
+      .guide-links{
         grid-template-columns:1fr;
       }
 
       .hero-main,
       .hero-side,
       .section-card,
-      .pricing-elite,
-      .cta-final{
-        padding:24px;
+      .cta-final,
+      .pricing-elite{
+        padding:20px;
       }
     }
 
     @media (max-width: 640px){
       .wrap{
-        width:min(100% - 20px, 1160px);
+        width:min(var(--max), calc(100% - 16px));
       }
 
       .topbar{
-        font-size:13px;
-        padding:10px 12px;
+        font-size:12px;
+        padding:9px 10px;
       }
 
-      h1{
-        font-size:34px;
+      .hero{
+        padding-top:10px;
       }
 
-      .section-title{
-        font-size:28px;
-      }
-
-      .btn{
-        width:100%;
+      .hero-points{
+        grid-template-columns:1fr;
       }
 
       .btn-row{
         flex-direction:column;
       }
 
-      .price-now,
-      .pricing-elite .big{
-        font-size:42px;
+      .btn{
+        width:100%;
       }
     }
   </style>
@@ -589,30 +556,28 @@
             <h1>Ne payez pas un plombier avant d’avoir compris ce qui se passe réellement</h1>
 
             <p class="lead">
-              Décrivez votre problème, ajoutez vos explications et vos photos,
-              puis obtenez un retour clair pour mieux comprendre la situation,
-              savoir si elle semble urgente, et réduire le risque d’accepter
-              un devis abusif ou une intervention inutile.
+              Décrivez votre problème, ajoutez vos explications et vos photos, puis obtenez un retour clair
+              pour mieux comprendre la situation, savoir si elle semble urgente, et réduire le risque
+              d’accepter un devis abusif ou une intervention inutile.
             </p>
 
-            <div class="hero-warning">
+            <div class="alert alert-warning">
               ⚠️ Dans l’urgence, beaucoup de clients acceptent trop vite un déplacement, un remplacement ou un devis qu’ils ne comprennent pas vraiment.
             </div>
 
-            <div class="hero-danger">
-              💸 Une seule mauvaise décision peut coûter 150€, 300€, 500€ ou plus.
-              Pour 19,99€, vous prenez un minimum de recul avant d’engager des frais beaucoup plus lourds.
+            <div class="alert alert-danger">
+              💸 Une seule mauvaise décision peut coûter 150€, 300€, 500€ ou plus. Pour 19,99€, vous prenez du recul avant d’engager des frais bien plus lourds.
             </div>
 
             <div class="hero-points">
               <div class="mini-point">💸 Évitez un devis gonflé ou injustifié</div>
-              <div class="mini-point">🔍 Comprenez plus clairement le vrai problème</div>
-              <div class="mini-point">🔥 Sachez si la situation semble urgente ou non</div>
+              <div class="mini-point">🔍 Comprenez plus clairement le problème</div>
+              <div class="mini-point">🔥 Sachez si la situation semble urgente</div>
               <div class="mini-point">📷 Ajoutez vos photos pour une analyse plus fiable</div>
             </div>
 
             <div class="btn-row">
-              <a class="btn btn-primary" href="https://buy.stripe.com/28E7sKeJf2jb6aF6zu2Ji01">👉 Obtenir mon diagnostic maintenant</a>
+              <a class="btn btn-primary" href="https://buy.stripe.com/28E7sKeJf2jb6aF6zu2Ji01" rel="noopener">👉 Obtenir mon diagnostic maintenant</a>
               <a class="btn btn-secondary" href="#comment-ca-marche">Voir comment ça marche</a>
             </div>
 
@@ -625,8 +590,8 @@
             <div class="side-head">
               <h2>Ce que vous évitez réellement</h2>
               <p>
-                Une fuite surestimée, un chauffe-eau déclaré “mort” trop vite,
-                ou une urgence exagérée peut transformer une panne simple en grosse facture.
+                Une fuite surestimée, un chauffe-eau déclaré “mort” trop vite, ou une urgence exagérée
+                peut transformer une panne simple en grosse facture.
               </p>
             </div>
 
@@ -659,10 +624,10 @@
       </div>
     </section>
 
-    <section class="section">
+    <section class="section lazy-section">
       <div class="wrap">
         <div class="card section-card">
-          <h2 class="section-title">Vous êtes probablement dans une de ces situations</h2>
+          <h2>Vous êtes probablement dans une de ces situations</h2>
           <p class="section-sub">
             C’est précisément dans ces cas-là qu’un diagnostic préalable peut éviter une erreur coûteuse.
           </p>
@@ -689,10 +654,10 @@
       </div>
     </section>
 
-    <section class="section" id="comment-ca-marche">
+    <section class="section lazy-section" id="comment-ca-marche">
       <div class="wrap">
         <div class="card section-card">
-          <h2 class="section-title">Comment ça marche</h2>
+          <h2>Comment ça marche</h2>
           <p class="section-sub">
             Le parcours est simple, rapide et pensé pour obtenir les bonnes informations dès le départ.
           </p>
@@ -718,54 +683,10 @@
       </div>
     </section>
 
-    <section class="section">
+    <section class="section lazy-section">
       <div class="wrap">
         <div class="card section-card">
-          <h2 class="section-title">Ce diagnostic est fait pour vous si vous ne voulez pas payer à l’aveugle</h2>
-          <p class="section-sub">
-            Avant de faire intervenir un plombier, vous voulez être sûr de ne pas vous tromper.
-            Ce diagnostic vous aide à prendre une décision plus éclairée.
-          </p>
-
-          <div class="grid-2">
-            <div class="info-box blue">
-              <h3>💸 Vous avez un doute sur un devis</h3>
-              <p>On vous annonce un prix élevé, mais vous ne savez pas s’il est justifié ou exagéré.</p>
-            </div>
-
-            <div class="info-box red">
-              <h3>⚠️ Vous avez peur de vous faire avoir</h3>
-              <p>Vous voulez un avis extérieur pour éviter une intervention inutile ou une facture trop lourde.</p>
-            </div>
-
-            <div class="info-box yellow">
-              <h3>🚿 Vous avez une fuite ou un problème d’eau</h3>
-              <p>Vous ne savez pas si c’est urgent, si cela peut attendre, ou si le problème est plus simple qu’il en a l’air.</p>
-            </div>
-
-            <div class="info-box blue">
-              <h3>🔥 Votre chauffe-eau ou installation pose problème</h3>
-              <p>On vous parle parfois directement de remplacement, alors que le problème peut être plus ciblé.</p>
-            </div>
-
-            <div class="info-box green">
-              <h3>📷 Vous pouvez montrer le problème</h3>
-              <p>Vous avez des photos ou vidéos, ce qui permet une analyse plus précise et plus fiable.</p>
-            </div>
-
-            <div class="info-box green">
-              <h3>🧠 Vous voulez comprendre avant d’agir</h3>
-              <p>Vous ne voulez pas décider dans le stress ou dans l’urgence sans un minimum de recul.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="wrap">
-        <div class="card section-card">
-          <h2 class="section-title">Ce que vous obtenez concrètement</h2>
+          <h2>Ce que vous obtenez concrètement</h2>
           <p class="section-sub">
             Une réponse utile, claire et actionnable. Pas de jargon inutile, pas de blabla.
           </p>
@@ -792,24 +713,11 @@
       </div>
     </section>
 
-    <section class="section">
-      <div class="wrap">
-        <div class="card section-card" style="background:#fff8e8;border-color:#f6d18a;">
-          <h2 class="section-title">L’erreur fréquente : payer dans l’urgence sans avoir compris le vrai problème</h2>
-          <p class="section-sub" style="margin-bottom:0;">
-            Quand on panique, on accepte plus facilement un devis élevé, un remplacement trop rapide,
-            ou une intervention qui n’est pas forcément la bonne.
-            Un diagnostic préalable peut vous donner un minimum de recul avant de décider.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
+    <section class="section lazy-section">
       <div class="wrap">
         <div class="card pricing-elite">
           <div class="badge">💰 Paiement unique • Sans abonnement</div>
-          <h2 class="section-title" style="margin-bottom:8px;">19,99€ maintenant peuvent vous éviter une grosse erreur ensuite</h2>
+          <h2>19,99€ maintenant peuvent vous éviter une grosse erreur ensuite</h2>
           <p class="under">
             Pour 19,99€, vous obtenez un diagnostic avant intervention. Cela peut vous éviter une facture beaucoup plus lourde.
           </p>
@@ -825,7 +733,7 @@
           </p>
 
           <div class="btn-row" style="justify-content:center;">
-            <a class="btn btn-primary" href="https://buy.stripe.com/28E7sKeJf2jb6aF6zu2Ji01">🔥 Oui, je veux éviter de payer trop cher</a>
+            <a class="btn btn-primary" href="https://buy.stripe.com/28E7sKeJf2jb6aF6zu2Ji01" rel="noopener">🔥 Oui, je veux éviter de payer trop cher</a>
           </div>
 
           <div class="compare">
@@ -846,10 +754,10 @@
       </div>
     </section>
 
-    <section class="section">
+    <section class="section lazy-section">
       <div class="wrap">
         <div class="card section-card">
-          <h2 class="section-title">Pourquoi cette offre rassure</h2>
+          <h2>Pourquoi cette offre rassure</h2>
           <p class="section-sub">
             Le parcours a été pensé pour être simple, clair et rassurant.
           </p>
@@ -876,10 +784,10 @@
       </div>
     </section>
 
-    <section class="section">
+    <section class="section lazy-section">
       <div class="wrap">
         <div class="card section-card">
-          <h2 class="section-title">Avis clients</h2>
+          <h2>Avis clients</h2>
           <p class="section-sub">
             Exemples de retours clients sur l’intérêt de ce type de service.
           </p>
@@ -890,13 +798,11 @@
               <p>“J’ai compris que ce n’était pas aussi grave qu’annoncé. J’ai évité une intervention bien trop chère.”</p>
               <div class="name">Client diagnostic fuite</div>
             </div>
-
             <div class="testimonial">
               <div class="stars">★★★★★</div>
               <p>“Très clair, très rassurant, et surtout utile avant de faire venir quelqu’un à la maison.”</p>
               <div class="name">Client chauffe-eau</div>
             </div>
-
             <div class="testimonial">
               <div class="stars">★★★★★</div>
               <p>“Le diagnostic m’a permis de savoir quoi demander exactement avant d’accepter un devis.”</p>
@@ -907,79 +813,91 @@
       </div>
     </section>
 
-    <section class="section">
+    <section class="section lazy-section">
       <div class="wrap">
         <div class="card section-card">
-          <h2 class="section-title">Questions fréquentes</h2>
+          <h2>Questions fréquentes</h2>
           <p class="section-sub">
             Les réponses aux objections les plus importantes avant paiement.
           </p>
 
-          <div class="grid-2">
-            <div class="faq-item">
-              <h3>Est-ce un vrai diagnostic ?</h3>
-              <p>C’est un diagnostic à distance basé sur vos explications et vos photos. Le but est de vous éclairer avant intervention.</p>
-            </div>
+          <div class="faq-list">
+            <details>
+              <summary>Est-ce un vrai diagnostic ?</summary>
+              <div class="faq-content">
+                C’est un diagnostic à distance basé sur vos explications et vos photos. Le but est de vous éclairer avant intervention.
+              </div>
+            </details>
 
-            <div class="faq-item">
-              <h3>Et si mon problème est urgent ?</h3>
-              <p>Vous pouvez détailler la situation dès le formulaire, puis une option prioritaire peut être proposée après paiement.</p>
-            </div>
+            <details>
+              <summary>Et si mon problème est urgent ?</summary>
+              <div class="faq-content">
+                Vous pouvez détailler la situation dès le formulaire, puis une option prioritaire peut être proposée après paiement.
+              </div>
+            </details>
 
-            <div class="faq-item">
-              <h3>Puis-je joindre des photos ?</h3>
-              <p>Oui. Après paiement, vous accédez au formulaire et vous pouvez ajouter des photos utiles du problème.</p>
-            </div>
+            <details>
+              <summary>Puis-je joindre des photos ?</summary>
+              <div class="faq-content">
+                Oui. Après paiement, vous accédez au formulaire et vous pouvez ajouter des photos utiles du problème.
+              </div>
+            </details>
 
-            <div class="faq-item">
-              <h3>Pourquoi payer avant ?</h3>
-              <p>Le paiement débloque le traitement de votre demande et évite les demandes incomplètes ou non sérieuses.</p>
-            </div>
+            <details>
+              <summary>Pourquoi payer avant ?</summary>
+              <div class="faq-content">
+                Le paiement débloque le traitement de votre demande et évite les demandes incomplètes ou non sérieuses.
+              </div>
+            </details>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section">
+    <section class="section lazy-section">
       <div class="wrap">
         <div class="card cta-final">
           <h2>N’attendez pas d’avoir déjà accepté la mauvaise facture</h2>
-          <p>
-            Faites analyser votre problème maintenant, obtenez un retour clair,
-            et avancez avec plus de certitude avant de payer un plombier.
+          <p class="under">
+            Faites analyser votre problème maintenant, obtenez un retour clair, et avancez avec plus de certitude avant de payer un plombier.
           </p>
 
           <div class="btn-row" style="justify-content:center;">
-            <a class="btn btn-primary" href="https://buy.stripe.com/28E7sKeJf2jb6aF6zu2Ji01">👉 Obtenir mon diagnostic pour 19,99€</a>
+            <a class="btn btn-primary" href="https://buy.stripe.com/28E7sKeJf2jb6aF6zu2Ji01" rel="noopener">👉 Obtenir mon diagnostic pour 19,99€</a>
           </div>
 
-          <div class="small-proof" style="margin-top:20px;">
+          <div class="small-proof">
             ⚠️ Plus vous attendez, plus le risque de mauvaise décision ou de facture inutile augmente.
           </div>
         </div>
       </div>
     </section>
-  </main>
 
-  <section style="max-width:900px;margin:40px auto;padding:20px;">
-    <h2>Guides utiles</h2>
-    <p>Découvrez nos conseils pour éviter les erreurs coûteuses en plomberie :</p>
-    <ul>
-      <li><a href="/fuite-eau-urgence.html">Fuite d’eau urgence</a></li>
-      <li><a href="/chauffe-eau-panne.html">Chauffe-eau en panne</a></li>
-      <li><a href="/plombier-urgence.html">Plombier urgence</a></li>
-      <li><a href="/robinet-qui-fuit.html">Robinet qui fuit</a></li>
-      <li><a href="/chasse-eau-qui-coule.html">Chasse d’eau qui coule</a></li>
-      <li><a href="/fuite-chauffe-eau.html">Fuite chauffe-eau</a></li>
-      <li><a href="/canalisation-bouchee.html">Canalisation bouchée</a></li>
-      <li><a href="/evier-bouche.html">Évier bouché</a></li>
-      <li><a href="/douche-qui-fuit.html">Douche qui fuit</a></li>
-      <li><a href="/fuite-machine-a-laver.html">Fuite machine à laver</a></li>
-      <li><a href="/ballon-eau-chaude-fuite.html">Ballon eau chaude fuite</a></li>
-      <li><a href="/tuyau-qui-fuit.html">Tuyau qui fuit</a></li>
-      <li><a href="/odeur-canalisation.html">Odeur canalisation</a></li>
-    </ul>
-  </section>
+    <section class="guides lazy-section">
+      <div class="wrap">
+        <div class="guides-box">
+          <h2>Guides utiles</h2>
+          <p class="muted">Découvrez nos conseils pour éviter les erreurs coûteuses en plomberie :</p>
+
+          <div class="guide-links">
+            <a href="/fuite-eau-urgence.html">Fuite d’eau urgence</a>
+            <a href="/chauffe-eau-panne.html">Chauffe-eau en panne</a>
+            <a href="/plombier-urgence.html">Plombier urgence</a>
+            <a href="/robinet-qui-fuit.html">Robinet qui fuit</a>
+            <a href="/chasse-eau-qui-coule.html">Chasse d’eau qui coule</a>
+            <a href="/fuite-chauffe-eau.html">Fuite chauffe-eau</a>
+            <a href="/canalisation-bouchee.html">Canalisation bouchée</a>
+            <a href="/evier-bouche.html">Évier bouché</a>
+            <a href="/douche-qui-fuit.html">Douche qui fuit</a>
+            <a href="/fuite-machine-a-laver.html">Fuite machine à laver</a>
+            <a href="/ballon-eau-chaude-fuite.html">Ballon eau chaude fuite</a>
+            <a href="/tuyau-qui-fuit.html">Tuyau qui fuit</a>
+            <a href="/odeur-canalisation.html">Odeur canalisation</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <footer class="footer wrap">
     <p>
