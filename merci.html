@@ -11,6 +11,16 @@
     href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
     rel="stylesheet"
   />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HE46NJ79YF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-HE46NJ79YF');
+  </script>
+
   <style>
     :root{
       --blue:#0d6efd;
@@ -533,6 +543,34 @@
   </script>
 
   <script>
+    const paramsForTracking = new URLSearchParams(window.location.search);
+    const purchaseSessionId = paramsForTracking.get("session_id");
+    const purchaseUpsell = paramsForTracking.get("upsell");
+    const purchaseTrackedKey = purchaseSessionId
+      ? `diag_purchase_tracked_${purchaseSessionId}`
+      : "diag_purchase_tracked_default";
+
+    if (!sessionStorage.getItem(purchaseTrackedKey)) {
+      const purchaseValue = purchaseUpsell === "1" ? 28.99 : 19.99;
+
+      gtag('event', 'purchase', {
+        transaction_id: purchaseSessionId || ('diagplomberie-' + Date.now()),
+        value: purchaseValue,
+        currency: 'EUR',
+        items: [
+          {
+            item_name: purchaseUpsell === "1" ? 'Diagnostic plomberie + prioritaire' : 'Diagnostic plomberie',
+            price: purchaseValue,
+            quantity: 1
+          }
+        ]
+      });
+
+      sessionStorage.setItem(purchaseTrackedKey, 'true');
+    }
+  </script>
+
+  <script>
     const form = document.getElementById("demandeForm");
     const submitBtn = document.getElementById("submitBtn");
     const formMessage = document.getElementById("formMessage");
@@ -595,6 +633,13 @@
         const data = await response.json().catch(() => null);
 
         if (response.ok && data?.redirect) {
+          gtag('event', 'generate_lead', {
+            currency: 'EUR',
+            value: upsell === "1" ? 28.99 : 19.99,
+            lead_type: 'diagnostic_plomberie_submit',
+            session_id: sessionId || ''
+          });
+
           formMessage.textContent = "Demande envoyée avec succès. Redirection...";
           formMessage.className = "small ok-text";
           window.location.href = data.redirect;
