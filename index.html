@@ -3,15 +3,33 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Diag Plomberie France | Évitez de payer trop cher dans l’urgence</title>
+
+  <title>Diagnostic plomberie en ligne | Évitez les devis abusifs avant intervention</title>
   <meta
     name="description"
-    content="Diagnostic plomberie en ligne avant intervention. Comprenez votre panne, évaluez l’urgence et évitez de payer trop vite un devis abusif ou une intervention inutile."
+    content="Diagnostic plomberie en ligne avant intervention dès 19,99€. Comprenez votre panne, évaluez l’urgence, évitez un devis abusif et décidez avec plus de recul avant de payer un plombier."
   />
-  <meta name="robots" content="index, follow" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="google-site-verification" content="xqmsLqcdw_N6r5-QaJ4ZYuJCeThYkOz4lVM3Y5ztF6o" />
   <meta name="theme-color" content="#ffffff" />
   <link rel="canonical" href="https://diagplomberiefrance.com/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:site_name" content="Diag Plomberie France" />
+  <meta property="og:title" content="Diagnostic plomberie en ligne | Évitez les devis abusifs avant intervention" />
+  <meta
+    property="og:description"
+    content="Avant de payer un plombier dans l’urgence, obtenez un diagnostic plomberie en ligne pour mieux comprendre la panne et éviter de payer trop cher."
+  />
+  <meta property="og:url" content="https://diagplomberiefrance.com/" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Diagnostic plomberie en ligne | Évitez les devis abusifs avant intervention" />
+  <meta
+    name="twitter:description"
+    content="Diagnostic plomberie en ligne avant intervention dès 19,99€. Comprenez la panne, évaluez l’urgence, évitez les devis abusifs."
+  />
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-HE46NJ79YF"></script>
@@ -35,6 +53,89 @@
     }
     gtag('js', new Date());
     gtag('config', 'G-HE46NJ79YF');
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Organization",
+    "name":"Diag Plomberie France",
+    "url":"https://diagplomberiefrance.com/",
+    "email":"contact@diagplomberiefrance.com"
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Service",
+    "name":"Diagnostic plomberie en ligne",
+    "serviceType":"Diagnostic plomberie à distance",
+    "provider":{
+      "@type":"Organization",
+      "name":"Diag Plomberie France",
+      "url":"https://diagplomberiefrance.com/"
+    },
+    "areaServed":"FR",
+    "url":"https://diagplomberiefrance.com/",
+    "offers":{
+      "@type":"Offer",
+      "price":"19.99",
+      "priceCurrency":"EUR",
+      "availability":"https://schema.org/InStock",
+      "url":"https://diagplomberiefrance.com/"
+    },
+    "description":"Service de diagnostic plomberie en ligne avant intervention pour mieux comprendre une panne, évaluer l’urgence et réduire le risque d’accepter un devis abusif."
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {
+        "@type":"Question",
+        "name":"Est-ce que cela remplace un plombier sur place ?",
+        "acceptedAnswer":{
+          "@type":"Answer",
+          "text":"Non. Le but est de vous aider à mieux comprendre la situation avant de payer un déplacement, un devis ou une intervention."
+        }
+      },
+      {
+        "@type":"Question",
+        "name":"À quoi sert ce diagnostic plomberie en ligne concrètement ?",
+        "acceptedAnswer":{
+          "@type":"Answer",
+          "text":"Il sert à vous donner plus de recul, plus de clarté et plus de contrôle avant d’accepter une dépense plus lourde."
+        }
+      },
+      {
+        "@type":"Question",
+        "name":"Et si mon problème est vraiment urgent ?",
+        "acceptedAnswer":{
+          "@type":"Answer",
+          "text":"Vous pouvez le détailler dès le formulaire. Une option prioritaire peut ensuite être proposée selon le besoin."
+        }
+      },
+      {
+        "@type":"Question",
+        "name":"Puis-je envoyer des photos ?",
+        "acceptedAnswer":{
+          "@type":"Answer",
+          "text":"Oui. Après paiement, vous accédez au formulaire et vous pouvez joindre les photos utiles du problème."
+        }
+      },
+      {
+        "@type":"Question",
+        "name":"Pourquoi payer avant ?",
+        "acceptedAnswer":{
+          "@type":"Answer",
+          "text":"Le paiement débloque le traitement de votre demande et vous permet d’obtenir un vrai retour avant d’aller plus loin."
+        }
+      }
+    ]
+  }
   </script>
 
   <style>
@@ -161,7 +262,8 @@
     .lead,
     .section-sub,
     .under,
-    .muted{
+    .muted,
+    .seo-text p{
       color:var(--muted);
       font-size:1rem;
       line-height:1.72;
@@ -240,7 +342,8 @@
     .check-item,
     details,
     .price-card,
-    .warning-box{
+    .warning-box,
+    .seo-text{
       border:1px solid var(--line);
       border-radius:16px;
       background:#fff;
@@ -253,7 +356,8 @@
     .compare-item,
     .testimonial,
     .check-item,
-    .warning-box{
+    .warning-box,
+    .seo-text{
       padding:16px;
     }
 
@@ -399,6 +503,20 @@
       color:var(--muted);
       font-size:15px;
       line-height:1.72;
+    }
+
+    .seo-text h2{
+      margin-bottom:12px;
+    }
+
+    .seo-text h3{
+      margin-top:18px;
+      margin-bottom:8px;
+      font-size:1.05rem;
+    }
+
+    .seo-text p + p{
+      margin-top:12px;
     }
 
     .blue{background:var(--soft-blue)}
@@ -590,9 +708,9 @@
       <div class="wrap">
         <div class="hero-grid">
           <div class="card hero-main">
-            <div class="badge">✅ Avant devis • avant déplacement • avant intervention</div>
+            <div class="badge">✅ Diagnostic plomberie en ligne • avant devis • avant déplacement • avant intervention</div>
 
-            <h1>Avant de payer un plombier dans l’urgence, vérifiez d’abord si vous êtes sur le point de payer trop cher</h1>
+            <h1>Diagnostic plomberie en ligne avant intervention : évitez de payer trop cher dans l’urgence</h1>
 
             <p class="lead">
               Décrivez votre problème, ajoutez vos photos, puis obtenez un retour clair pour mieux comprendre la situation,
@@ -609,7 +727,7 @@
             </div>
 
             <div class="hero-points">
-              <div class="mini-point">💸 Réduisez le risque d’accepter un devis gonflé</div>
+              <div class="mini-point">💸 Réduisez le risque d’accepter un devis plomberie gonflé</div>
               <div class="mini-point">🧠 Comprenez mieux le problème avant de dire oui</div>
               <div class="mini-point">🔥 Sachez si la situation semble urgente ou non</div>
               <div class="mini-point">📷 Ajoutez vos photos pour une analyse plus fiable</div>
@@ -621,6 +739,7 @@
                 href="https://buy.stripe.com/28E7sKeJf2jb6aF6zu2Ji01"
                 rel="noopener"
                 onclick="trackBeginCheckout()"
+                aria-label="Obtenir mon diagnostic plomberie en ligne pour 19,99€"
               >
                 👉 Obtenir mon diagnostic pour 19,99€
               </a>
@@ -688,9 +807,9 @@
     <section class="section lazy-section">
       <div class="wrap">
         <div class="card section-card">
-          <h2>Le piège le plus fréquent : payer vite pour “être tranquille”</h2>
+          <h2>Pourquoi faire un diagnostic plomberie avant intervention ?</h2>
           <p class="section-sub">
-            C’est précisément dans ce moment de stress que beaucoup de clients paient trop, sans savoir si c’était réellement nécessaire.
+            Quand une fuite, un chauffe-eau en panne ou une canalisation bouchée survient, beaucoup acceptent trop vite un devis plomberie sans savoir si le montant demandé est cohérent.
           </p>
 
           <div class="grid-3">
@@ -714,7 +833,7 @@
     <section class="section lazy-section" id="comment-ca-marche">
       <div class="wrap">
         <div class="card section-card">
-          <h2>Comment ça marche</h2>
+          <h2>Comment fonctionne le diagnostic plomberie en ligne ?</h2>
           <p class="section-sub">
             Le parcours est simple, rapide et pensé pour vous donner plus de recul avant de payer.
           </p>
@@ -772,6 +891,39 @@
 
     <section class="section lazy-section">
       <div class="wrap">
+        <div class="card section-card seo-text">
+          <h2>Diagnostic plomberie à distance : pour quels problèmes ?</h2>
+
+          <p>
+            Ce service est utile si vous cherchez un <strong>diagnostic plomberie en ligne</strong> avant de faire venir un professionnel,
+            avant d’accepter un <strong>devis plomberie</strong> ou avant de payer une intervention présentée comme urgente.
+          </p>
+
+          <p>
+            Il peut vous aider à prendre du recul en cas de <strong>fuite d’eau</strong>, <strong>chauffe-eau en panne</strong>,
+            <strong>chasse d’eau qui coule</strong>, <strong>robinet qui fuit</strong>, <strong>canalisation bouchée</strong>,
+            <strong>évier bouché</strong>, <strong>odeur de canalisation</strong> ou autre problème de plomberie domestique.
+          </p>
+
+          <h3>Avant de payer un plombier en urgence</h3>
+          <p>
+            Quand un artisan vous parle de remplacement immédiat, de panne grave ou de réparation indispensable,
+            il est souvent difficile de savoir si l’intervention est réellement urgente. Le but ici est de vous aider à
+            <strong>mieux comprendre la panne</strong> et à <strong>éviter un devis abusif</strong> ou une décision trop rapide.
+          </p>
+
+          <h3>Un service simple avant devis ou déplacement</h3>
+          <p>
+            Vous payez, vous remplissez le formulaire, vous ajoutez vos photos et vous obtenez un retour clair.
+            Cela ne remplace pas un plombier sur place, mais cela peut clairement vous aider à décider avec plus de recul
+            avant de valider un déplacement, une réparation ou un remplacement.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section lazy-section">
+      <div class="wrap">
         <div class="card pricing-box">
           <div class="badge">💰 Paiement unique • Sans abonnement</div>
           <h2>Le risque n’est pas de payer 19,99€ maintenant. Le risque, c’est de payer trop vite beaucoup plus ensuite.</h2>
@@ -791,6 +943,7 @@
               href="https://buy.stripe.com/28E7sKeJf2jb6aF6zu2Ji01"
               rel="noopener"
               onclick="trackBeginCheckout()"
+              aria-label="Oui, je veux vérifier avant de payer trop cher"
             >
               🔥 Oui, je veux vérifier avant de payer trop cher
             </a>
@@ -806,7 +959,7 @@
     <section class="section lazy-section">
       <div class="wrap">
         <div class="card section-card">
-          <h2>Questions fréquentes</h2>
+          <h2>Questions fréquentes sur le diagnostic plomberie en ligne</h2>
           <p class="section-sub">
             Les réponses aux objections les plus importantes avant paiement.
           </p>
@@ -820,7 +973,7 @@
             </details>
 
             <details>
-              <summary>À quoi sert ce diagnostic concrètement ?</summary>
+              <summary>À quoi sert ce diagnostic plomberie en ligne concrètement ?</summary>
               <div class="faq-content">
                 À vous donner plus de recul, plus de clarté et plus de contrôle avant d’accepter une dépense plus lourde.
               </div>
@@ -896,6 +1049,7 @@
               href="https://buy.stripe.com/28E7sKeJf2jb6aF6zu2Ji01"
               rel="noopener"
               onclick="trackBeginCheckout()"
+              aria-label="Obtenir mon diagnostic plomberie en ligne pour 19,99€"
             >
               👉 Obtenir mon diagnostic pour 19,99€
             </a>
