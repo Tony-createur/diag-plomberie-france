@@ -3,35 +3,35 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Diag Plomberie France | Évitez les devis abusifs</title>
+  <title>Diag Plomberie France | Évitez les devis abusifs avant intervention</title>
   <meta
     name="description"
-    content="Diagnostic plomberie en ligne avant intervention. Évitez les devis abusifs, comprenez votre panne et sachez quoi faire avant de payer un plombier."
+    content="Diagnostic plomberie en ligne avant intervention. Comprenez votre panne, évaluez l’urgence et évitez de payer un devis abusif ou une intervention inutile."
   />
   <meta name="robots" content="index, follow" />
   <meta name="google-site-verification" content="xqmsLqcdw_N6r5-QaJ4ZYuJCeThYkOz4lVM3Y5ztF6o" />
   <meta name="theme-color" content="#ffffff" />
+  <link rel="canonical" href="https://diagplomberiefrance.com/" />
 
   <style>
     :root{
-      --bg:#eff5fb;
+      --bg:#eef4fb;
       --card:#ffffff;
       --text:#0f172a;
-      --muted:#5b6472;
+      --muted:#5a6473;
       --line:#dbe5f0;
       --blue:#145df5;
       --blue-dark:#0f4cc9;
       --green:#17803d;
       --green-dark:#11632f;
       --red:#c62828;
-      --yellow-bg:#fff7df;
-      --yellow-line:#efd08a;
-      --red-bg:#fff1f2;
-      --red-line:#fecdd3;
-      --blue-bg:#eef5ff;
-      --green-bg:#edf9f0;
+      --red-dark:#a61f1f;
+      --soft-red:#fff1f2;
+      --soft-yellow:#fff8e6;
+      --soft-blue:#eef5ff;
+      --soft-green:#edf9f0;
       --radius:20px;
-      --max:1100px;
+      --max:1120px;
     }
 
     *{box-sizing:border-box}
@@ -44,8 +44,8 @@
     body{
       margin:0;
       font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
-      color:var(--text);
       background:var(--bg);
+      color:var(--text);
       line-height:1.5;
       text-rendering:optimizeLegibility;
     }
@@ -61,21 +61,22 @@
     }
 
     .topbar{
-      background:var(--red);
+      background:linear-gradient(90deg,var(--red-dark),var(--red));
       color:#fff;
       text-align:center;
       padding:10px 12px;
       font-size:13px;
-      font-weight:700;
+      font-weight:800;
+      line-height:1.45;
     }
 
     .hero{
-      padding:16px 0 14px;
+      padding:14px 0 10px;
     }
 
     .hero-grid{
       display:grid;
-      grid-template-columns:1.1fr .9fr;
+      grid-template-columns:1.08fr .92fr;
       gap:18px;
       align-items:start;
     }
@@ -89,6 +90,7 @@
     .hero-main,
     .hero-side,
     .section-card,
+    .pricing-box,
     .cta-final{
       padding:24px;
     }
@@ -99,56 +101,53 @@
       gap:8px;
       padding:8px 12px;
       border-radius:999px;
-      background:var(--blue-bg);
+      background:var(--soft-blue);
       color:var(--blue-dark);
-      font-size:13px;
-      font-weight:700;
-      margin-bottom:14px;
       border:1px solid #cfe0ff;
+      font-size:13px;
+      font-weight:800;
+      margin-bottom:14px;
     }
 
     h1,h2,h3{
       margin:0;
-      line-height:1.12;
+      line-height:1.1;
     }
 
     h1{
-      font-size:clamp(2rem, 4vw, 3.3rem);
-      letter-spacing:-0.03em;
-      max-width:760px;
+      font-size:clamp(2rem,4vw,3.35rem);
+      letter-spacing:-0.035em;
       margin-bottom:14px;
+      max-width:800px;
     }
 
     h2{
-      font-size:clamp(1.7rem, 3vw, 2.4rem);
+      font-size:clamp(1.7rem,3vw,2.35rem);
       letter-spacing:-0.02em;
       margin-bottom:10px;
     }
 
     h3{
-      font-size:1.1rem;
+      font-size:1.08rem;
       margin-bottom:8px;
     }
 
-    p{
-      margin:0;
-    }
+    p{margin:0}
 
     .lead,
     .section-sub,
+    .under,
     .muted{
       color:var(--muted);
-      line-height:1.72;
       font-size:1rem;
+      line-height:1.72;
     }
 
     .lead{margin-bottom:18px}
     .section-sub{margin-bottom:20px}
+    .under{max-width:760px;margin:0 auto 16px}
 
-    .alert,
-    .proof,
-    .price-psych,
-    .note-box{
+    .alert{
       border-radius:16px;
       padding:14px 15px;
       font-size:15px;
@@ -156,16 +155,20 @@
       line-height:1.65;
     }
 
+    .alert + .alert{
+      margin-top:12px;
+    }
+
     .alert-warning{
-      background:var(--yellow-bg);
-      border:1px solid var(--yellow-line);
-      margin-bottom:12px;
+      background:var(--soft-yellow);
+      border:1px solid #efd08a;
     }
 
     .alert-danger{
-      background:var(--red-bg);
-      border:1px solid var(--red-line);
+      background:var(--soft-red);
+      border:1px solid #fecdd3;
       color:#991b1b;
+      margin-top:12px;
       margin-bottom:18px;
     }
 
@@ -174,13 +177,16 @@
     .grid-3,
     .grid-4,
     .compare,
-    .checklist{
+    .trust-row,
+    .proof-grid,
+    .guide-links{
       display:grid;
       gap:14px;
     }
 
     .hero-points,
-    .grid-2{
+    .grid-2,
+    .proof-grid{
       grid-template-columns:repeat(2,minmax(0,1fr));
     }
 
@@ -192,29 +198,44 @@
       grid-template-columns:repeat(4,minmax(0,1fr));
     }
 
+    .compare{
+      grid-template-columns:repeat(3,minmax(0,1fr));
+    }
+
+    .trust-row{
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      margin-top:16px;
+    }
+
     .mini-point,
     .info-box,
-    .check-item,
+    .proof-item,
+    .trust-item,
     .compare-item,
-    .faq-item,
-    .testimonial{
+    .testimonial,
+    .check-item,
+    details,
+    .price-card{
       border:1px solid var(--line);
       border-radius:16px;
       background:#fff;
     }
 
     .mini-point,
-    .check-item,
     .info-box,
+    .proof-item,
+    .trust-item,
     .compare-item,
-    .testimonial{
+    .testimonial,
+    .check-item{
       padding:16px;
     }
 
     .mini-point{
-      font-size:14px;
-      font-weight:700;
       background:#f9fbfd;
+      font-size:14px;
+      font-weight:800;
+      line-height:1.55;
     }
 
     .btn-row{
@@ -232,14 +253,15 @@
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      font-weight:800;
       font-size:15px;
+      font-weight:800;
       border:1px solid transparent;
+      text-align:center;
     }
 
     .btn-primary{
-      color:#fff;
       background:linear-gradient(180deg,var(--green),var(--green-dark));
+      color:#fff;
     }
 
     .btn-secondary{
@@ -271,9 +293,8 @@
     }
 
     .price-card{
-      background:var(--yellow-bg);
-      border:1px solid var(--yellow-line);
-      border-radius:16px;
+      background:var(--soft-yellow);
+      border-color:#efd08a;
       padding:18px;
       text-align:center;
       margin-bottom:14px;
@@ -281,14 +302,14 @@
 
     .price-old{
       font-size:14px;
-      text-decoration:line-through;
       color:#5f6368;
-      font-weight:700;
+      text-decoration:line-through;
+      font-weight:800;
     }
 
     .price-now,
     .big{
-      font-size:clamp(2.2rem, 5vw, 3.6rem);
+      font-size:clamp(2.3rem,5vw,3.7rem);
       line-height:1;
       font-weight:800;
       margin:8px 0;
@@ -297,18 +318,23 @@
     .price-sub{
       font-size:13px;
       line-height:1.55;
-      font-weight:700;
+      font-weight:800;
       color:#6e5400;
+    }
+
+    .checklist{
+      display:grid;
+      gap:12px;
     }
 
     .check-item{
       display:flex;
       gap:10px;
       align-items:flex-start;
+      background:#f9fbfd;
       font-size:14px;
       line-height:1.65;
       font-weight:600;
-      background:#f9fbfd;
     }
 
     .check-icon,
@@ -324,7 +350,7 @@
       width:26px;
       height:26px;
       border-radius:50%;
-      background:var(--green-bg);
+      background:var(--soft-green);
       color:var(--green);
       margin-top:1px;
     }
@@ -340,56 +366,51 @@
 
     .info-box p,
     .compare-item div,
+    .proof-item p,
+    .trust-item p,
     .testimonial p{
       color:var(--muted);
-      line-height:1.72;
       font-size:15px;
+      line-height:1.72;
     }
 
-    .blue{background:var(--blue-bg)}
-    .green{background:var(--green-bg)}
-    .yellow{background:var(--yellow-bg)}
-    .red{background:var(--red-bg)}
+    .blue{background:var(--soft-blue)}
+    .green{background:var(--soft-green)}
+    .yellow{background:var(--soft-yellow)}
+    .red{background:var(--soft-red)}
 
     .step-number{
       width:40px;
       height:40px;
       border-radius:12px;
-      background:var(--blue-bg);
+      background:var(--soft-blue);
       color:var(--blue);
       margin-bottom:12px;
     }
 
-    .pricing-elite{
-      text-align:center;
-      padding:28px 24px;
+    .proof-item strong,
+    .trust-item strong,
+    .compare-item strong{
+      display:block;
+      margin-bottom:8px;
+      font-size:18px;
     }
 
-    .under{
-      color:var(--muted);
-      line-height:1.72;
-      max-width:760px;
-      margin:0 auto 16px;
-      font-size:15px;
+    .pricing-box{
+      text-align:center;
     }
 
     .price-psych{
       max-width:760px;
       margin:0 auto 16px;
-      background:var(--green-bg);
+      background:var(--soft-green);
       border:1px solid #bfe5c9;
       color:#186338;
-    }
-
-    .compare{
-      grid-template-columns:repeat(3,minmax(0,1fr));
-      margin-top:18px;
-    }
-
-    .compare-item strong{
-      display:block;
-      font-size:22px;
-      margin-bottom:8px;
+      border-radius:16px;
+      padding:14px 15px;
+      font-size:15px;
+      font-weight:800;
+      line-height:1.65;
     }
 
     .stars{
@@ -409,17 +430,14 @@
     }
 
     details{
-      border:1px solid var(--line);
-      border-radius:16px;
-      background:#fff;
       padding:0;
     }
 
     summary{
       list-style:none;
       cursor:pointer;
-      padding:18px 18px;
-      font-weight:700;
+      padding:18px;
+      font-weight:800;
       position:relative;
     }
 
@@ -434,7 +452,7 @@
       top:50%;
       transform:translateY(-50%);
       font-size:20px;
-      font-weight:700;
+      font-weight:800;
       color:var(--blue);
     }
 
@@ -453,10 +471,6 @@
       text-align:center;
     }
 
-    .guides{
-      padding:14px 0 8px;
-    }
-
     .guides-box{
       background:#fff;
       border:1px solid var(--line);
@@ -465,20 +479,18 @@
     }
 
     .guide-links{
-      display:grid;
       grid-template-columns:repeat(3,minmax(0,1fr));
-      gap:10px;
       margin-top:14px;
     }
 
     .guide-links a{
       display:block;
       padding:12px 14px;
-      border-radius:12px;
       border:1px solid var(--line);
+      border-radius:12px;
       background:#f9fbfd;
       font-size:14px;
-      font-weight:600;
+      font-weight:700;
     }
 
     .footer{
@@ -495,10 +507,13 @@
 
     @media (max-width: 980px){
       .hero-grid,
+      .hero-points,
       .grid-2,
       .grid-3,
       .grid-4,
       .compare,
+      .trust-row,
+      .proof-grid,
       .guide-links{
         grid-template-columns:1fr;
       }
@@ -506,8 +521,8 @@
       .hero-main,
       .hero-side,
       .section-card,
-      .cta-final,
-      .pricing-elite{
+      .pricing-box,
+      .cta-final{
         padding:20px;
       }
     }
@@ -526,10 +541,6 @@
         padding-top:10px;
       }
 
-      .hero-points{
-        grid-template-columns:1fr;
-      }
-
       .btn-row{
         flex-direction:column;
       }
@@ -543,7 +554,7 @@
 <body>
 
   <div class="topbar">
-    🚨 Un mauvais diagnostic peut vous coûter très cher — évitez de payer un plombier à l’aveugle
+    🚨 Une mauvaise décision en plomberie peut coûter 150€, 300€, 500€ ou plus — prenez un avis avant de payer
   </div>
 
   <main>
@@ -553,70 +564,84 @@
           <div class="card hero-main">
             <div class="badge">✅ Diagnostic avant intervention</div>
 
-            <h1>Ne payez pas un plombier avant d’avoir compris ce qui se passe réellement</h1>
+            <h1>Évitez de payer un plombier à l’aveugle avant d’avoir compris le vrai problème</h1>
 
             <p class="lead">
-              Décrivez votre problème, ajoutez vos explications et vos photos, puis obtenez un retour clair
-              pour mieux comprendre la situation, savoir si elle semble urgente, et réduire le risque
-              d’accepter un devis abusif ou une intervention inutile.
+              Décrivez votre panne, ajoutez vos photos, puis obtenez un retour clair pour mieux comprendre la situation,
+              savoir si cela semble vraiment urgent, et réduire le risque d’accepter un devis abusif ou une intervention inutile.
             </p>
 
             <div class="alert alert-warning">
-              ⚠️ Dans l’urgence, beaucoup de clients acceptent trop vite un déplacement, un remplacement ou un devis qu’ils ne comprennent pas vraiment.
+              ⚠️ Dans l’urgence, beaucoup de personnes acceptent trop vite un déplacement, un remplacement ou un devis qu’elles ne comprennent pas vraiment.
             </div>
 
             <div class="alert alert-danger">
-              💸 Une seule mauvaise décision peut coûter 150€, 300€, 500€ ou plus. Pour 19,99€, vous prenez du recul avant d’engager des frais bien plus lourds.
+              💸 Une seule mauvaise décision peut vous faire perdre bien plus que 19,99€. Le but ici est simple : vous aider à prendre du recul avant de payer trop cher.
             </div>
 
             <div class="hero-points">
-              <div class="mini-point">💸 Évitez un devis gonflé ou injustifié</div>
-              <div class="mini-point">🔍 Comprenez plus clairement le problème</div>
-              <div class="mini-point">🔥 Sachez si la situation semble urgente</div>
-              <div class="mini-point">📷 Ajoutez vos photos pour une analyse plus fiable</div>
+              <div class="mini-point">💸 Réduisez le risque d’accepter un devis gonflé</div>
+              <div class="mini-point">🔍 Comprenez plus clairement le problème avant intervention</div>
+              <div class="mini-point">🔥 Évaluez si la situation semble urgente ou non</div>
+              <div class="mini-point">📷 Envoyez vos photos pour une analyse plus fiable</div>
             </div>
 
             <div class="btn-row">
-              <a class="btn btn-primary" href="https://buy.stripe.com/28E7sKeJf2jb6aF6zu2Ji01" rel="noopener">👉 Obtenir mon diagnostic maintenant</a>
+              <a class="btn btn-primary" href="https://buy.stripe.com/28E7sKeJf2jb6aF6zu2Ji01" rel="noopener">👉 Je veux mon diagnostic maintenant</a>
               <a class="btn btn-secondary" href="#comment-ca-marche">Voir comment ça marche</a>
             </div>
 
             <div class="small-proof">
               Paiement sécurisé Stripe • Formulaire détaillé après paiement • Photos acceptées • Option prioritaire disponible
             </div>
+
+            <div class="trust-row">
+              <div class="trust-item">
+                <strong>Clair</strong>
+                <p>Un retour compréhensible, même si vous n’y connaissez rien.</p>
+              </div>
+              <div class="trust-item">
+                <strong>Rapide</strong>
+                <p>Vous avancez plus vite au lieu de rester bloqué dans le doute.</p>
+              </div>
+              <div class="trust-item">
+                <strong>Utile</strong>
+                <p>Vous savez mieux quoi demander avant d’accepter quoi que ce soit.</p>
+              </div>
+            </div>
           </div>
 
           <aside class="card hero-side">
             <div class="side-head">
-              <h2>Ce que vous évitez réellement</h2>
+              <h2>Ce que ce diagnostic peut vous éviter</h2>
               <p>
-                Une fuite surestimée, un chauffe-eau déclaré “mort” trop vite, ou une urgence exagérée
-                peut transformer une panne simple en grosse facture.
+                Une fuite surestimée, un chauffe-eau déclaré “à remplacer” trop vite,
+                ou une urgence exagérée peuvent transformer une panne simple en grosse facture.
               </p>
             </div>
 
             <div class="price-card">
-              <div class="price-old">Intervention classique : 150€ à 500€+</div>
+              <div class="price-old">Une mauvaise intervention : 150€ à 500€+</div>
               <div class="price-now">19,99€</div>
-              <div class="price-sub">pour éviter de payer une mauvaise intervention ou un devis excessif</div>
+              <div class="price-sub">pour prendre un avis avant d’engager des frais bien plus lourds</div>
             </div>
 
             <div class="checklist">
               <div class="check-item">
                 <div class="check-icon">✓</div>
-                <div>Diagnostic simple à comprendre, même si vous n’y connaissez rien.</div>
+                <div>Diagnostic simple à comprendre, sans jargon inutile.</div>
               </div>
               <div class="check-item">
                 <div class="check-icon">✓</div>
-                <div>Aide pour évaluer si la situation semble vraiment urgente.</div>
+                <div>Aide pour savoir si la situation semble vraiment urgente.</div>
               </div>
               <div class="check-item">
                 <div class="check-icon">✓</div>
-                <div>Analyse à partir de votre description et de vos photos.</div>
+                <div>Analyse basée sur votre description et vos photos.</div>
               </div>
               <div class="check-item">
                 <div class="check-icon">✓</div>
-                <div>Option prioritaire proposée ensuite pour aller plus vite.</div>
+                <div>Possibilité d’option prioritaire après paiement.</div>
               </div>
             </div>
           </aside>
@@ -634,20 +659,20 @@
 
           <div class="grid-2">
             <div class="info-box red">
-              <h3>💸 On vous annonce un devis trop élevé</h3>
-              <p>Vous avez un montant important devant vous, sans savoir si c’est vraiment justifié.</p>
+              <h3>💸 On vous annonce un devis élevé</h3>
+              <p>Vous avez un montant important devant vous, sans savoir si c’est réellement justifié.</p>
             </div>
             <div class="info-box yellow">
               <h3>🚿 Vous avez une fuite ou un problème d’eau</h3>
-              <p>Vous voulez savoir si c’est grave, si cela peut attendre, ou s’il faut agir rapidement.</p>
+              <p>Vous voulez savoir si c’est grave, si cela peut attendre, ou s’il faut agir vite.</p>
             </div>
             <div class="info-box blue">
-              <h3>🔥 Votre chauffe-eau est en panne</h3>
+              <h3>🔥 Votre chauffe-eau pose problème</h3>
               <p>On parle parfois immédiatement de remplacement complet, alors que la panne peut être plus ciblée.</p>
             </div>
             <div class="info-box green">
               <h3>⚠️ Vous avez peur de vous faire avoir</h3>
-              <p>Vous voulez un avis clair avant d’accepter un devis ou de faire intervenir quelqu’un.</p>
+              <p>Vous voulez un avis clair avant d’accepter un devis ou de faire venir quelqu’un.</p>
             </div>
           </div>
         </div>
@@ -675,8 +700,8 @@
             </div>
             <div class="info-box">
               <div class="step-number">3</div>
-              <h3>Vous recevez un retour exploitable</h3>
-              <p>Vous savez mieux quoi faire, ce qui semble urgent, et comment éviter de payer pour rien.</p>
+              <h3>Vous recevez un retour utile</h3>
+              <p>Vous savez mieux quoi faire, quoi surveiller, et comment éviter de payer pour rien.</p>
             </div>
           </div>
         </div>
@@ -688,24 +713,24 @@
         <div class="card section-card">
           <h2>Ce que vous obtenez concrètement</h2>
           <p class="section-sub">
-            Une réponse utile, claire et actionnable. Pas de jargon inutile, pas de blabla.
+            Une réponse claire, exploitable et pensée pour vous aider à décider avant intervention.
           </p>
 
-          <div class="grid-2">
-            <div class="info-box blue">
-              <h3>✔️ Un diagnostic clair</h3>
-              <p>Vous comprenez le problème avec des mots simples.</p>
+          <div class="proof-grid">
+            <div class="proof-item">
+              <strong>✔️ Une lecture plus claire du problème</strong>
+              <p>Vous comprenez mieux ce qui semble se passer, avec des mots simples.</p>
             </div>
-            <div class="info-box green">
-              <h3>✔️ Une meilleure lecture de l’urgence</h3>
-              <p>Vous savez s’il faut agir tout de suite ou si cela peut attendre un peu.</p>
+            <div class="proof-item">
+              <strong>✔️ Une meilleure lecture de l’urgence</strong>
+              <p>Vous savez si cela paraît urgent ou si cela peut attendre un peu.</p>
             </div>
-            <div class="info-box yellow">
-              <h3>✔️ Des conseils avant intervention</h3>
-              <p>Vous recevez des recommandations concrètes avant de faire venir un plombier.</p>
+            <div class="proof-item">
+              <strong>✔️ Un meilleur pouvoir de décision</strong>
+              <p>Vous êtes moins vulnérable face à un devis, un déplacement ou un remplacement trop rapide.</p>
             </div>
-            <div class="info-box red">
-              <h3>✔️ Une protection contre les abus</h3>
+            <div class="proof-item">
+              <strong>✔️ Un filtre contre les abus</strong>
               <p>Vous réduisez le risque de payer une intervention inutile ou surévaluée.</p>
             </div>
           </div>
@@ -715,40 +740,51 @@
 
     <section class="section lazy-section">
       <div class="wrap">
-        <div class="card pricing-elite">
+        <div class="card section-card">
+          <h2>Pourquoi 19,99€ peuvent vous faire économiser beaucoup plus</h2>
+          <p class="section-sub">
+            Le but n’est pas de remplacer un professionnel sur place. Le but est de vous éviter une mauvaise décision avant d’engager des frais.
+          </p>
+
+          <div class="compare">
+            <div class="compare-item">
+              <strong>19,99€</strong>
+              <div>Pour obtenir un avis avant intervention</div>
+            </div>
+            <div class="compare-item">
+              <strong>150€+</strong>
+              <div>Pour un déplacement parfois accepté dans le stress</div>
+            </div>
+            <div class="compare-item">
+              <strong>300€ à 500€+</strong>
+              <div>Pour une intervention ou un devis potentiellement exagéré</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section lazy-section">
+      <div class="wrap">
+        <div class="card pricing-box">
           <div class="badge">💰 Paiement unique • Sans abonnement</div>
-          <h2>19,99€ maintenant peuvent vous éviter une grosse erreur ensuite</h2>
+          <h2>Pour 19,99€, vous prenez un minimum de recul avant de dépenser beaucoup plus</h2>
           <p class="under">
-            Pour 19,99€, vous obtenez un diagnostic avant intervention. Cela peut vous éviter une facture beaucoup plus lourde.
+            Avant de faire intervenir quelqu’un, mieux vaut comprendre un minimum la situation plutôt que payer dans la précipitation.
           </p>
 
           <div class="big">19,99€</div>
 
           <div class="price-psych">
-            Soit un petit montant pour éviter une décision qui peut vous coûter 150€, 300€, 500€ ou plus.
+            Un petit montant pour éviter une erreur qui peut ensuite coûter 150€, 300€, 500€ ou davantage.
           </div>
-
-          <p class="under">
-            Paiement unique • Formulaire détaillé après paiement • Photos acceptées • Option prioritaire ensuite
-          </p>
 
           <div class="btn-row" style="justify-content:center;">
             <a class="btn btn-primary" href="https://buy.stripe.com/28E7sKeJf2jb6aF6zu2Ji01" rel="noopener">🔥 Oui, je veux éviter de payer trop cher</a>
           </div>
 
-          <div class="compare">
-            <div class="compare-item">
-              <strong>19,99€</strong>
-              <div>Diagnostic avant intervention</div>
-            </div>
-            <div class="compare-item">
-              <strong>150€+</strong>
-              <div>Déplacement souvent facturé</div>
-            </div>
-            <div class="compare-item">
-              <strong>300€ à 500€+</strong>
-              <div>Intervention ou devis potentiellement abusif</div>
-            </div>
+          <div class="small-proof">
+            Paiement sécurisé Stripe • Formulaire détaillé après paiement • Photos acceptées • Option prioritaire ensuite
           </div>
         </div>
       </div>
@@ -772,8 +808,8 @@
               <p>Vous pouvez joindre les images utiles du problème.</p>
             </div>
             <div class="info-box">
-              <h3>📩 Réponse exploitable</h3>
-              <p>Vous recevez une réponse claire, pas du jargon vide.</p>
+              <h3>📩 Réponse claire</h3>
+              <p>Un retour utile, compréhensible et exploitable.</p>
             </div>
             <div class="info-box">
               <h3>⚡ Option prioritaire</h3>
@@ -798,11 +834,13 @@
               <p>“J’ai compris que ce n’était pas aussi grave qu’annoncé. J’ai évité une intervention bien trop chère.”</p>
               <div class="name">Client diagnostic fuite</div>
             </div>
+
             <div class="testimonial">
               <div class="stars">★★★★★</div>
               <p>“Très clair, très rassurant, et surtout utile avant de faire venir quelqu’un à la maison.”</p>
               <div class="name">Client chauffe-eau</div>
             </div>
+
             <div class="testimonial">
               <div class="stars">★★★★★</div>
               <p>“Le diagnostic m’a permis de savoir quoi demander exactement avant d’accepter un devis.”</p>
@@ -830,9 +868,16 @@
             </details>
 
             <details>
+              <summary>Est-ce que cela remplace un plombier sur place ?</summary>
+              <div class="faq-content">
+                Non. Le but est de vous aider à mieux comprendre la situation avant de payer un déplacement, un devis ou une intervention.
+              </div>
+            </details>
+
+            <details>
               <summary>Et si mon problème est urgent ?</summary>
               <div class="faq-content">
-                Vous pouvez détailler la situation dès le formulaire, puis une option prioritaire peut être proposée après paiement.
+                Vous pouvez détailler la situation dès le formulaire. Une option prioritaire peut ensuite être proposée selon le besoin.
               </div>
             </details>
 
@@ -873,7 +918,7 @@
       </div>
     </section>
 
-    <section class="guides lazy-section">
+    <section class="section lazy-section">
       <div class="wrap">
         <div class="guides-box">
           <h2>Guides utiles</h2>
