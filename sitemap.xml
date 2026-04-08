@@ -1,32 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <url>
-    <loc>https://diagplomberiefrance.com/</loc>
-    <lastmod>2026-04-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
+  <url><loc>https://diagplomberiefrance.com/</loc></url>
 
-  <url>
-    <loc>https://diagplomberiefrance.com/fuite-eau-urgence.html</loc>
-    <lastmod>2026-04-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
+  <url><loc>https://diagplomberiefrance.com/fuite-eau-urgence.html</loc></url>
+  <url><loc>https://diagplomberiefrance.com/chauffe-eau-panne.html</loc></url>
+  <url><loc>https://diagplomberiefrance.com/plombier-urgence.html</loc></url>
+  <url><loc>https://diagplomberiefrance.com/chauffe-eau-disjoncte.html</loc></url>
+  <url><loc>https://diagplomberiefrance.com/ballon-eau-chaude-fuite.html</loc></url>
+  <url><loc>https://diagplomberiefrance.com/ballon-eau-chaude-bruit.html</loc></url>
+  <url><loc>https://diagplomberiefrance.com/fuite-chauffe-eau.html</loc></url>
+  <url><loc>https://diagplomberiefrance.com/fuite-machine-a-laver.html</loc></url>
+  <url><loc>https://diagplomberiefrance.com/fuite-sous-evier.html</loc></url>
+  <url><loc>https://diagplomberiefrance.com/fuite-wc-urgence.html</loc></url>
+  <url><loc>https://diagplomberiefrance.com/robinet-qui-fuit.html</loc></url>
+  <url><loc>https://diagplomberiefrance.com/chasse-eau-qui-coule.html</loc></url>
+  <url><loc>https://diagplomberiefrance.com/canalisation-bouchee.html</loc></url>
+  <url><loc>https://diagplomberiefrance.com/evier-bouche.html</loc></url>
+  <url><loc>https://diagplomberiefrance.com/douche-qui-fuit.html</loc></url>
+  <url><loc>https://diagplomberiefrance.com/tuyau-qui-fuit.html</loc></url>
+  <url><loc>https://diagplomberiefrance.com/pression-eau-faible.html</loc></url>
+  <url><loc>https://diagplomberiefrance.com/odeur-canalisation.html</loc></url>
 
-  <url>
-    <loc>https://diagplomberiefrance.com/chauffe-eau-panne.html</loc>
-    <lastmod>2026-04-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
+  <!-- pages SEO ultra importantes -->
+  <url><loc>https://diagplomberiefrance.com/plombier-urgence-prix.html</loc></url>
+  <url><loc>https://diagplomberiefrance.com/prix-plombier-urgence.html</loc></url>
 
-  <url>
-    <loc>https://diagplomberiefrance.com/plombier-urgence.html</loc>
-    <lastmod>2026-04-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
+  <!-- pages confiance -->
+  <url><loc>https://diagplomberiefrance.com/mentions-legales.html</loc></url>
+  <url><loc>https://diagplomberiefrance.com/cgv.html</loc></url>
 
 </urlset>
