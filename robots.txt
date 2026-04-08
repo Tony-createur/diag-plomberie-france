@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-# Sitemap principal
 Sitemap: https://diagplomberiefrance.com/sitemap.xml
